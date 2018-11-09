@@ -142,9 +142,22 @@ notify:
     name: Notify
     api_key: !secret pushbullet_api_key
 
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# UI Lovelace Update Command          #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+
 shell_command:
   lovelace_gen: 'python /config/lovelace-gen.py'
 
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# UI For MQTT Alarm Clock             #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
 alarm_control_panel:
   - platform: manual_mqtt
     name: Home Alarm
@@ -161,6 +174,39 @@ alarm_control_panel:
       delay_time: 0
     triggered:
       pending_time: 0
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Glances                             #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+sensor:
+  - platform: glances
+    name: Glances
+    version: 3
+    resources:
+      - 'disk_use_percent'
+      - 'disk_use'
+      - 'disk_free'
+      - 'memory_use_percent'
+      - 'memory_use'
+      - 'memory_free'
+      - 'swap_use_percent'
+      - 'swap_use'
+      - 'swap_free'
+      - 'processor_load'
+      - 'process_running'
+      - 'process_total'
+      - 'process_thread'
+      - 'process_sleeping'
+      - 'cpu_temp'
+      - 'docker_active'
+      - 'docker_cpu_use'
+      - 'docker_memory_use'
+
+
+
+
 # # # # # # # # # # # # # # # # # # # # # # #
 #                                        #   
 # Starting Automations                #      
