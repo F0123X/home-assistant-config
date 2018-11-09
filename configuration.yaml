@@ -1,0 +1,86 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+
+# # ## ## ## ## ## ## ## ## ## ## ## ## ## ##
+# #
+# #    1. General Settings
+# #
+# # ## ## ## ## ## ## ## ## ## ## ## ## ## ##
+
+# Basic Information
+homeassistant:
+  name: Home
+  latitude: !secret collings_latitude
+  longitude: !secret collings_longitude
+  elevation: !secret collings_elevation
+  unit_system: imperial
+  time_zone: America/New_York
+  customize: !include customize.yaml
+  packages: !include_dir_named packages
+
+http:
+  base_url: !secret ha_url
+  ssl_certificate: !secret ssl_certificate_path
+  ssl_key: !secret ssl_key_path
+  api_password: !secret http_password
+
+mqtt:
+  broker: !secret ha_base_url
+  port: 1883
+  username: !secret router_username
+  password: !secret router_password
+  discovery: true
+  discovery_prefix: 'hass'
+
+# Device Montitoring
+discovery:
+
+# Front-End Settings
+config:
+conversation:
+frontend:
+hassio:
+
+#Testing
+# More information can be found:
+# https://github.com/custom-components/custom_updater/wiki/Installation
+custom_updater:
+  card_urls:
+    - https://raw.githubusercontent.com/kalkih/mini-media-player/master/tracker.json
+
+# ZWave
+zwave:
+  usb_path: /dev/ttyACM0
+  polling_interval: 20000
+  network_key: !secret zwave_network_key
+
+tts:
+  - platform: google
+wemo:
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+
+alexa:
+
+# Development Settings
+history:
+logbook:
+ffmpeg:
+
+# Still in migration to packages
+sensor: !include sensors/sensors.yaml
+zone: !include zones/zones.yaml

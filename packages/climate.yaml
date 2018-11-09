@@ -1,0 +1,44 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+#
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Indoor Climate                      #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+
+weather:
+  - platform: darksky
+    api_key: !secret forecast_api_key
+
+sensor:
+  - platform: nest
+    monitored_conditions:
+      - 'temperature'
+      - 'target'
+      - 'humidity'
+      - 'operation_mode'
+
+  - platform: template
+    sensors:
+      weather_temperature:
+        friendly_name: Weather Temperature
+        value_template: '{{ states.weather.dark_sky.attributes.temperature }}'
+        entity_id: weather.dark_sky
+      weather_humidity:
+        friendly_name: Weather Humidity
+        value_template: '{{ states.weather.dark_sky.attributes.humidity }}'
+        entity_id: weather.dark_sky

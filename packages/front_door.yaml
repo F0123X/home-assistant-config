@@ -1,0 +1,90 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+#
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Front Door                          #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+
+input_boolean:
+  expecting_arrival:
+    name: Expecting Arrival
+    initial: off
+    icon: mdi:account-plus
+  front_door_lock_auto:
+    name: Front Door Lock Auto
+    initial: on
+    icon: mdi:lock
+
+switch:
+  - platform: mqtt
+    name: "Front Door Lock Automation"
+    state_topic: "hass/automation/locks/front-door"
+    command_topic: "hass/automation/locks/front-door"
+    qos: 0
+    retain: true
+
+sensor:
+  - platform: template
+    sensors:
+      front_door_status:
+        friendly_name: Front Door Status
+        value_template: >-
+            {%- if is_state('sensor.ecolink_doorwindow_sensor_access_control', '23') %}
+                Closed
+            {% else %}
+                Open
+            {%- endif %}
+      front_door_lock_battery:
+        friendly_name: Front Door Lock Battery 
+        value_template: '{{ states.zwave.front_door_lock.attributes.battery_level }}'
+        unit_of_measurement: '%'
+        entity_id: zwave.front_door_lock
+      front_door_lock_status: 
+        friendly_name: Front Door Lock Status
+        value_template: '{{ states.lock.front_door_lock.attributes.lock_status }}'
+        entity_id: lock.front_door_lock
+# script:
+#   someone_at_door:
+#     alias: Someone At Door
+#     sequence:
+#       - service: script.sonos_say
+#         data:
+#           sonos_entity: media_player.living_room_beam
+#           volume: 0.5
+#           message: 'Ryan, there is someone at the door!'
+#           delay: '00:00:03'
+#       - service: input_boolean.turn_off
+#         entity_id: input_boolean.expecting_arrival
+
+# automation:
+# - alias: Waiting For Arrival
+#   trigger:
+#     - platform: state
+#       entity_id: sensor.door_camera_motion_detected
+#       to: 'True'
+#       for:
+#         hours: 0
+#         minutes: 0
+#         seconds: 5
+#   condition:
+#     - condition: state
+#       entity_id: input_boolean.expecting_arrival
+#       state: 'on'
+#   action:
+#     - service: script.turn_on
+#       entity_id: script.someone_at_door

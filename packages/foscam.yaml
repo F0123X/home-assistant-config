@@ -1,0 +1,241 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+#
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Cameras                             #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+
+# camera:
+# - platform: ffmpeg
+#   name: Living Room Camera
+#   input: !secret rtsp_foscam_ipcam01
+#   extra_arguments: -pred 1 # -q:v 2
+
+# camera:
+# - platform: onvif
+#   host: !secret ip_foscam_camera_01
+#   name: Living Room Camera
+#   username: !secret ipcam_username
+#   password: !secret ipcam_password
+#   port: 888
+
+# camera:
+# - platform: foscam
+#   name: Living Room Camera
+#   ip: !secret ip_foscam_camera_01
+#   port: 88
+#   username: !secret ipcam_username
+#   password: !secret ipcam_password
+
+
+# switch:
+#   platform: command_line
+#   switches:
+#     foscam_motion:
+#       command_on: !secret foscam_motion_on
+#       command_off: !secret foscam_motion_off
+#       command_state: !secret foscam_motion_state
+#       value_template: '{{ value == "1" }}'
+
+# shell_command:
+#   foscam_goto_living_room_view: !secret curl_foscam_goto_living_room_view
+#   foscam_goto_camera_check_view: !secret curl_foscam_goto_camera_check_view
+#   foscam_goto_window_view: !secret curl_foscam_goto_window_view
+#   foscam_goto_tv_view: !secret curl_foscam_goto_tv_view
+#   foscam_move_left: !secret curl_foscam_move_left
+#   foscam_move_right: !secret curl_foscam_move_right
+#   foscam_move_up: !secret curl_foscam_move_up
+#   foscam_move_down: !secret curl_foscam_move_down
+#   foscam_move_bottom_left: !secret curl_foscam_move_bottom_left
+#   foscam_move_bottom_right: !secret curl_foscam_move_bottom_right
+#   foscam_move_top_left: !secret curl_foscam_move_top_left
+#   foscam_move_top_right: !secret curl_foscam_move_top_right
+#   foscam_move_stop: !secret curl_foscam_move_stop
+
+# script:
+#   foscam_living_room_view:
+#     alias: Foscam Living Room View
+#     sequence:
+#     - service: switch.turn_off
+#       data:
+#         entity_id: switch.foscam_motion
+#     - delay: '00:00:01'
+#     - service: shell_command.foscam_goto_living_room_view
+#     - delay: '00:00:01'
+#     - service: switch.turn_on
+#       data:
+#         entity_id: switch.foscam_motion
+#     - delay: '00:00:03'
+#     - service: shell_command.foscam_move_stop
+
+#   foscam_camera_check_view:
+#     alias: Foscam Camera Check View
+#     sequence:
+#     - service: switch.turn_off
+#       data:
+#         entity_id: switch.foscam_motion
+#     - delay: '00:00:01'
+#     - service: shell_command.foscam_goto_camera_check_view
+#     - delay: '00:00:01'
+#     - service: switch.turn_on
+#       data:
+#         entity_id: switch.foscam_motion
+#     - delay: '00:00:03'
+#     - service: shell_command.foscam_move_stop
+
+#   foscam_window_view:
+#     alias: Foscam Window View
+#     sequence:
+#     - service: switch.turn_off
+#       data:
+#         entity_id: switch.foscam_motion
+#     - delay: '00:00:01'
+#     - service: shell_command.foscam_goto_window_view
+#     - delay: '00:00:01'
+#     - service: switch.turn_on
+#       data:
+#         entity_id: switch.foscam_motion
+#     - delay: '00:00:03'
+#     - service: shell_command.foscam_move_stop
+
+#   foscam_tv_view:
+#     alias: Foscam TV View
+#     sequence:
+#     - service: switch.turn_off
+#       data:
+#         entity_id: switch.foscam_motion
+#     - delay: '00:00:01'
+#     - service: shell_command.foscam_goto_tv_view
+#     - delay: '00:00:01'
+#     - service: switch.turn_on
+#       data:
+#         entity_id: switch.foscam_motion
+#     - delay: '00:00:03'
+#     - service: shell_command.foscam_move_stop
+
+#   foscam_pan_left:
+#     alias: Foscam Pan Left
+#     sequence:
+#     - service: switch.turn_off
+#       data:
+#         entity_id: switch.foscam_motion
+#     - delay: '00:00:01'
+#     - service: shell_command.foscam_move_left
+#     - delay: '00:00:01'
+#     - service: shell_command.foscam_move_stop
+#     - service: switch.turn_on
+#       data:
+#         entity_id: switch.foscam_motion
+
+#   foscam_pan_bottom_left:
+#     alias: Foscam Pan Bottom Left
+#     sequence:
+#     - service: switch.turn_off
+#       data:
+#         entity_id: switch.foscam_motion
+#     - delay: '00:00:01'
+#     - service: shell_command.foscam_move_bottom_left
+#     - delay: '00:00:01'
+#     - service: shell_command.foscam_move_stop
+#     - service: switch.turn_on
+#       data:
+#         entity_id: switch.foscam_motion
+
+#   foscam_pan_top_left:
+#     alias: Foscam Pan Top Left
+#     sequence:
+#     - service: switch.turn_off
+#       data:
+#         entity_id: switch.foscam_motion
+#     - delay: '00:00:01'
+#     - service: shell_command.foscam_move_top_left
+#     - delay: '00:00:01'
+#     - service: shell_command.foscam_move_stop
+#     - service: switch.turn_on
+#       data:
+#         entity_id: switch.foscam_motion
+
+#   foscam_pan_right:
+#     alias: Foscam Pan Right
+#     sequence:
+#     - service: switch.turn_off
+#       data:
+#         entity_id: switch.foscam_motion
+#     - delay: '00:00:01'
+#     - service: shell_command.foscam_move_right
+#     - delay: '00:00:01'
+#     - service: shell_command.foscam_move_stop
+#     - service: switch.turn_on
+#       data:
+#         entity_id: switch.foscam_motion
+
+#   foscam_pan_bottom_right:
+#     alias: Foscam Pan Bottom Right
+#     sequence:
+#     - service: switch.turn_off
+#       data:
+#         entity_id: switch.foscam_motion
+#     - delay: '00:00:01'
+#     - service: shell_command.foscam_move_bottom_right
+#     - delay: '00:00:01'
+#     - service: shell_command.foscam_move_stop
+#     - service: switch.turn_on
+#       data:
+#         entity_id: switch.foscam_motion
+
+#   foscam_pan_top_right:
+#     alias: Foscam Pan Top Right
+#     sequence:
+#     - service: switch.turn_off
+#       data:
+#         entity_id: switch.foscam_motion
+#     - delay: '00:00:01'
+#     - service: shell_command.foscam_move_top_right
+#     - delay: '00:00:01'
+#     - service: shell_command.foscam_move_stop
+#     - service: switch.turn_on
+#       data:
+#         entity_id: switch.foscam_motion
+
+#   foscam_pan_up:
+#     alias: Foscam Pan Up
+#     sequence:
+#     - service: switch.turn_off
+#       data:
+#         entity_id: switch.foscam_motion
+#     - delay: '00:00:01'
+#     - service: shell_command.foscam_move_up
+#     - delay: '00:00:01'
+#     - service: shell_command.foscam_move_stop
+#     - service: switch.turn_on
+#       data:
+#         entity_id: switch.foscam_motion
+
+#   foscam_pan_down:
+#     alias: Foscam Pan Down
+#     sequence:
+#     - service: switch.turn_off
+#       data:
+#         entity_id: switch.foscam_motion
+#     - delay: '00:00:01'
+#     - service: shell_command.foscam_move_down
+#     - delay: '00:00:01'
+#     - service: shell_command.foscam_move_stop
+#     - service: switch.turn_on
+#       data:
+#         entity_id: switch.foscam_motion

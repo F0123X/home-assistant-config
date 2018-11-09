@@ -1,0 +1,151 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+#
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Security                            #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+
+homeassistant:
+  customize:
+    sensor.back_door:
+      hidden: true
+    sensor.basement_door:
+      hidden: true
+    sensor.front_left_window:
+      hidden: true
+    sensor.front_right_window:
+      hidden: true
+    sensor.washer_leak_sensor:
+      hidden: true
+  customize_glob:
+    "sensor.*_battery":
+      device_class: battery
+      icon: mdi:battery
+      unit_of_measurement: '%'
+    "binary_sensor.*_door":
+      device_class: door
+    "binary_sensor.*_window":
+      device_class: window
+
+
+
+
+
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#                 Cameras
+# # # # # # # # # # # # # # # # # # # # # # #
+# Front Door
+# - - - - - - - - - - - - - - - - - - - - - -
+amcrest:
+- host: !secret ip_amcrest_camera_01
+  name: Door Camera
+  username: !secret router_username
+  password: !secret router_password
+  sensors:
+    - motion_detector
+  resolution: low
+
+camera:
+  - name: Door Camera
+    platform: amcrest
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#                 Sensors
+# # # # # # # # # # # # # # # # # # # # # # #
+sensor:
+# - - - - - - - - - - - - - - - - - - - - - -
+# Door Sensors
+# - - - - - - - - - - - - - - - - - - - - - -
+  - platform: mqtt
+    name: Back Door
+    state_topic: 'hass/Back Door Sensor/contact/state'
+    qos: 0
+  - platform: mqtt
+    name: Back Door Battery
+    state_topic: 'hass/Back Door Sensor/battery/state'
+    qos: 0
+  - platform: mqtt
+    name: Basement Door
+    state_topic: 'hass/Basement Door Sensor/contact/state'
+    qos: 0
+  - platform: mqtt
+    name: Basement Door Battery
+    state_topic: 'hass/Basement Door Sensor/battery/state'
+    qos: 0
+# - - - - - - - - - - - - - - - - - - - - - -
+# Window Sensors
+# - - - - - - - - - - - - - - - - - - - - - -
+  - platform: mqtt
+    name: Front Right Window
+    state_topic: 'hass/Front Right Window Sensor/contact/state'
+    qos: 0
+  - platform: mqtt
+    name: Front Right Window Battery
+    state_topic: 'hass/Front Right Window Sensor/battery/state'
+    qos: 0
+  - platform: mqtt
+    name: Front Left Window
+    state_topic: 'hass/Front Left Window Sensor/contact/state'
+    qos: 0
+  - platform: mqtt
+    name: Front Left Window Battery
+    state_topic: 'hass/Front Left Window Sensor/battery/state'
+    qos: 0
+# - - - - - - - - - - - - - - - - - - - - - -
+# Leak Sensors
+# - - - - - - - - - - - - - - - - - - - - - -
+  - platform: mqtt
+    name: Washer Leak Sensor
+    state_topic: 'hass/Washer Leak Sensor/contact/state'
+    qos: 0
+  - platform: mqtt
+    name: Washer Leak Sensor Battery
+    state_topic: 'hass/Washer Leak Sensor/battery/state'
+    qos: 0
+
+
+
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#               Binary Sensors
+# # # # # # # # # # # # # # # # # # # # # # #
+binary_sensor:
+  - platform: template
+    sensors:
+      back_door:
+        friendly_name: Back Door
+        entity_id: sensor.back_door
+        value_template: "{{ is_state('sensor.back_door', 'open') }}"
+      basement_door:
+        friendly_name: Basement Door
+        entity_id: sensor.basement_door
+        value_template: "{{ is_state('sensor.basement_door', 'open') }}"
+      front_left_window:
+        friendly_name: Front Left Window
+        entity_id: sensor.front_left_window
+        value_template: "{{ is_state('sensor.front_left_window', 'open') }}"
+      front_right_window:
+        friendly_name: Front Right Window
+        entity_id: sensor.front_right_window
+        value_template: "{{ is_state('sensor.front_right_window', 'open') }}"
+      washer_leak_sensor:
+        friendly_name: Washer Leak Sensor
+        entity_id: sensor.washer_leak_sensor
+        device_class: moisture
+        value_template: "{{ is_state('sensor.washer_leak_sensor', 'dry') }}"

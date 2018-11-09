@@ -1,0 +1,177 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+#
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Living Room                         #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+
+homeassistant:
+  customize:
+    media_player.living_room_tv:
+      friendly_name: Living Room TV
+    script.turn_on_tv:
+      hidden: true
+    script.turn_off_tv:
+      hidden: true
+    switch.living_room_tv:
+      hidden: true
+    sensor.living_room_tv:
+      hidden: true
+
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Speakers                            #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+sonos:
+  media_player:
+    interface_addr: 192.168.1.1
+    hosts:
+      - 192.168.1.42
+      - 192.168.1.41
+      - 192.168.1.40
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Remotes                             #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+
+remote:
+  - platform: harmony
+    name: Living Room
+    host: !secret ip_logitech_harmony_01
+
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Remotes                             #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+switch:
+  - platform: template
+    switches:
+      living_room_tv:
+        friendly_name: Living Room TV
+        value_template: "{{ is_state('sensor.living_room_tv', 'on') }}"
+        turn_on:
+          service: script.turn_on
+          data:
+            entity_id: script.turn_on_tv
+        turn_off:
+          service: script.turn_on
+          data:
+            entity_id: script.turn_off_tv
+
+# states.media_player.living_room_sonos.attributes.is_volume_muted
+# sensor:
+#   - platform: template
+#     sensors:
+#       living_room_volume_mute_toggle:
+#         friendly_name: Living Room Volume Mute Toggle
+#         value_template: '{{ not states.media_player.living_room_sonos.attributes.is_volume_muted }}'
+
+
+script:
+  turn_on_tv:
+    alias: Turn On TV
+    sequence:
+      - service: remote.send_command
+        data:
+          command:
+          - PowerOn
+          - Home
+          delay_secs: 0.5
+          device: 49552536
+          entity_id: remote.living_room
+      - service: mqtt.publish
+        data_template:
+          topic: 'hass/devices/livingroomtv/status'
+          retain: true
+          payload: 'on'
+  turn_off_tv:
+    alias: Turn Off TV
+    sequence:
+      - service: remote.send_command
+        data:
+          command:
+          - PowerOff
+          delay_secs: 0.5
+          device: 49552536
+          entity_id: remote.living_room
+      - service: mqtt.publish
+        data_template:
+          topic: 'hass/devices/livingroomtv/status'
+          retain: true
+          payload: 'off'
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Media Players                       #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+media_player:
+  - platform: universal
+    name: Living Room TV
+    children:
+      - media_player.living_room_sonos
+    commands:
+      turn_on:
+        service: switch.turn_on
+        data:
+          entity_id: switch.living_room_tv
+      turn_off:
+        service: switch.turn_off
+        data:
+          entity_id: switch.living_room_tv
+      volume_up:
+        service: media_player.volume_up
+        data:
+          entity_id: media_player.living_room_sonos
+      volume_down:
+        service: media_player.volume_down
+        data:
+          entity_id: media_player.living_room_sonos
+      volume_mute:
+        service: media_player.volume_mute
+        data_template:
+          entity_id: media_player.living_room_sonos
+          is_volume_muted: '{{ is_volume_muted }}'
+      volume_set:
+        service: media_player.volume_set
+        data_template:
+          entity_id: media_player.living_room_sonos
+          volume_level: '{{ volume_level }}'
+    attributes:
+      is_volume_muted: media_player.living_room_sonos|is_volume_muted
+      volume_level: media_player.living_room_sonos|volume_level
+      state: switch.living_room_tv
+
+
+
+# media_player: 
+#   - platform: samsungtv
+#     name: Living Room TV
+#     host: !secret ip_samsung_tv_01
+#     port: 8001
+
+# - platform: dlna_dmr
+#   name: Living Room Smart TV
+#   url: 'http://192.168.1.43:9197/dmr'
+

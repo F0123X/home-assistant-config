@@ -1,0 +1,204 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+#
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Admin Panels                        #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+frontend:
+  themes:
+    darkcyan:
+    # Main colors that can be changed
+      primary-color: "#00bcd4"
+      disabled-text-color: "#545454"
+      divider-color: "rgba(255, 255, 255, 0.12)"
+      paper-card-background-color: "#4e4e4e"
+      paper-grey-200: "#191919"
+      paper-item-icon-color: "#d3d3d3"
+      paper-listbox-background-color: "#202020"
+      paper-listbox-color: "#FFFFFF"      
+      primary-background-color: "#303030"
+      primary-text-color: "#cfcfcf"      
+      secondary-background-color: "#2b2b2b"
+      secondary-text-color: "#04a7bc"
+    # Colors based on variables, see above
+      label-badge-background-color: "var(--secondary-background-color)"
+      label-badge-text-color: "var(--text-primary-color)"
+      paper-card-header-color: "#var(--paper-item-icon-color)"
+      paper-grey-50: "var(--primary-text-color)"
+      paper-item-icon-active-color: "var(--primary-color)"
+      paper-item-icon_-_color: "var(--primary-text-color)"
+      paper-slider-active-color: "var(--primary-color)"
+      paper-slider-knob-color: "var(--primary-color)"
+      paper-slider-knob-start-color: "var(--primary-color)"
+      paper-slider-pin-color: "var(--primary-color)"
+      paper-slider-secondary-color: "var(--light-primary-color)"     
+      paper-toggle-button-checked-ink-color: "var(--dark-primary-color)"
+      paper-toggle-button-checked-button-color: "var(--primary-color)"
+      paper-toggle-button-checked-bar-color: "var(--light-primary-color)"
+      paper-toggle-button-unchecked-bar-color: "var(--primary-text-color)"
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Admin Panels                        #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+panel_iframe:
+  cloud9_ide:
+    title: Cloud9 IDE
+    icon: mdi:cloud-braces
+    url: !secret add_on_cloud9ide_url
+  configurator:
+    title: Configurator
+    icon: mdi:wrench
+    url: !secret add_on_configurator_url
+  log_viewer:
+    title: Log Viewer
+    icon: mdi:file-alert
+    url: !secret add_on_logviewer_url
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Recorder                             #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+recorder:
+  purge_interval: 1
+  purge_keep_days: 5
+  include:
+    domains:
+      - sensor
+      - switch
+      - media_player
+      - lock
+      - light
+      - device_tracker
+  exclude:
+    entities:
+      - sensor.last_boot
+      - sensor.date
+      - sensor.zestimate
+      - sensor.amazon_echo
+      - sensor.amazon_dot_upstairs_bathroom
+      - sensor.ecolink_doorwindow_sensor_alarm_type
+      - sensor.ecolink_doorwindow_sensor_access_control
+      - sensor.ecolink_doorwindow_sensor_burglar
+      - sensor.ecolink_doorwindow_sensor_power_management
+      - sensor.ecolink_doorwindow_sensor_sourcenodeid
+      - sensor.front_door_sensor_alarm_level
+      - sensor.harmony_hub
+      - sensor.home_estimate
+      - sensor.home_estimate_30_day_change
+      - sensor.home_estimate_last_updated
+      - sensor.secure_server
+      - sensor.home_eta
+      - sensor.smartthings_hub
+      - sensor.weather_humidity
+      - binary_sensor.home_away
+      - binary_sensor.living_room_thermostat_fan
+      - binary_sensor.living_room_thermostat_has_leaf
+      - binary_sensor.living_room_thermostat_is_locked
+      - binary_sensor.living_room_thermostat_is_using_emergency_heat
+      - binary_sensor.living_room_thermostat_online
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Logger                              #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+logger:
+  default: debug
+  logs:
+    async_upnp_client: info
+    haffmpeg.core: info
+    homeassistant: debug
+    homeassistant.components.http.auth: critical
+    homeassistant.components.http.view: error  
+    homeassistant.components: info
+    homeassistant.components.device_tracker.netgear: error
+    homeassistant.components.media_player: error
+    homeassistant.components.websocket_api: error
+    homeassistant.components.zwave.util: error
+    homeassistant.components.recorder: error
+    homeassistant.core: critical
+    homeassistant.components.mqtt: error
+    homeassistant.helpers.storage: critical
+    homeassistant.util.json: error
+    hbmqtt: debug
+    hbmqtt.mqtt: error
+    hbmqtt.broker: error
+    pyHS100: error
+    amcrest.http: error
+    nest.nest: error
+    suds: error
+    libopenzwave: error
+    openzwave: error
+    pynetgear: error
+    sseclient: info
+    transitions.core: error
+    passlib.registry: error
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Device Trackers                     #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+device_tracker:
+  - platform: netgear
+    host: 192.168.1.1
+    username: !secret router_username
+    password: !secret router_password
+
+notify:
+  - platform: pushbullet
+    name: Notify
+    api_key: !secret pushbullet_api_key
+
+shell_command:
+  lovelace_gen: 'python /config/lovelace-gen.py'
+
+alarm_control_panel:
+  - platform: manual_mqtt
+    name: Home Alarm
+    state_topic: "hass/alarm"
+    command_topic: "hass/alarm/set"
+    code: 04210623
+    pending_time: 30
+    delay_time: 20
+    trigger_time: 4
+    disarmed:
+      trigger_time: 0
+    armed_home:
+      pending_time: 0
+      delay_time: 0
+    triggered:
+      pending_time: 0
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Starting Automations                #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+automation:
+  - alias: 'Set Theme On Start'
+    initial_state: 'on'
+    trigger:
+    - platform: homeassistant
+      event: start
+    action:
+    - service: frontend.set_theme
+      data:
+        name: darkcyan

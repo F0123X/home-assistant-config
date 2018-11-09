@@ -1,0 +1,19 @@
+name: My House
+title: Ryan's Place
+
+# Resources -> css/js/module
+# /local/ -> /www/
+resources:
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # https://github.com/kalkih/mini-media-player
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - url: /local/custom-lovelace/mini-media-player-bundle.js?v=0.9.1
+    type: module
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # https://github.com/ciotlosm/custom-lovelace/tree/master/thermostat-card
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - url: /local/custom-lovelace/thermostat-card.js
+    type: module
+
+views:
+  - !include views/home.yaml

@@ -1,0 +1,89 @@
+id: home
+title: Home
+icon: mdi:home
+panel: true
+cards:
+  - id: topbar
+    type: vertical-stack
+    cards:
+    # Top Bar
+      - type: horizontal-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: custom:thermostat-card
+                entity: climate.living_room
+                highlight_tap: true
+                title: Living Room Nest
+                hvac:
+                  states:
+                    'Off': 'off'
+                    'Cooling': 'cool'
+                    'Heating': 'heat'
+                    'Auto': 'auto'
+                    'Eco': 'eco'
+                  attribute: operation_mode
+              - type: entities
+                title: Media Players
+                entities:
+                  - entity: media_player.living_room_tv
+                    type: custom:mini-media-player
+                    artwork: cover
+                    power_color: true
+                    hide_volume: true
+                    hide_media_info: true
+                    icon: mdi:television
+                    group: true
+                  - entity: media_player.living_room_sonos
+                    type: custom:mini-media-player
+                    icon: mdi:speaker
+                    hide_controls: true
+                    group: true
+                  - entity: media_player.family_room_sonos
+                    type: custom:mini-media-player
+                    icon: mdi:speaker
+                    artwork: cover
+                    artwork_border: true
+                    group: true
+                  - entity: media_player.dining_room_sonos
+                    type: custom:mini-media-player
+                    icon: mdi:speaker
+                    artwork: cover
+                    artwork_border: true
+                    group: true
+          - type: vertical-stack
+            cards:
+              - type: alarm-panel
+                title: House Alarm
+                entity: alarm_control_panel.home_alarm
+                states:
+                  - arm_home
+                  - arm_away
+                  - armed_custom_bypass
+          - type: vertical-stack
+            cards:
+              - type: entities
+                title: Security Battery Level
+                entities:
+                  - entity: sensor.back_door_battery
+                    name: Back Door Sensor
+                  - entity: sensor.basement_door_battery
+                    name: Basement Door Sensor
+                  - entity: sensor.front_left_window_battery
+                    name: Front Left Window Sensor
+                  - entity: sensor.front_right_window_battery
+                    name: Front Right Window Sensor
+                  - entity: sensor.washer_leak_sensor_battery
+                    name: Washer Leak Sensor
+                  - entity: sensor.front_door_lock_battery
+                    name: Front Door Lock
+          - type: vertical-stack
+            cards:
+              - type: media-control
+                entity: media_player.living_room_tv
+              - type: entities
+                entities:
+                  - entity: lock.front_door_lock
+                    name: Front Door Deadbolt
+                  - entity: sensor.front_door_status
+                    name: Front Door Status

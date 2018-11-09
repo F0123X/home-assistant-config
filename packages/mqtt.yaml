@@ -1,0 +1,95 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+#
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Front Door                          #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+
+sensor:
+  - platform: mqtt
+    name: MQTT Status
+    state_topic: 'hass/status'
+    qos: 0
+    icon: mdi:home
+  - platform: mqtt
+    name: Trash Reminder Status
+    state_topic: 'hass/automation/reminders/trash/status'
+    qos: 0
+    icon: mdi:trash-can
+  - platform: mqtt
+    name: Pixel Batt
+    state_topic: 'hass/mobile/ryan/battery'
+    qos: 0
+    icon: mdi:battery
+    device_class: battery
+    availability_topic: 'hass/status'
+  - platform: mqtt
+    name: Living Room TV
+    state_topic: 'hass/devices/livingroomtv/status'
+    qos: 0
+    availability_topic: 'hass/status'
+
+switch:
+  - platform: mqtt
+    name: 'Trash Reminder 5 PM'
+    state_topic: 'hass/automation/reminders/trash/5pm'
+    command_topic: 'hass/automation/reminders/trash/5pm'
+    availability_topic: 'hass/automation/reminders/trash/status'
+    state_on: 'on'
+    state_off: 'off'
+    payload_on: 'on'
+    payload_off: 'off'
+    qos: 0
+    retain: true
+    icon: mdi:trash-can
+  - platform: mqtt
+    name: 'Trash Reminder 7 PM'
+    state_topic: 'hass/automation/reminders/trash/7pm'
+    command_topic: 'hass/automation/reminders/trash/7pm'
+    availability_topic: 'hass/automation/reminders/trash/status'
+    state_on: 'on'
+    state_off: 'off'
+    payload_on: 'on'
+    payload_off: 'off'
+    qos: 0
+    retain: true
+    icon: mdi:trash-can
+  - platform: mqtt
+    name: 'Trash Reminder 9 PM'
+    state_topic: 'hass/automation/reminders/trash/9pm'
+    command_topic: 'hass/automation/reminders/trash/9pm'
+    availability_topic: 'hass/automation/reminders/trash/status'
+    state_on: 'on'
+    state_off: 'off'
+    payload_on: 'on'
+    payload_off: 'off'
+    qos: 0
+    retain: true
+    icon: mdi:trash-can
+  - platform: mqtt
+    name: 'Trash Reminder 10 PM'
+    state_topic: 'hass/automation/reminders/trash/10pm'
+    command_topic: 'hass/automation/reminders/trash/10pm'
+    availability_topic: 'hass/automation/reminders/trash/status'
+    state_on: 'on'
+    state_off: 'off'
+    payload_on: 'on'
+    payload_off: 'off'
+    qos: 0
+    retain: true
+    icon: mdi:trash-can

@@ -1,0 +1,5 @@
+- name: home
+  latitude: !secret collings_latitude
+  longitude: !secret collings_longitude
+  radius: 75
+  icon: mdi:home-map-marker

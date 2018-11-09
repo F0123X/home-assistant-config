@@ -1,0 +1,62 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+#
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Location                            #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+device_tracker:
+  - platform: owntracks
+    max_gps_accuracy: 300
+    waypoints: true
+    mqtt_topic: "hass/mobile/ryan"
+    events_only: true
+
+automation:
+  - alias: HA Presence Detection
+    initial_state: 'on'
+    trigger:
+      platform: state
+      entity_id: device_tracker.ryans_pixel
+      # Optional
+      from: 'not_home'
+      # Optional
+      to: 'home'
+      # If given, will trigger when   state has been the to state for X time.
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+    action:
+      service: notify.notify
+      data:
+        message: "Sent from home assistant based on state change"
+        title: "Method 1"
+
+  - alias: OwnTracks Automation
+    initial_state: 'on'
+    trigger:
+      platform: zone
+      entity_id: device_tracker.ryans_pixel
+      zone: zone.home
+      # Event is either enter or leave
+      event: enter
+    action:
+      service: notify.notify
+      data:
+        message: "Sent from owntracks based on state change"
+        title: "Method 2"

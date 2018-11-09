@@ -1,3 +1,12 @@
+# Python Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Temporary db files
+*.db-shm
+*.db-wal
+
 # Tokens
 .google.token
 .xbox-token.json
@@ -24,12 +33,12 @@ zw*.xml
 
 # Folders
 .storage/
-.deps/
-.node-red/
+deps/
+node-red/
 .ssh/
 tts/
 
 # Include Node Red flows
-!.node-red/flows.json
+!node-red/flows.json
 # Exclude Flows Backup
-!.node-red/flows.json.backup
+!node-red/flows.json.backup

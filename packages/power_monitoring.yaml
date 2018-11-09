@@ -1,0 +1,64 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+#
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+#   Switch Monitoring                #
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+switch:
+  - platform: tplink
+    name: Washer
+    host: !secret ip_tplink_h110_05
+    icon: mdi:tumble-dryer
+  - platform: tplink
+    name: Monitors
+    host: !secret ip_tplink_h110_04
+    icon: mdi:monitor-multiple
+
+sensor:
+  - platform: template
+    sensors:
+      washer_amps:
+        friendly_name: Washer Amps
+        value_template: '{{ states.switch.washer.attributes.current_a }}'
+        unit_of_measurement: 'Amps'
+        entity_id: switch.washer
+      washer_power:
+        friendly_name: Washer Power
+        value_template: '{{ states.switch.washer.attributes.current_power_w }}'
+        unit_of_measurement: 'W'
+        entity_id: switch.washer
+      washer_voltage:
+        friendly_name: Washer Voltage
+        value_template: '{{ states.switch.washer.attributes.voltage }}'
+        unit_of_measurement: 'V'
+        entity_id: switch.washer
+      monitors_amps: 
+        friendly_name: Monitors Amps
+        value_template: '{{ states.switch.monitors.attributes.current_a }}'
+        unit_of_measurement: 'Amps'
+        entity_id: switch.monitors
+      monitors_power:
+        friendly_name: Monitors Power
+        value_template: '{{ states.switch.monitors.attributes.current_power_w }}'
+        unit_of_measurement: 'W'
+        entity_id: switch.monitors
+      monitors_voltage:
+        friendly_name: Monitors Voltage
+        value_template: '{{ states.switch.monitors.attributes.voltage }}'
+        unit_of_measurement: 'V'
+        entity_id: switch.monitors
