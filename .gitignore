@@ -30,15 +30,18 @@ zw*.xml
 *.conf
 *.log
 *.db
+*.backup
 
 # Folders
 .storage/
 deps/
-node-red/
 .ssh/
 tts/
 
-# Include Node Red flows
-!node-red/flows.json
-# Exclude Flows Backup
-!node-red/flows.json.backup
+# Remove Node Red except flows
+node-red/.config.json
+node-red/.sessions.json
+node-red/flows_cred.json
+node-red/*home-assistant.json
+node-red/package.json
+node-red/settings.js
