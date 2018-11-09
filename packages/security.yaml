@@ -132,6 +132,14 @@ binary_sensor:
         friendly_name: Basement Door
         entity_id: sensor.basement_door
         value_template: "{{ is_state('sensor.basement_door', 'open') }}"
+      front_door:
+        friendly_name: Front Door
+        entity_id: sensor.basement_door
+        value_template: "{{ is_state('sensor.basement_door', 'open') }}"
+      front_door_lock:
+        friendly_name: Basement Door
+        entity_id: sensor.basement_door
+        value_template: "{{ is_state('sensor.basement_door', 'open') }}"
       front_left_window:
         friendly_name: Front Left Window
         entity_id: sensor.front_left_window
@@ -182,7 +190,7 @@ automation:
       entity_id: alarm_control_panel.home_alarm
   - alias: Security - Trigger alarm while armed away
     initial_state: on
-    trigger: 
+    trigger:
       - platform: state
         entity_id: input_boolean.temp_alarm_trigger_arm_away
     condition:

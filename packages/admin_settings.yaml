@@ -163,26 +163,23 @@ shell_command:
 sensor:
   - platform: glances
     name: Glances
-    version: 3
+    version: 2
     resources:
-      - 'disk_use_percent'
-      - 'disk_use'
-      - 'disk_free'
-      - 'memory_use_percent'
-      - 'memory_use'
-      - 'memory_free'
-      - 'swap_use_percent'
-      - 'swap_use'
-      - 'swap_free'
-      - 'processor_load'
-      - 'process_running'
-      - 'process_total'
-      - 'process_thread'
-      - 'process_sleeping'
-      - 'cpu_temp'
       - 'docker_active'
       - 'docker_cpu_use'
       - 'docker_memory_use'
+
+  - platform: speedtest
+    monitored_conditions:
+      - download
+      - upload
+  - platform: zestimate
+    api_key: !secret zestimate_api_key
+    zpid:
+      - !secret zestimate_zpid
+  
+  - platform: cert_expiry
+    host: !secret ha_base_url
 
 # # # # # # # # # # # # # # # # # # # # # # #
 #                                        #   
