@@ -42,6 +42,6 @@ tts/
 node-red/.config.json
 node-red/.sessions.json
 node-red/flows_cred.json
-node-red/*home-assistant.json
+node-red/node*home-assistant.json
 node-red/package.json
 node-red/settings.js
