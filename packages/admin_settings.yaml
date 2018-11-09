@@ -79,41 +79,15 @@ panel_iframe:
 recorder:
   purge_interval: 1
   purge_keep_days: 5
-  include:
-    domains:
-      - sensor
-      - switch
-      - media_player
-      - lock
-      - light
-      - device_tracker
   exclude:
+    domains:
+      - automation
+      - weblink
+      - updater
     entities:
       - sensor.last_boot
       - sensor.date
-      - sensor.zestimate
-      - sensor.amazon_echo
-      - sensor.amazon_dot_upstairs_bathroom
-      - sensor.ecolink_doorwindow_sensor_alarm_type
-      - sensor.ecolink_doorwindow_sensor_access_control
-      - sensor.ecolink_doorwindow_sensor_burglar
-      - sensor.ecolink_doorwindow_sensor_power_management
-      - sensor.ecolink_doorwindow_sensor_sourcenodeid
-      - sensor.front_door_sensor_alarm_level
-      - sensor.harmony_hub
-      - sensor.home_estimate
-      - sensor.home_estimate_30_day_change
-      - sensor.home_estimate_last_updated
-      - sensor.secure_server
       - sensor.home_eta
-      - sensor.smartthings_hub
-      - sensor.weather_humidity
-      - binary_sensor.home_away
-      - binary_sensor.living_room_thermostat_fan
-      - binary_sensor.living_room_thermostat_has_leaf
-      - binary_sensor.living_room_thermostat_is_locked
-      - binary_sensor.living_room_thermostat_is_using_emergency_heat
-      - binary_sensor.living_room_thermostat_online
 
 # # # # # # # # # # # # # # # # # # # # # # #
 #                                        #   
