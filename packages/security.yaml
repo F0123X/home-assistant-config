@@ -43,10 +43,6 @@ homeassistant:
       device_class: window
 
 
-
-
-
-
 # # # # # # # # # # # # # # # # # # # # # # #
 #                 Cameras
 # # # # # # # # # # # # # # # # # # # # # # #
@@ -149,3 +145,69 @@ binary_sensor:
         entity_id: sensor.washer_leak_sensor
         device_class: moisture
         value_template: "{{ is_state('sensor.washer_leak_sensor', 'dry') }}"
+
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#             MQTT Alarm Clock
+# # # # # # # # # # # # # # # # # # # # # # #
+# Alarm Control Panel
+# - - - - - - - - - - - - - - - - - - - - - -
+alarm_control_panel:
+  - platform: manual
+    name: Home Alarm
+    code: !secret home_alarm_code
+    pending_time: 30
+    delay_time: 20
+    trigger_time: 4
+    disarmed:
+      trigger_time: 0
+    armed_home:
+      pending_time: 0
+      delay_time: 0
+    triggered:
+      pending_time: 0
+
+automation:
+  - alias: Security - Trigger alarm while armed home
+    initial_state: on
+    trigger: 
+      - platform: state
+        entity_id: input_boolean.temp_alarm_trigger_arm_home
+    condition:
+      - condition: state
+        entity_id: alarm_control_panel.home_alarm
+        state: armed_home
+    action:
+      service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.home_alarm
+  - alias: Security - Trigger alarm while armed away
+    initial_state: on
+    trigger: 
+      - platform: state
+        entity_id: input_boolean.temp_alarm_trigger_arm_away
+    condition:
+      - condition: state
+        entity_id: alarm_control_panel.home_alarm
+        state: armed_away
+    action:
+      service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.home_alarm
+  - alias: Security - Alarm triggered
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.home_alarm
+        to: 'triggered'
+    action:
+      - service: notify.notify
+        data:
+          message: 'ALARM! The alarm has been triggered'
+
+input_boolean:
+  temp_alarm_trigger_arm_home:
+    name: Testing for arm home
+    initial: off
+    icon: mdi:alarm-light
+  temp_alarm_trigger_arm_away:
+    name: Testing for arm away
+    initial: off
+    icon: mdi:alarm-light
