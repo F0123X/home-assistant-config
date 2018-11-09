@@ -98,6 +98,7 @@ logger:
   default: debug
   logs:
     async_upnp_client: info
+    glances: error
     haffmpeg.core: info
     homeassistant: debug
     homeassistant.components.http.auth: critical
@@ -107,10 +108,11 @@ logger:
     homeassistant.components.media_player: error
     homeassistant.components.websocket_api: error
     homeassistant.components.zwave.util: error
-    homeassistant.components.recorder: error
+    homeassistant.components.recorder: critical
     homeassistant.core: critical
     homeassistant.components.mqtt: error
     homeassistant.helpers.storage: critical
+    homeassistant.helpers.restore_state: info
     homeassistant.util.json: error
     hbmqtt: debug
     hbmqtt.mqtt: error
@@ -122,6 +124,7 @@ logger:
     libopenzwave: error
     openzwave: error
     pynetgear: error
+    pyupdate.ha_custom.custom_components: info
     sseclient: info
     transitions.core: error
     passlib.registry: error
@@ -152,29 +155,6 @@ notify:
 shell_command:
   lovelace_gen: 'python /config/lovelace-gen.py'
 
-
-# # # # # # # # # # # # # # # # # # # # # # #
-#                                        #   
-# UI For MQTT Alarm Clock             #      
-#                                        #   
-# # # # # # # # # # # # # # # # # # # # # # #
-alarm_control_panel:
-  - platform: manual_mqtt
-    name: Home Alarm
-    state_topic: "hass/alarm"
-    command_topic: "hass/alarm/set"
-    code: 04210623
-    pending_time: 30
-    delay_time: 20
-    trigger_time: 4
-    disarmed:
-      trigger_time: 0
-    armed_home:
-      pending_time: 0
-      delay_time: 0
-    triggered:
-      pending_time: 0
-
 # # # # # # # # # # # # # # # # # # # # # # #
 #                                        #   
 # Glances                             #      
@@ -204,7 +184,19 @@ sensor:
       - 'docker_cpu_use'
       - 'docker_memory_use'
 
-
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Starting Automations                #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+script:
+  on_start:
+    alias: On Start
+    sequence:
+      - service: frontend.set_theme
+        data:
+          name: darkcyan
+      - service: shell_command.lovelace_gen
 
 
 # # # # # # # # # # # # # # # # # # # # # # #
@@ -213,12 +205,11 @@ sensor:
 #                                        #   
 # # # # # # # # # # # # # # # # # # # # # # #
 automation:
-  - alias: 'Set Theme On Start'
+  - alias: 'Set theme and rebuild lovelace ui'
     initial_state: 'on'
     trigger:
-    - platform: homeassistant
-      event: start
+      - platform: homeassistant
+        event: start
     action:
-    - service: frontend.set_theme
-      data:
-        name: darkcyan
+      - service: script.turn_on
+        entity_id: script.on_start
