@@ -39,9 +39,9 @@ deps/
 tts/
 
 # Remove Node Red except flows
-node-red/.config.json
-node-red/.sessions.json
-node-red/flows_cred.json
-node-red/node*home-assistant.json
-node-red/package.json
-node-red/settings.js
+.config.json
+.sessions.json
+flows_cred.json
+node*home-assistant.json
+package.json
+settings.js
