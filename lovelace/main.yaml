@@ -17,3 +17,4 @@ resources:
 
 views:
   - !include views/home.yaml
+  - !include views/security.yaml

@@ -1,5 +1,4 @@
 id: home
-title: Home
 icon: mdi:home
 panel: true
 cards:
@@ -59,7 +58,25 @@ cards:
                 states:
                   - arm_home
                   - arm_away
-                  - armed_custom_bypass
+              - type: entities
+                title: Alarm Sensors
+                entities:
+                  - entity: binary_sensor.front_door
+                    name: Front
+                  - entity: binary_sensor.front_door_camera
+                    name: Front
+                  - entity: binary_sensor.front_door_lock
+                    name: Front
+                  - entity: binary_sensor.front_left_window
+                    name: Front Left Window
+                  - entity: binary_sensor.front_right_window
+                    name: Front Right Window
+                  - entity: binary_sensor.basement_door
+                    name: Basement
+                  - entity: binary_sensor.back_door
+                    name: Back
+                  - entity: binary_sensor.washer_leak_sensor
+                    name: Washer
           - type: vertical-stack
             cards:
               - type: entities
@@ -77,13 +94,3 @@ cards:
                     name: Washer Leak Sensor
                   - entity: sensor.front_door_lock_battery
                     name: Front Door Lock
-          - type: vertical-stack
-            cards:
-              - type: media-control
-                entity: media_player.living_room_tv
-              - type: entities
-                entities:
-                  - entity: lock.front_door_lock
-                    name: Front Door Deadbolt
-                  - entity: sensor.front_door_status
-                    name: Front Door Status

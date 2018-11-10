@@ -147,16 +147,16 @@ shell_command:
 #             Sensors
 # # # # # # # # # # # # # # # # # # # # # # #
 sensor:
-# - - - - - - - - - - - - - - - - - - - - - -
-# Glances
-# - - - - - - - - - - - - - - - - - - - - - -
-  - platform: glances
-    name: Glances
-    version: 2
-    resources:
-      - 'docker_active'
-      - 'docker_cpu_use'
-      - 'docker_memory_use'
+# # - - - - - - - - - - - - - - - - - - - - - -
+# # Glances
+# # - - - - - - - - - - - - - - - - - - - - - -
+#   - platform: glances
+#     name: Glances
+#     version: 2
+#     resources:
+#       - 'docker_active'
+#       - 'docker_cpu_use'
+#       - 'docker_memory_use'
 # - - - - - - - - - - - - - - - - - - - - - -
 # Internet speed
 # - - - - - - - - - - - - - - - - - - - - - -

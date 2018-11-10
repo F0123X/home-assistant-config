@@ -34,9 +34,20 @@ views:
         type: vertical-stack
       - cards:
         - entity: alarm_control_panel.home_alarm
-          states: [arm_home, arm_away, armed_custom_bypass]
+          states: [arm_home, arm_away]
           title: House Alarm
           type: alarm-panel
+        - entities:
+          - {entity: binary_sensor.front_door, name: Front}
+          - {entity: binary_sensor.front_door_camera, name: Front}
+          - {entity: binary_sensor.front_door_lock, name: Front}
+          - {entity: binary_sensor.front_left_window, name: Front Left Window}
+          - {entity: binary_sensor.front_right_window, name: Front Right Window}
+          - {entity: binary_sensor.basement_door, name: Basement}
+          - {entity: binary_sensor.back_door, name: Back}
+          - {entity: binary_sensor.washer_leak_sensor, name: Washer}
+          title: Alarm Sensors
+          type: entities
         type: vertical-stack
       - cards:
         - entities:
@@ -49,17 +60,40 @@ views:
           title: Security Battery Level
           type: entities
         type: vertical-stack
-      - cards:
-        - {entity: media_player.living_room_tv, type: media-control}
-        - entities:
-          - {entity: lock.front_door_lock, name: Front Door Deadbolt}
-          - {entity: sensor.front_door_status, name: Front Door Status}
-          type: entities
-        type: vertical-stack
       type: horizontal-stack
     id: topbar
     type: vertical-stack
   icon: mdi:home
   id: home
   panel: true
-  title: Home
+- cards:
+  - cards:
+    - entity: alarm_control_panel.home_alarm
+      states: [arm_home, arm_away]
+      title: House Alarm
+      type: alarm-panel
+    - {entity: camera.front_door_camera, type: picture-entity}
+    - entities:
+      - {entity: binary_sensor.front_door, name: Front}
+      - {entity: binary_sensor.front_door_camera, name: Front}
+      - {entity: binary_sensor.front_door_lock, name: Front}
+      - {entity: binary_sensor.front_left_window, name: Front Left Window}
+      - {entity: binary_sensor.front_right_window, name: Front Right Window}
+      - {entity: binary_sensor.basement_door, name: Basement}
+      - {entity: binary_sensor.back_door, name: Back}
+      - {entity: binary_sensor.washer_leak_sensor, name: Washer}
+      title: Alarm Sensors
+      type: entities
+    - entities:
+      - {entity: sensor.back_door_battery, name: Back Door Sensor}
+      - {entity: sensor.basement_door_battery, name: Basement Door Sensor}
+      - {entity: sensor.front_left_window_battery, name: Front Left Window Sensor}
+      - {entity: sensor.front_right_window_battery, name: Front Right Window Sensor}
+      - {entity: sensor.washer_leak_sensor_battery, name: Washer Leak Sensor}
+      - {entity: sensor.front_door_lock_battery, name: Front Door Lock}
+      title: Security Battery Level
+      type: entities
+    type: vertical-stack
+  icon: mdi:security
+  id: security
+  panel: true
