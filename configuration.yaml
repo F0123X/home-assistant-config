@@ -70,6 +70,8 @@ zwave:
 tts:
   - platform: google
 wemo:
+  static:
+    - !secret ip_wemo_01
 nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
@@ -80,7 +82,3 @@ alexa:
 history:
 logbook:
 ffmpeg:
-
-# Still in migration to packages
-sensor: !include sensors/sensors.yaml
-zone: !include zones/zones.yaml

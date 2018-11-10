@@ -16,43 +16,22 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # #
 #                                        #   
-# Lighting                            #      
+# Master Bedroom                      #      
 #                                        #   
 # # # # # # # # # # # # # # # # # # # # # # #
 
-# # ## ## ## ## ## ## ## ## ## ## ## ## ## ##
-# #
-# #    TP Links
-# #
-# # ## ## ## ## ## ## ## ## ## ## ## ## ## ##
-
+# # # # # # # # # # # # # # # # # # # # # # #
+#             Switches
+# # # # # # # # # # # # # # # # # # # # # # #
 switch:
+# - - - - - - - - - - - - - - - - - - - - - -
+# Lighting
+# - - - - - - - - - - - - - - - - - - - - - -
   - platform: tplink
     name: Master Bedroom Lamp
     host: !secret ip_tplink_h100_01
     icon: mdi:lightbulb
-  
-  - platform: tplink
-    name: Living Room Light
-    host: !secret ip_tplink_h100_02
-    icon: mdi:lightbulb
-  
-  - platform: tplink
-    name: Living Room Lamp
-    host: !secret ip_tplink_h100_03
-    icon: mdi:lightbulb
-  
   - platform: tplink
     name: Master Bedroom Light
     host: !secret ip_tplink_h200_02
     icon: mdi:lightbulb
-  
-  # - platform: tplink
-  #   name: Downstairs Bathroom Light
-  #   host: !secret ip_tplink_h200_02
-  #   icon: mdi:lightbulb
-  
-  # - platform: tplink
-  #   name: Office Monitors
-  #   host: !secret ip_tplink_h110_04
-  #   icon: mdi:lightbulb

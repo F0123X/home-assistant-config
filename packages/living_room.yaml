@@ -33,11 +33,21 @@ homeassistant:
     sensor.living_room_tv:
       hidden: true
 
+# # # # # # # # # # # # # # # # # # # # # # #
+#         Living Room TV Sensor
+# # # # # # # # # # # # # # # # # # # # # # #
+sensor:
+  - platform: mqtt
+    name: Living Room TV
+    state_topic: 'hass/devices/livingroomtv/status'
+    qos: 0
+    availability_topic: 'hass/status'
+
+
+
 
 # # # # # # # # # # # # # # # # # # # # # # #
-#                                        #   
-# Speakers                            #      
-#                                        #   
+#             Sonos Speakers
 # # # # # # # # # # # # # # # # # # # # # # #
 sonos:
   media_player:
@@ -48,11 +58,8 @@ sonos:
       - 192.168.1.40
 
 # # # # # # # # # # # # # # # # # # # # # # #
-#                                        #   
-# Remotes                             #      
-#                                        #   
+#             Remotes
 # # # # # # # # # # # # # # # # # # # # # # #
-
 remote:
   - platform: harmony
     name: Living Room
@@ -60,11 +67,23 @@ remote:
 
 
 # # # # # # # # # # # # # # # # # # # # # # #
-#                                        #   
-# Remotes                             #      
-#                                        #   
+#             Switches
 # # # # # # # # # # # # # # # # # # # # # # #
 switch:
+# - - - - - - - - - - - - - - - - - - - - - -
+# Lighting
+# - - - - - - - - - - - - - - - - - - - - - -
+  - platform: tplink
+    name: Living Room Light
+    host: !secret ip_tplink_h100_02
+    icon: mdi:lightbulb
+  - platform: tplink
+    name: Living Room Lamp
+    host: !secret ip_tplink_h100_03
+    icon: mdi:lightbulb
+# - - - - - - - - - - - - - - - - - - - - - -
+# Template switches
+# - - - - - - - - - - - - - - - - - - - - - -
   - platform: template
     switches:
       living_room_tv:
@@ -79,16 +98,13 @@ switch:
           data:
             entity_id: script.turn_off_tv
 
-# states.media_player.living_room_sonos.attributes.is_volume_muted
-# sensor:
-#   - platform: template
-#     sensors:
-#       living_room_volume_mute_toggle:
-#         friendly_name: Living Room Volume Mute Toggle
-#         value_template: '{{ not states.media_player.living_room_sonos.attributes.is_volume_muted }}'
-
-
+# # # # # # # # # # # # # # # # # # # # # # #
+#             Scripts
+# # # # # # # # # # # # # # # # # # # # # # #
 script:
+# - - - - - - - - - - - - - - - - - - - - - -
+# Turn on TV
+# - - - - - - - - - - - - - - - - - - - - - -
   turn_on_tv:
     alias: Turn On TV
     sequence:
@@ -105,6 +121,9 @@ script:
           topic: 'hass/devices/livingroomtv/status'
           retain: true
           payload: 'on'
+# - - - - - - - - - - - - - - - - - - - - - -
+# Turn off TV
+# - - - - - - - - - - - - - - - - - - - - - -
   turn_off_tv:
     alias: Turn Off TV
     sequence:
@@ -122,9 +141,7 @@ script:
           payload: 'off'
 
 # # # # # # # # # # # # # # # # # # # # # # #
-#                                        #   
-# Media Players                       #      
-#                                        #   
+#             Media Players
 # # # # # # # # # # # # # # # # # # # # # # #
 media_player:
   - platform: universal
@@ -162,16 +179,3 @@ media_player:
       is_volume_muted: media_player.living_room_sonos|is_volume_muted
       volume_level: media_player.living_room_sonos|volume_level
       state: switch.living_room_tv
-
-
-
-# media_player: 
-#   - platform: samsungtv
-#     name: Living Room TV
-#     host: !secret ip_samsung_tv_01
-#     port: 8001
-
-# - platform: dlna_dmr
-#   name: Living Room Smart TV
-#   url: 'http://192.168.1.43:9197/dmr'
-

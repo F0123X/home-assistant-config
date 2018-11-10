@@ -1,0 +1,58 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+#
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Office                              #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#             Switches
+# # # # # # # # # # # # # # # # # # # # # # #
+switch:
+# - - - - - - - - - - - - - - - - - - - - - -
+# Office Monitors
+# - - - - - - - - - - - - - - - - - - - - - -
+  - platform: tplink
+    name: Monitors
+    host: !secret ip_tplink_h110_04
+    icon: mdi:monitor-multiple
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#             Sensors
+# # # # # # # # # # # # # # # # # # # # # # #
+sensor:
+  - platform: template
+    sensors:
+# - - - - - - - - - - - - - - - - - - - - - -
+# Office Monitors
+# - - - - - - - - - - - - - - - - - - - - - -
+      monitors_amps: 
+        friendly_name: Monitors Amps
+        value_template: '{{ states.switch.monitors.attributes.current_a }}'
+        unit_of_measurement: 'Amps'
+        entity_id: switch.monitors
+      monitors_power:
+        friendly_name: Monitors Power
+        value_template: '{{ states.switch.monitors.attributes.current_power_w }}'
+        unit_of_measurement: 'W'
+        entity_id: switch.monitors
+      monitors_voltage:
+        friendly_name: Monitors Voltage
+        value_template: '{{ states.switch.monitors.attributes.voltage }}'
+        unit_of_measurement: 'V'
+        entity_id: switch.monitors

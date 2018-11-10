@@ -19,12 +19,35 @@
 # Location                            #      
 #                                        #   
 # # # # # # # # # # # # # # # # # # # # # # #
+homeassistant:
+  customize_glob:
+    "sensor.*_battery":
+      device_class: battery
+      unit_of_measurement: '%'
+zone:
+  - name: home
+    latitude: !secret collings_latitude
+    longitude: !secret collings_longitude
+    radius: 75
+    icon: mdi:home-map-marker
+
 device_tracker:
   - platform: owntracks
     max_gps_accuracy: 300
     waypoints: true
     mqtt_topic: "hass/mobile/ryan"
     events_only: true
+  - platform: netgear
+    host: 192.168.1.1
+    username: !secret router_username
+    password: !secret router_password
+
+sensor:
+  - platform: mqtt
+    name: Pixel Battery
+    state_topic: 'hass/mobile/ryan/battery'
+    qos: 0
+    availability_topic: 'hass/status'
 
 automation:
   - alias: HA Presence Detection
@@ -32,11 +55,8 @@ automation:
     trigger:
       platform: state
       entity_id: device_tracker.ryans_pixel
-      # Optional
       from: 'not_home'
-      # Optional
       to: 'home'
-      # If given, will trigger when   state has been the to state for X time.
       for:
         hours: 0
         minutes: 0
@@ -46,17 +66,3 @@ automation:
       data:
         message: "Sent from home assistant based on state change"
         title: "Method 1"
-
-  - alias: OwnTracks Automation
-    initial_state: 'on'
-    trigger:
-      platform: zone
-      entity_id: device_tracker.ryans_pixel
-      zone: zone.home
-      # Event is either enter or leave
-      event: enter
-    action:
-      service: notify.notify
-      data:
-        message: "Sent from owntracks based on state change"
-        title: "Method 2"
