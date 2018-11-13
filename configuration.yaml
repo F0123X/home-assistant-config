@@ -29,6 +29,7 @@ homeassistant:
   unit_system: imperial
   time_zone: America/New_York
   customize: !include customize.yaml
+  customize_glob: !include customize_glob.yaml
   packages: !include_dir_named packages
 
 http:
@@ -37,13 +38,18 @@ http:
   ssl_key: !secret ssl_key_path
   api_password: !secret http_password
 
-mqtt:
-  broker: !secret ha_base_url
-  port: 1883
-  username: !secret router_username
-  password: !secret router_password
-  discovery: true
-  discovery_prefix: 'hass'
+# mqtt:
+#   broker: !secret ha_base_url
+#   broker: localhost
+#   port: 1883
+#   username: !secret router_username
+#   password: !secret router_password
+#   discovery: true
+#   discovery_prefix: 'hass'
+
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
 
 # Device Montitoring
 discovery:
@@ -59,7 +65,7 @@ hassio:
 # https://github.com/custom-components/custom_updater/wiki/Installation
 custom_updater:
   card_urls:
-    - https://raw.githubusercontent.com/kalkih/mini-media-player/master/tracker.json
+    - 'https://raw.githubusercontent.com/kalkih/mini-media-player/master/tracker.json'
 
 # ZWave
 zwave:
@@ -69,16 +75,16 @@ zwave:
 
 tts:
   - platform: google
+
 wemo:
   static:
     - !secret ip_wemo_01
-nest:
-  client_id: !secret nest_client_id
-  client_secret: !secret nest_client_secret
 
-alexa:
+#alexa:
 
 # Development Settings
 history:
 logbook:
-ffmpeg:
+
+alexa:
+  intents: !include_dir_named intents/

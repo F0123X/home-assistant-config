@@ -20,24 +20,6 @@
 #                                        #   
 # # # # # # # # # # # # # # # # # # # # # # #
 
-homeassistant:
-  customize_glob:
-    "sensor.*_battery":
-      device_class: battery
-      unit_of_measurement: '%'
-    "binary_sensor.*_door":
-      device_class: door
-    "binary_sensor.*_window":
-      device_class: window
-    "binary_sensor.*_leak_sensor":
-      device_class: moisture
-    "binary_sensor.*_camera":
-      device_class: motion
-    "binary_sensor.*_lock":
-      device_class: lock
-
-
-
 # # # # # # # # # # # # # # # # # # # # # # #
 #             Alarm Control
 # # # # # # # # # # # # # # # # # # # # # # #
@@ -121,6 +103,7 @@ automation:
     action:
       service: alarm_control_panel.alarm_trigger
       entity_id: alarm_control_panel.home_alarm
+
 # - - - - - - - - - - - - - - - - - - - - - -
 # Alarm response
 # - - - - - - - - - - - - - - - - - - - - - -
@@ -134,7 +117,18 @@ automation:
         data:
           message: 'ALARM! The alarm has been triggered'
 
-
+# - - - - - - - - - - - - - - - - - - - - - -
+# Alarm response
+# - - - - - - - - - - - - - - - - - - - - - -
+  - alias: Notify on door unlocking
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.front_door_lock
+        to: 'unlocked'
+    action:
+      - service: notify.notify
+        data:
+          message: 'Front door has been unlocked'
 
 # # # # # # # # # # # # # # # # # # # # # # #
 #                 Cameras
@@ -146,6 +140,7 @@ amcrest:
   name: Front Door Camera
   username: !secret router_username
   password: !secret router_password
+  stream_source: mjpeg
   sensors:
     - motion_detector
   resolution: low
@@ -221,6 +216,7 @@ binary_sensor:
 #               Sensors
 # # # # # # # # # # # # # # # # # # # # # # #
 sensor:
+
 # - - - - - - - - - - - - - - - - - - - - - -
 # Battery Sensors
 # - - - - - - - - - - - - - - - - - - - - - -
@@ -244,6 +240,14 @@ sensor:
     name: Washer Leak Sensor Battery
     state_topic: 'hass/Washer Leak Sensor/battery/state'
     qos: 0
+
+# - - - - - - - - - - - - - - - - - - - - - -
+# Uptime
+# - - - - - - - - - - - - - - - - - - - - - -
+  - platform: uptime
+    name: Time Online
+    unit_of_measurement: hours
+
 # - - - - - - - - - - - - - - - - - - - - - -
 # Template Sensors
 # - - - - - - - - - - - - - - - - - - - - - -

@@ -20,19 +20,6 @@
 #                                        #   
 # # # # # # # # # # # # # # # # # # # # # # #
 
-homeassistant:
-  customize:
-    media_player.living_room_tv:
-      friendly_name: Living Room TV
-    script.turn_on_tv:
-      hidden: true
-    script.turn_off_tv:
-      hidden: true
-    switch.living_room_tv:
-      hidden: true
-    sensor.living_room_tv:
-      hidden: true
-
 # # # # # # # # # # # # # # # # # # # # # # #
 #         Living Room TV Sensor
 # # # # # # # # # # # # # # # # # # # # # # #
@@ -42,9 +29,6 @@ sensor:
     state_topic: 'hass/devices/livingroomtv/status'
     qos: 0
     availability_topic: 'hass/status'
-
-
-
 
 # # # # # # # # # # # # # # # # # # # # # # #
 #             Sonos Speakers
@@ -64,7 +48,6 @@ remote:
   - platform: harmony
     name: Living Room
     host: !secret ip_logitech_harmony_01
-
 
 # # # # # # # # # # # # # # # # # # # # # # #
 #             Switches

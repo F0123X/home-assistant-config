@@ -19,11 +19,6 @@
 # Location                            #      
 #                                        #   
 # # # # # # # # # # # # # # # # # # # # # # #
-homeassistant:
-  customize_glob:
-    "sensor.*_battery":
-      device_class: battery
-      unit_of_measurement: '%'
 zone:
   - name: home
     latitude: !secret collings_latitude
