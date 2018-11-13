@@ -1,0 +1,28 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+#
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Reboot Home Assistant               #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+action:
+  service: notify.notify # homeassistant.restart
+  data:
+    message: 'Restarting home assistant'
+speech:
+  type: plaintext
+  text: 'restarting home assistant'

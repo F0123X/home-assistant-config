@@ -1,0 +1,48 @@
+id: security
+icon: mdi:security
+panel: true
+cards:
+  - type: vertical-stack
+    cards:
+      - type: alarm-panel
+        title: House Alarm
+        entity: alarm_control_panel.home_alarm
+        states:
+          - arm_home
+          - arm_away
+      - type: picture-entity
+        entity: camera.front_door_camera
+      - type: entities
+        title: Alarm Sensors
+        entities:
+          - entity: binary_sensor.front_door
+            name: Front
+          - entity: binary_sensor.front_door_camera
+            name: Front
+          - entity: binary_sensor.front_door_lock
+            name: Front
+          - entity: binary_sensor.front_left_window
+            name: Front Left Window
+          - entity: binary_sensor.front_right_window
+            name: Front Right Window
+          - entity: binary_sensor.basement_door
+            name: Basement
+          - entity: binary_sensor.back_door
+            name: Back
+          - entity: binary_sensor.washer_leak_sensor
+            name: Washer
+      - type: entities
+        title: Security Battery Level
+        entities:
+          - entity: sensor.back_door_battery
+            name: Back Door Sensor
+          - entity: sensor.basement_door_battery
+            name: Basement Door Sensor
+          - entity: sensor.front_left_window_battery
+            name: Front Left Window Sensor
+          - entity: sensor.front_right_window_battery
+            name: Front Right Window Sensor
+          - entity: sensor.washer_leak_sensor_battery
+            name: Washer Leak Sensor
+          - entity: sensor.front_door_lock_battery
+            name: Front Door Lock
