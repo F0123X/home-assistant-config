@@ -19,10 +19,9 @@
 # Reboot Home Assistant               #      
 #                                        #   
 # # # # # # # # # # # # # # # # # # # # # # #
-action:
-  service: notify.notify # homeassistant.restart
-  data:
-    message: 'Restarting home assistant'
 speech:
-  type: plaintext
-  text: 'restarting home assistant'
+  type: plain
+  text: Okay, I am sending an encrypted message to Ryans phone to confirm.
+action:
+  service: script.turn_on
+  entity_id: script.reboot
