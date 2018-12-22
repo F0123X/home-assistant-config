@@ -1,0 +1,35 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+# - - - - - - - - - - - - - - - - - - - - - -
+# On Start - sets theme and rebuilds
+# LoveLace UI
+# - - - - - - - - - - - - - - - - - - - - - -
+alias: Ryan is home
+initial_state: 'on'
+trigger:
+  platform: state
+  entity_id: device_tracker.ryans_pixel
+  from: 'not_home'
+  to: 'home'
+  for:
+    hours: 0
+    minutes: 0
+    seconds: 30
+action:
+  service: notify.notify
+  data:
+    message: "Sent from home assistant based on state change"
+    title: "Method 1"

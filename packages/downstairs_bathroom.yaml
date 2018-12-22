@@ -29,7 +29,7 @@ switch:
 # - - - - - - - - - - - - - - - - - - - - - -
   - platform: tplink
     name: Washer
-    host: !secret ip_tplink_h110_05
+    host: !secret ip_tplink_h110_02
     icon: mdi:tumble-dryer
 
 # # # # # # # # # # # # # # # # # # # # # # #

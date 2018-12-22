@@ -1,0 +1,35 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+
+# # ## ## ## ## ## ## ## ## ## ## ## ## ## ##
+# #
+# #    Alexa Cloud Config
+# #
+# # ## ## ## ## ## ## ## ## ## ## ## ## ## ##
+
+filter:
+  include_entities:
+    - sensor.office_temperature
+    - sensor.living_room_thermostat_temperature
+entity_config:
+  sensor.office_temperature:
+    name: Office Temperature
+    description: Temperature in upstairs office
+    display_categories: TEMPERATURE_SENSOR
+  sensor.living_room_thermostat_temperature:
+    name: Living Room Temperature
+    description: Temperature in living room
+    display_categories: TEMPERATURE_SENSOR

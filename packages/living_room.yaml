@@ -24,11 +24,12 @@
 #         Living Room TV Sensor
 # # # # # # # # # # # # # # # # # # # # # # #
 sensor:
-  - platform: mqtt
-    name: Living Room TV
-    state_topic: 'hass/devices/livingroomtv/status'
-    qos: 0
-    availability_topic: 'hass/status'
+  - platform: template
+    sensors:
+      living_room_tv:
+        friendly_name: Living Room TV
+        value_template: "{{ states.remote.living_room.attributes.current_activity }}"
+        entity_id: remote.living_room
 
 # # # # # # # # # # # # # # # # # # # # # # #
 #             Sonos Speakers
@@ -58,11 +59,11 @@ switch:
 # - - - - - - - - - - - - - - - - - - - - - -
   - platform: tplink
     name: Living Room Light
-    host: !secret ip_tplink_h100_02
+    host: !secret ip_tplink_h100_01
     icon: mdi:lightbulb
   - platform: tplink
     name: Living Room Lamp
-    host: !secret ip_tplink_h100_03
+    host: !secret ip_tplink_h100_02
     icon: mdi:lightbulb
 # - - - - - - - - - - - - - - - - - - - - - -
 # Template switches
@@ -71,15 +72,27 @@ switch:
     switches:
       living_room_tv:
         friendly_name: Living Room TV
-        value_template: "{{ is_state('sensor.living_room_tv', 'on') }}"
+        value_template: "{{ is_state('sensor.living_room_tv', 'Watch Smart TV') }}"
         turn_on:
-          service: script.turn_on
+          service: remote.turn_on
+          entity_id: remote.living_room
           data:
-            entity_id: script.turn_on_tv
+            activity: 'Watch Smart TV'
         turn_off:
-          service: script.turn_on
+          service: remote.turn_off
+          entity_id: remote.living_room
           data:
-            entity_id: script.turn_off_tv
+            activity: 'Watch Smart TV'
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#             Groups
+# # # # # # # # # # # # # # # # # # # # # # #
+group:
+  living_room_lights:
+    name: Living Room Lights
+    entities:
+      - switch.living_room_light
+      - switch.living_room_lamp
 
 # # # # # # # # # # # # # # # # # # # # # # #
 #             Scripts
@@ -99,11 +112,6 @@ script:
           delay_secs: 0.5
           device: 49552536
           entity_id: remote.living_room
-      - service: mqtt.publish
-        data_template:
-          topic: 'hass/devices/livingroomtv/status'
-          retain: true
-          payload: 'on'
 # - - - - - - - - - - - - - - - - - - - - - -
 # Turn off TV
 # - - - - - - - - - - - - - - - - - - - - - -
@@ -117,11 +125,6 @@ script:
           delay_secs: 0.5
           device: 49552536
           entity_id: remote.living_room
-      - service: mqtt.publish
-        data_template:
-          topic: 'hass/devices/livingroomtv/status'
-          retain: true
-          payload: 'off'
 
 # # # # # # # # # # # # # # # # # # # # # # #
 #             Media Players

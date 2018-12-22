@@ -1,0 +1,125 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+#
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Admin Information                   #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#                 Sensors
+# # # # # # # # # # # # # # # # # # # # # # #
+sensor:
+# - - - - - - - - - - - - - - - - - - - - - -
+# Uptime
+# - - - - - - - - - - - - - - - - - - - - - -
+  - platform: uptime
+    name: Time Online
+    unit_of_measurement: hours
+# - - - - - - - - - - - - - - - - - - - - - -
+# Certificate from Let's Encrypt
+# - - - - - - - - - - - - - - - - - - - - - -
+  - platform: cert_expiry
+    host: !secret ha_base_url
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#                 Frontend
+# # # # # # # # # # # # # # # # # # # # # # #
+frontend:
+# - - - - - - - - - - - - - - - - - - - - - -
+# Themes
+# - - - - - - - - - - - - - - - - - - - - - -
+  themes:
+    darkcyan:
+    # Main colors that can be changed
+      primary-color: "#00bcd4"
+      disabled-text-color: "#545454"
+      divider-color: "rgba(255, 255, 255, 0.12)"
+      paper-card-background-color: "#4e4e4e"
+      paper-grey-200: "#191919"
+      paper-item-icon-color: "#d3d3d3"
+      paper-listbox-background-color: "#202020"
+      paper-listbox-color: "#FFFFFF"      
+      primary-background-color: "#303030"
+      primary-text-color: "#cfcfcf"      
+      secondary-background-color: "#2b2b2b"
+      secondary-text-color: "#04a7bc"
+    # Colors based on variables, see above
+      label-badge-background-color: "var(--secondary-background-color)"
+      label-badge-text-color: "var(--text-primary-color)"
+      paper-card-header-color: "#var(--paper-item-icon-color)"
+      paper-grey-50: "var(--primary-text-color)"
+      paper-item-icon-active-color: "var(--primary-color)"
+      paper-item-icon_-_color: "var(--primary-text-color)"
+      paper-slider-active-color: "var(--primary-color)"
+      paper-slider-knob-color: "var(--primary-color)"
+      paper-slider-knob-start-color: "var(--primary-color)"
+      paper-slider-pin-color: "var(--primary-color)"
+      paper-slider-secondary-color: "var(--light-primary-color)"     
+      paper-toggle-button-checked-ink-color: "var(--dark-primary-color)"
+      paper-toggle-button-checked-button-color: "var(--primary-color)"
+      paper-toggle-button-checked-bar-color: "var(--light-primary-color)"
+      paper-toggle-button-unchecked-bar-color: "var(--primary-text-color)"
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#               IFrame Panels
+# # # # # # # # # # # # # # # # # # # # # # #
+panel_iframe:
+  cloud9_ide:
+    title: Cloud9 IDE
+    icon: mdi:cloud-braces
+    url: !secret add_on_cloud9ide_url
+  configurator:
+    title: Configurator
+    icon: mdi:wrench
+    url: !secret add_on_configurator_url
+  # log_viewer:
+  #   title: Log Viewer
+  #   icon: mdi:file-alert
+  #   url: !secret add_on_logviewer_url
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#             Shell Commands
+# # # # # # # # # # # # # # # # # # # # # # #
+shell_command:
+# - - - - - - - - - - - - - - - - - - - - - -
+# Reboot Lovelave Interface
+# - - - - - - - - - - - - - - - - - - - - - -
+  lovelace_gen: 'python /config/lovelace-gen.py'
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#                 Scripts
+# # # # # # # # # # # # # # # # # # # # # # #
+script:
+# - - - - - - - - - - - - - - - - - - - - - -
+# On Start - sets theme and rebuilds
+# LoveLace UI
+# - - - - - - - - - - - - - - - - - - - - - -
+  on_start:
+    alias: On Start
+    sequence:
+      - service: frontend.set_theme
+        data:
+          name: darkcyan
+      - service: shell_command.lovelace_gen
+  reboot:
+    alias: Reboot
+    sequence:
+      - service: notify.notify
+        data:
+          message: Rebooting home assistant
+      - service: homeassistant.restart

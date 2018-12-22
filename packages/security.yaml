@@ -42,112 +42,22 @@ alarm_control_panel:
       pending_time: 0
 
 # # # # # # # # # # # # # # # # # # # # # # #
-#             Automation
-# # # # # # # # # # # # # # # # # # # # # # #
-automation:
-# - - - - - - - - - - - - - - - - - - - - - -
-# armed_home trigger
-# - - - - - - - - - - - - - - - - - - - - - -
-  - alias: Security - Trigger alarm while armed home
-    initial_state: on
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.back_door
-      - platform: state
-        entity_id: binary_sensor.basement_door
-      - platform: state
-        entity_id: binary_sensor.front_door
-      - platform: state
-        entity_id: binary_sensor.front_door_camera
-      - platform: state
-        entity_id: binary_sensor.front_door_lock
-      - platform: state
-        entity_id: binary_sensor.front_left_window
-      - platform: state
-        entity_id: binary_sensor.front_right_window
-      - platform: state
-        entity_id: binary_sensor.washer_leak_sensor
-    condition:
-      - condition: state
-        entity_id: alarm_control_panel.home_alarm
-        state: armed_home
-    action:
-      service: alarm_control_panel.alarm_trigger
-      entity_id: alarm_control_panel.home_alarm
-# - - - - - - - - - - - - - - - - - - - - - -
-# armed_away trigger
-# - - - - - - - - - - - - - - - - - - - - - -
-  - alias: Security - Trigger alarm while armed away
-    initial_state: on
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.back_door
-      - platform: state
-        entity_id: binary_sensor.basement_door
-      - platform: state
-        entity_id: binary_sensor.front_door
-      - platform: state
-        entity_id: binary_sensor.front_door_camera
-      - platform: state
-        entity_id: binary_sensor.front_door_lock
-      - platform: state
-        entity_id: binary_sensor.front_left_window
-      - platform: state
-        entity_id: binary_sensor.front_right_window
-      - platform: state
-        entity_id: binary_sensor.washer_leak_sensor
-    condition:
-      - condition: state
-        entity_id: alarm_control_panel.home_alarm
-        state: armed_away
-    action:
-      service: alarm_control_panel.alarm_trigger
-      entity_id: alarm_control_panel.home_alarm
-
-# - - - - - - - - - - - - - - - - - - - - - -
-# Alarm response
-# - - - - - - - - - - - - - - - - - - - - - -
-  - alias: Security - Alarm triggered
-    trigger:
-      - platform: state
-        entity_id: alarm_control_panel.home_alarm
-        to: 'triggered'
-    action:
-      - service: notify.notify
-        data:
-          message: 'ALARM! The alarm has been triggered'
-
-# - - - - - - - - - - - - - - - - - - - - - -
-# Alarm response
-# - - - - - - - - - - - - - - - - - - - - - -
-  - alias: Notify on door unlocking
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.front_door_lock
-        to: 'unlocked'
-    action:
-      - service: notify.notify
-        data:
-          message: 'Front door has been unlocked'
-
-# # # # # # # # # # # # # # # # # # # # # # #
 #                 Cameras
 # # # # # # # # # # # # # # # # # # # # # # #
-# Front Door
-# - - - - - - - - - - - - - - - - - - - - - -
-amcrest:
-- host: !secret ip_amcrest_camera_01
-  name: Front Door Camera
-  username: !secret router_username
-  password: !secret router_password
-  stream_source: mjpeg
-  sensors:
-    - motion_detector
-  resolution: low
-
 camera:
-  - name: Front Door Camera
-    platform: amcrest
+  - platform: generic
+    name: Front Door Camera
+    still_image_url: !secret front_door_camera
+  - platform: generic
+    name: Living Room Camera
+    still_image_url: !secret living_room_camera
+  - platform: generic
+    name: Office Camera
+    still_image_url: !secret office_camera
+  - platform: generic
+    name: Surface Pro Camera
+    still_image_url: !secret surface_pro_camera
+
 
 # # # # # # # # # # # # # # # # # # # # # # #
 #             Binary Sensors
@@ -193,6 +103,15 @@ binary_sensor:
     payload_on: 'wet'
     payload_off: 'dry'
 # - - - - - - - - - - - - - - - - - - - - - -
+# Smoke Detectors
+# - - - - - - - - - - - - - - - - - - - - - -
+  - platform: mqtt
+    name: Office Smoke Detector
+    state_topic: 'hass/Living Room Smoke Detector/smoke/state'
+    qos: 0
+    payload_on: 'detected'
+    payload_off: 'clear'
+# - - - - - - - - - - - - - - - - - - - - - -
 # Template Sensors
 # - - - - - - - - - - - - - - - - - - - - - -
   - platform: template
@@ -201,12 +120,6 @@ binary_sensor:
         friendly_name: Front Door
         value_template: "{{ not is_state('sensor.ecolink_doorwindow_sensor_access_control', '23') }}"
         entity_id: sensor.ecolink_doorwindow_sensor_access_control
-      front_door_camera:
-        friendly_name: Front Door Camera
-        value_template: "{{ is_state('sensor.front_door_camera_motion_detected', 'True') }}"
-        entity_id: sensor.front_door_camera_motion_detected
-        delay_on:
-          seconds: 20
       front_door_lock:
         friendly_name: Front Door Lock
         value_template: "{{ is_state('lock.front_door_lock', 'unlocked') }}"
@@ -216,7 +129,6 @@ binary_sensor:
 #               Sensors
 # # # # # # # # # # # # # # # # # # # # # # #
 sensor:
-
 # - - - - - - - - - - - - - - - - - - - - - -
 # Battery Sensors
 # - - - - - - - - - - - - - - - - - - - - - -
@@ -240,13 +152,10 @@ sensor:
     name: Washer Leak Sensor Battery
     state_topic: 'hass/Washer Leak Sensor/battery/state'
     qos: 0
-
-# - - - - - - - - - - - - - - - - - - - - - -
-# Uptime
-# - - - - - - - - - - - - - - - - - - - - - -
-  - platform: uptime
-    name: Time Online
-    unit_of_measurement: hours
+  - platform: mqtt
+    name: Office Smoke Detector Battery
+    state_topic: 'hass/Living Room Smoke Detector/battery/state'
+    qos: 0
 
 # - - - - - - - - - - - - - - - - - - - - - -
 # Template Sensors

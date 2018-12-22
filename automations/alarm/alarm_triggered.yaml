@@ -1,0 +1,28 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+#
+# - - - - - - - - - - - - - - - - - - - - - -
+# Alarm response
+# - - - - - - - - - - - - - - - - - - - - - -
+alias: Security - Alarm triggered
+trigger:
+  - platform: state
+    entity_id: alarm_control_panel.home_alarm
+    to: 'triggered'
+action:
+  - service: notify.notify
+    data:
+      message: 'ALARM! The alarm has been triggered'
