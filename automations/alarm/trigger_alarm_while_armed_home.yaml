@@ -1,0 +1,45 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+#
+# - - - - - - - - - - - - - - - - - - - - - -
+# Alarm response
+# - - - - - - - - - - - - - - - - - - - - - -
+alias: Security - Trigger alarm while armed home
+initial_state: on
+trigger:
+  - platform: state
+    entity_id: binary_sensor.back_door
+  - platform: state
+    entity_id: binary_sensor.basement_door
+  - platform: state
+    entity_id: binary_sensor.front_door
+#   - platform: state
+#     entity_id: binary_sensor.front_door_camera
+  - platform: state
+    entity_id: binary_sensor.front_door_lock
+  - platform: state
+    entity_id: binary_sensor.front_left_window
+  - platform: state
+    entity_id: binary_sensor.front_right_window
+  - platform: state
+    entity_id: binary_sensor.washer_leak_sensor
+condition:
+  - condition: state
+    entity_id: alarm_control_panel.home_alarm
+    state: armed_home
+action:
+  service: alarm_control_panel.alarm_trigger
+  entity_id: alarm_control_panel.home_alarm

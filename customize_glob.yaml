@@ -63,6 +63,10 @@
   device_class: moisture
 "binary_sensor.*_camera":
   device_class: motion
+"binary_sensor.*_motion_detector":
+  device_class: motion
+"binary_sensor.*_smoke_*":
+  device_class: smoke
 "binary_sensor.*_lock":
   device_class: lock
 "binary_sensor.*_thermostat_*":

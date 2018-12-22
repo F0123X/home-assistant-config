@@ -25,18 +25,22 @@ options.xml
 OZW_Log.txt
 pyozw.sqlite
 secrets.yaml
+ip_bans.yaml
 zw*.xml
 *.pickle
 *.conf
 *.log
 *.db
 *.backup
+*.bak
 
 # Folders
 .storage/
 deps/
 .ssh/
 tts/
+.cloud/
+appdaemon/
 
 # Remove Node Red except flows
 .config.json
@@ -45,3 +49,4 @@ flows_cred.json
 node*home-assistant.json
 package.json
 settings.js
+package-lock.json

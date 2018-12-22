@@ -29,7 +29,7 @@ switch:
 # - - - - - - - - - - - - - - - - - - - - - -
   - platform: tplink
     name: Monitors
-    host: !secret ip_tplink_h110_04
+    host: !secret ip_tplink_h110_01
     icon: mdi:monitor-multiple
 
 # # # # # # # # # # # # # # # # # # # # # # #

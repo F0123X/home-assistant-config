@@ -37,35 +37,45 @@ http:
   ssl_certificate: !secret ssl_certificate_path
   ssl_key: !secret ssl_key_path
   api_password: !secret http_password
+  ip_ban_enabled: true
+  login_attempts_threshold: 10
 
-# mqtt:
-#   broker: !secret ha_base_url
-#   broker: localhost
-#   port: 1883
-#   username: !secret router_username
-#   password: !secret router_password
-#   discovery: true
-#   discovery_prefix: 'hass'
+mqtt:
+  broker: localhost
+  port: 1883
+  username: !secret router_username
+  password: !secret router_password
 
-nest:
-  client_id: !secret nest_client_id
-  client_secret: !secret nest_client_secret
-
-# Device Montitoring
+cloud:
+  alexa: !include alexa.yaml
+config:
+frontend:
+  javascript_version: 'latest'
+hassio:
+history:
+logbook:
+recorder: !include recorder.yaml
+logger: !include logger.yaml
 discovery:
 
-# Front-End Settings
-config:
-conversation:
-frontend:
-hassio:
+# Uncomment to use YAML Lovelace
+# lovelace:
+#   mode: yaml
 
 #Testing
 # More information can be found:
 # https://github.com/custom-components/custom_updater/wiki/Installation
 custom_updater:
+  show_installable: false
+  hide_sensor: false
+  track:
+    - components
+    - cards
+    - python_scripts
   card_urls:
-    - 'https://raw.githubusercontent.com/kalkih/mini-media-player/master/tracker.json'
+    - https://raw.githubusercontent.com/kalkih/mini-media-player/master/tracker.json
+    - https://raw.githubusercontent.com/kuuji/button-card/master/tracker.json
+    - https://raw.githubusercontent.com/kalkih/mini-graph-card/master/tracker.json
 
 # ZWave
 zwave:
@@ -79,12 +89,19 @@ tts:
 wemo:
   static:
     - !secret ip_wemo_01
-
-#alexa:
-
-# Development Settings
-history:
-logbook:
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
 
 alexa:
-  intents: !include_dir_named intents/
+automation: !include_dir_list automations/
+intent_script: !include_dir_named intents/
+
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: !secret http_password
+  max_retries: 3
+  default_measurement: state

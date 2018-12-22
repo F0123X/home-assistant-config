@@ -54,3 +54,16 @@ sensor:
         friendly_name: Weather Humidity
         value_template: '{{ states.weather.dark_sky.attributes.humidity }}'
         entity_id: weather.dark_sky
+# - - - - - - - - - - - - - - - - - - - - - -
+# ESP8266 NodeMCU with DHT11 sensor
+# - - - - - - - - - - - - - - - - - - - - - -
+  - platform: mqtt
+    name: Office Temperature
+    state_topic: 'hass/esp8266_02'
+    qos: 0
+    value_template: '{{ value_json.temperature }}'
+  - platform: mqtt
+    name: Office Humidity
+    state_topic: 'hass/esp8266_02'
+    qos: 0
+    value_template: '{{ value_json.humidity }}'
