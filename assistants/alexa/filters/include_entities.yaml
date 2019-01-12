@@ -1,0 +1,23 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+include_entities:
+  - sensor.office_temperature
+  - sensor.living_room_thermostat_temperature
+  # - group.downstairs_bathroom_lights
+  # - group.living_room_lights
+  # - group.master_bedroom_lights
+  # - group.office_lights
+  # - group.upstairs_bathroom_lights

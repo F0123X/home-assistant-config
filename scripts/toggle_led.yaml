@@ -1,0 +1,159 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+alias: Toggle LED
+sequence:
+  - service: light.turn_on
+    data:
+      entity_id: group.multisensor_leds
+      rgb_color: [0, 0, 255]
+  - delay:
+      milliseconds: 100
+  - service: light.turn_off
+    data:
+      entity_id: group.multisensor_leds
+  - delay:
+      milliseconds: 100
+  - service: light.turn_on
+    data:
+      entity_id: group.multisensor_leds
+      rgb_color: [0, 0, 255]
+  - delay:
+      milliseconds: 100
+  - service: light.turn_off
+    data:
+      entity_id: group.multisensor_leds
+  - delay:
+      milliseconds: 100
+  - service: light.turn_on
+    data:
+      entity_id: group.multisensor_leds
+      rgb_color: [0, 0, 255]
+  - delay:
+      milliseconds: 100
+  - service: light.turn_off
+    data:
+      entity_id: group.multisensor_leds
+  - delay:
+      milliseconds: 100
+  - service: light.turn_on
+    data:
+      entity_id: group.multisensor_leds
+      rgb_color: [0, 0, 255]
+  - delay:
+      milliseconds: 100
+  - service: light.turn_off
+    data:
+      entity_id: group.multisensor_leds
+  - delay:
+      milliseconds: 100
+  - service: light.turn_on
+    data:
+      entity_id: group.multisensor_leds
+      rgb_color: [0, 0, 255]
+  - delay:
+      milliseconds: 100
+  - service: light.turn_off
+    data:
+      entity_id: group.multisensor_leds
+  - delay:
+      milliseconds: 100
+  - service: light.turn_on
+    data:
+      entity_id: group.multisensor_leds
+      rgb_color: [0, 0, 255]
+  - delay:
+      milliseconds: 100
+  - service: light.turn_off
+    data:
+      entity_id: group.multisensor_leds
+  - delay:
+      milliseconds: 100
+  - service: light.turn_on
+    data:
+      entity_id: group.multisensor_leds
+      rgb_color: [0, 0, 255]
+  - delay:
+      milliseconds: 100
+  - service: light.turn_off
+    data:
+      entity_id: group.multisensor_leds
+  - delay:
+      milliseconds: 100
+  - service: light.turn_on
+    data:
+      entity_id: group.multisensor_leds
+      rgb_color: [0, 0, 255]
+  - delay:
+      milliseconds: 100
+  - service: light.turn_off
+    data:
+      entity_id: group.multisensor_leds
+  - delay:
+      milliseconds: 100
+  - service: light.turn_on
+    data:
+      entity_id: group.multisensor_leds
+      rgb_color: [0, 0, 255]
+  - delay:
+      milliseconds: 100
+  - service: light.turn_off
+    data:
+      entity_id: group.multisensor_leds
+  - delay:
+      milliseconds: 100
+  - service: light.turn_on
+    data:
+      entity_id: group.multisensor_leds
+      rgb_color: [0, 0, 255]
+  - delay:
+      milliseconds: 100
+  - service: light.turn_off
+    data:
+      entity_id: group.multisensor_leds
+  - delay:
+      milliseconds: 100
+  - service: light.turn_on
+    data:
+      entity_id: group.multisensor_leds
+      rgb_color: [0, 0, 255]
+  - delay:
+      milliseconds: 100
+  - service: light.turn_off
+    data:
+      entity_id: group.multisensor_leds
+  - delay:
+      milliseconds: 100
+  - service: light.turn_on
+    data:
+      entity_id: group.multisensor_leds
+      rgb_color: [0, 0, 255]
+  - delay:
+      milliseconds: 100
+  - service: light.turn_off
+    data:
+      entity_id: group.multisensor_leds
+  - delay:
+      milliseconds: 100
+
+  # - service: light.turn_off
+  #   data_template:
+  #     entity_id: >
+  #       {% for state in states.light -%}
+  #         {% if state.entity_id.endswith('led') %} {{ state.entity_id }} {% endif %}
+  #       {%- endfor %}
+  # - delay:
+  #     seconds: 1
+      

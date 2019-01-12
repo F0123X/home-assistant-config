@@ -1,0 +1,33 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+# - - - - - - - - - - - - - - - - - - - - - -
+# Motion sensor associated with light switch
+# 
+# - - - - - - - - - - - - - - - - - - - - - -
+alias: Downstairs Bathroom Motion Sensor Off
+initial_state: 'on'
+trigger:
+  platform: state
+  entity_id: binary_sensor.downstairs_bathroom_motion_sensor
+  to: 'off'
+  for:
+    hours: 0
+    minutes: 0
+    seconds: 2
+action:
+  - service: light.turn_off
+    entity_id: light.downstairs_bathroom_multisensor_led
+  

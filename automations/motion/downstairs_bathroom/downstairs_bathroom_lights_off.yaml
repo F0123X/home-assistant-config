@@ -1,0 +1,34 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+# - - - - - - - - - - - - - - - - - - - - - -
+# Motion sensor associated with light switch
+# 
+# - - - - - - - - - - - - - - - - - - - - - -
+alias: Downstairs Bathroom Lights Off
+initial_state: 'on'
+trigger:
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.lighting_downstairs_bathroom
+  - platform: state
+    entity_id: group.downstairs_bathroom_lights
+    to: 'off'
+action:
+  - service: timer.cancel
+    entity_id: timer.lighting_downstairs_bathroom
+  - service: homeassistant.turn_off
+    entity_id: group.downstairs_bathroom_lights

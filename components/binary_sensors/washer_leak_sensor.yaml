@@ -1,0 +1,22 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+platform: mqtt
+name: Washer Leak Sensor
+state_topic: 'hass/Washer Leak Sensor/water/state'
+qos: 0
+payload_on: 'wet'
+payload_off: 'dry'
+force_update: true
