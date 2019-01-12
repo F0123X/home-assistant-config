@@ -1,0 +1,74 @@
+substitutions:
+  devicenumber: '07'
+  deviceip: '192.168.1.166'
+  location: 'Living Room'
+
+esphomeyaml:
+  name: esp8266_${devicenumber}
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  # ssid: 'Nighthawk-Secure'
+  # password: 'melodicbreeze058'
+  manual_ip:
+    # Set this to the IP of the ESP
+    static_ip: ${deviceip}
+    # Set this to the IP address of the router. Often ends with .1
+    gateway: 192.168.1.1
+    # The subnet of the network. 255.255.255.0 works for most home networks.
+    subnet: 255.255.255.0
+
+# Enable logging
+logger:
+  baud_rate: 115200
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+binary_sensor:
+  - platform: gpio
+    pin: D5
+    name: ${location} Motion Sensor
+    device_class: motion
+
+sensor:
+  - platform: dht
+    pin: D7
+    model: DHT11
+    temperature:
+      name: ${location} Temperature
+      accuracy_decimals: 1
+      filters:
+        - lambda: return x * (9.0/5.0) + 32.0;
+      unit_of_measurement: "°F"
+    humidity:
+      name: ${location} Humidity
+      accuracy_decimals: 1
+    update_interval: 60s
+  - platform: wifi_signal
+    name: ${location} WiFi Strength
+    update_interval: 60s
+
+
+output:
+  - platform: esp8266_pwm
+    pin: D1
+    id: gpio_d1
+  - platform: esp8266_pwm
+    pin: D2
+    id: gpio_d2
+  - platform: esp8266_pwm
+    pin: D3
+    id: gpio_d3
+
+light:
+  - platform: rgb
+    name: ${location} Multisensor LED
+    red: gpio_d1
+    green: gpio_d2
+    blue: gpio_d3
