@@ -1,0 +1,26 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+
+# - - - - - - - - - - - - - - - - - - - - - -
+# Google Home Entity Configuration
+# - - - - - - - - - - - - - - - - - - - - - -
+sensor.living_room_thermostat_temperature:
+  name: Living Room Temperature
+  aliases: 
+    - living room heat
+    - media room heat
+    - temperature
+  room: Living Room

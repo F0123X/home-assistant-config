@@ -1,0 +1,28 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+
+# - - - - - - - - - - - - - - - - - - - - - -
+# Google Home Entity Configuration
+# - - - - - - - - - - - - - - - - - - - - - -
+group.master_bedroom_lights:
+  name: Master Bedroom Lights
+  aliases: 
+    - master bedroom lighting
+    - ryans room lights
+    - bedroom lights
+    - lights
+    - lighting
+  room: Master Bedroom

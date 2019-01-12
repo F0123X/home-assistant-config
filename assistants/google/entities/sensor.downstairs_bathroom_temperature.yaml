@@ -13,15 +13,13 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-#
-# # # # # # # # # # # # # # # # # # # # # # #
-#                                        #   
-# Reboot Home Assistant               #      
-#                                        #   
-# # # # # # # # # # # # # # # # # # # # # # #
-speech:
-  type: plain
-  text: Okay, I am sending an encrypted message to Ryans phone to confirm.
-action:
-  service: script.turn_on
-  entity_id: script.reboot
+
+# - - - - - - - - - - - - - - - - - - - - - -
+# Google Home Entity Configuration
+# - - - - - - - - - - - - - - - - - - - - - -
+sensor.downstairs_bathroom_temperature:
+  name: Downstairs Bathroom Temperature
+  aliases: 
+    - downstairs bathroom heat
+    - temperature
+  room: Downstairs Bathroom

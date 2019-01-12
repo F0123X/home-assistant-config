@@ -1,0 +1,26 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+
+# - - - - - - - - - - - - - - - - - - - - - -
+# Google Home Entity Configuration
+# - - - - - - - - - - - - - - - - - - - - - -
+group.downstairs_bathroom_lights:
+  name: Downstairs Bathroom Lights
+  aliases: 
+    - downstairs bathroom lighting
+    - lights
+    - lighting
+  room: Downstairs Bathroom

@@ -1,0 +1,26 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+
+# - - - - - - - - - - - - - - - - - - - - - -
+# Google Home Entity Configuration
+# - - - - - - - - - - - - - - - - - - - - - -
+sensor.office_temperature:
+  name: Office Temperature
+  aliases: 
+    - office heat
+    - work room heat
+    - temperature
+  room: Office
