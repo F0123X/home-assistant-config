@@ -50,3 +50,6 @@ node*home-assistant.json
 package.json
 settings.js
 package-lock.json
+
+.templates/
+notebooks/
