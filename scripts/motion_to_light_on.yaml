@@ -1,0 +1,27 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+alias: Motion To Light On
+sequence:
+  - service: timer.start
+    data_template:
+      entity_id: '{{lights_on_timer}}'
+  - service: homeassistant.turn_on
+    data_template:
+      entity_id: '{{lights_group}}'
+  - service: light.turn_on
+    data_template:
+      entity_id: '{{multisensor_led}}'
+      rgb_color: [0, 255, 255]

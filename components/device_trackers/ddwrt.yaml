@@ -1,0 +1,22 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+platform: ddwrt
+host: !secret ip_netgear_router
+username: !secret router_username
+password: !secret router_password
+interval_seconds: 30
+consider_home: 180
+track_new_devices: yes

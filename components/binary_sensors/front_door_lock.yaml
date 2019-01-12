@@ -1,0 +1,21 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+platform: template
+sensors:
+  front_door_lock:
+    friendly_name: Front Door Lock
+    value_template: "{{ is_state('lock.front_door_lock', 'unlocked') }}"
+    entity_id: lock.front_door_lock

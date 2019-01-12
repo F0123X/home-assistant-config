@@ -1,0 +1,22 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+multisensor_leds:
+  name: Multisensor LEDs
+  entities:
+    - light.living_room_multisensor_led
+    - light.office_sensor_led
+    - light.downstairs_bathroom_multisensor_led
+    

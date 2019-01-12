@@ -1,0 +1,25 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+platform: template
+sensors:
+  outside_temperature:
+    friendly_name: Outside Temperature
+    value_template: '{{ states.weather.dark_sky.attributes.temperature }}'
+    entity_id: weather.dark_sky
+  outside_humidity:
+    friendly_name: Outside Humidity
+    value_template: '{{ states.weather.dark_sky.attributes.humidity }}'
+    entity_id: weather.dark_sky

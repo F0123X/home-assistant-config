@@ -1,0 +1,41 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+zwave:
+  usb_path: /dev/ttyACM0
+  polling_interval: 60000
+  network_key: !secret zwave_network_key
+  autoheal: true
+  device_config_glob:
+    "*_burglar*":
+      ignored: true
+      polling_intensity: 0
+    "*_alarm_type":
+      ignored: true
+      polling_intensity: 0
+    "*_alarm_level":
+      ignored: true
+      polling_intensity: 0
+    "*_power_management":
+      ignored: true
+      polling_intensity: 0
+    "*_sourcenodeid":
+      ignored: true
+    "sensor.schlage_be469_touchscreen_deadbolt_system":
+      ignored: true
+      polling_intensity: 0
+    "sensor.schlage_be469_touchscreen_deadbolt_access_control":
+      ignored: true
+      polling_intensity: 0

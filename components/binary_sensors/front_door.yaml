@@ -1,0 +1,21 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+platform: template
+sensors:
+  front_door:
+    friendly_name: Front Door
+    value_template: "{{ not is_state('sensor.ecolink_doorwindow_sensor_access_control', '23') }}"
+    entity_id: sensor.ecolink_doorwindow_sensor_access_control

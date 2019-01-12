@@ -1,0 +1,23 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+platform: template
+sensors:
+  washer:
+    friendly_name: "Washer"
+    delay_off:
+      minutes: 5
+    value_template: "{{ states('states.switch.washer.attributes.current_power_w')|float > 0 }}"
+    device_class: vibration

@@ -1,0 +1,79 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+#
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Customize Glob                      #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
+
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#         Customize Sensors
+# # # # # # # # # # # # # # # # # # # # # # #
+
+"sensor.*_temperature":
+  device_class: temperature
+  unit_of_measurement: '°F'
+"sensor.*_humidity":
+  device_class: humidity
+  unit_of_measurement: '%'
+"sensor.*_thermostat_target":
+  device_class: temperature
+  unit_of_measurement: '°F'
+"sensor.*_battery":
+  device_class: battery
+  unit_of_measurement: '%'
+"sensor.ecolink*":
+  hidden: true
+"sensor.schlage_be469_*":
+  hidden: true
+"sensor.esp8266*":
+  hidden: true
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#         Customize Switches
+# # # # # # # # # # # # # # # # # # # # # # #
+
+"switch.*_light":
+  icon: mdi:lightbulb
+"switch.*_lamp":
+  icon: mdi:lightbulb
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#         Customize Binary Sensors
+# # # # # # # # # # # # # # # # # # # # # # #
+  
+"binary_sensor.*_door":
+  device_class: door
+"binary_sensor.*_window":
+  device_class: window
+"binary_sensor.*_leak_sensor":
+  device_class: moisture
+"binary_sensor.*_camera":
+  device_class: motion
+"binary_sensor.*_motion_sensor":
+  device_class: motion
+"binary_sensor.*_smoke_*":
+  device_class: smoke
+"binary_sensor.*_lock":
+  device_class: lock
+"binary_sensor.*_thermostat_*":
+  hidden: true
+  
+  
+"timer.*":
+  hidden: true

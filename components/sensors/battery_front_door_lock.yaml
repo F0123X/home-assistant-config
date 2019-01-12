@@ -1,0 +1,21 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+platform: template
+sensors:
+  front_door_lock_battery:
+    friendly_name: Front Door Lock Battery
+    value_template: '{{ states.zwave.front_door_lock.attributes.battery_level }}'
+    entity_id: zwave.front_door_lock

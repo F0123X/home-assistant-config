@@ -1,0 +1,57 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+platform: universal
+name: Samsung Smart TV
+children:
+  - media_player.living_room_sonos
+commands:
+  turn_on:
+    service: remote.send_command
+    data:
+      entity_id: remote.living_room
+      command:
+        - PowerOn
+      device: 49552536
+      delay_secs: 0.5
+  turn_off:
+    service: remote.send_command
+    data:
+      entity_id: remote.living_room
+      command:
+        - PowerOff
+      device: 49552536
+      delay_secs: 0.5
+  volume_up:
+    service: media_player.volume_up
+    data:
+      entity_id: media_player.living_room_sonos
+  volume_down:
+    service: media_player.volume_down
+    data:
+      entity_id: media_player.living_room_sonos
+  volume_mute:
+    service: media_player.volume_mute
+    data:
+      entity_id: media_player.living_room_sonos
+  volume_set:
+    service: media_player.volume_set
+    data_template:
+      entity_id: media_player.living_room_sonos
+      volume_level: '{{ volume_level }}'
+attributes:
+  state: binary_sensor.samsung_smart_tv
+  is_volume_muted: media_player.living_room_sonos|is_volume_muted
+  volume_level: media_player.living_room_sonos|volume_level

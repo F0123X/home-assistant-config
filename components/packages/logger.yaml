@@ -1,0 +1,113 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+
+# # # # # # # # # # # # # # # # # # # # # # #
+#               Logger
+# # # # # # # # # # # # # # # # # # # # # # #
+logger:
+  default: debug
+# - - - - - - - - - - - - - - - - - - - - - -
+# Specific Logs
+# - - - - - - - - - - - - - - - - - - - - - -
+  logs:
+# - - - - - - - - - - - - - - - - - - - - - -
+#   Monitoring Components
+# - - - - - - - - - - - - - - - - - - - - - -
+    async_upnp_client: info
+    glances: error
+    haffmpeg.core: info
+    hole: error
+# - - - - - - - - - - - - - - - - - - - - - -
+#   Homeassistant Components
+# - - - - - - - - - - - - - - - - - - - - - -
+    homeassistant: debug
+    homeassistant.components.http.auth: critical
+    homeassistant.components.http.view: error  
+    homeassistant.components: info
+    homeassistant.components.device_tracker.netgear: error
+    homeassistant.components.device_tracker.ddwrt: error
+    homeassistant.components.media_player: error
+    homeassistant.components.websocket_api: error
+    homeassistant.components.sensor.uptime: info
+    homeassistant.components.sensor.ring: info
+    homeassistant.components.zwave.util: error
+    homeassistant.components.recorder: critical
+    homeassistant.core: critical
+    homeassistant.components.mqtt: error
+    homeassistant.helpers.storage: critical
+    homeassistant.helpers.restore_state: info
+    homeassistant.util.json: error
+# - - - - - - - - - - - - - - - - - - - - - -
+#   MQTT Components
+# - - - - - - - - - - - - - - - - - - - - - -
+    hbmqtt: debug
+    hbmqtt.mqtt: error
+    hbmqtt.broker: error
+# - - - - - - - - - - - - - - - - - - - - - -
+#   TP-LINK Switches 
+# - - - - - - - - - - - - - - - - - - - - - -
+    pyHS100: error
+# - - - - - - - - - - - - - - - - - - - - - -
+#   Amcrest Platform
+# - - - - - - - - - - - - - - - - - - - - - -
+    amcrest: error
+    homeassistant.setup: debug
+    homeassistant.components.camera: debug
+    homeassistant.components.sensor: debug
+    homeassistant.components.sensor.amcrest: error
+# - - - - - - - - - - - - - - - - - - - - - -
+#   Nest Platform
+# - - - - - - - - - - - - - - - - - - - - - -
+    nest.nest: error
+    suds: error
+# - - - - - - - - - - - - - - - - - - - - - -
+#   ZWave Platform
+# - - - - - - - - - - - - - - - - - - - - - -
+    libopenzwave: error
+    openzwave: error
+# - - - - - - - - - - - - - - - - - - - - - -
+#   Netgear Platform
+# - - - - - - - - - - - - - - - - - - - - - -
+    pynetgear: error
+# - - - - - - - - - - - - - - - - - - - - - -
+#   Custom Components Platform
+# - - - - - - - - - - - - - - - - - - - - - -
+    pywemo.subscribe: error
+# - - - - - - - - - - - - - - - - - - - - - -
+#   Custom Components Platform
+# - - - - - - - - - - - - - - - - - - - - - -
+    pyupdate.ha_custom.custom_components: info
+    pyupdate.ha_custom.custom_cards: info
+    pyupdate.ha_custom.common: info
+# - - - - - - - - - - - - - - - - - - - - - -
+#   New Harmony Platform
+# - - - - - - - - - - - - - - - - - - - - - -
+    pyharmony.client: info
+    websockets.protocol: info
+    aioharmony: info
+# - - - - - - - - - - - - - - - - - - - - - -
+#   ESPHome Platform
+# - - - - - - - - - - - - - - - - - - - - - -
+    aioesphomeapi.client: info
+# - - - - - - - - - - - - - - - - - - - - - -
+#   Unidentified Components Platform
+# - - - - - - - - - - - - - - - - - - - - - -
+    sseclient: info
+    transitions.core: error
+    passlib.registry: error
+    botocore: error
+    ring_doorbell.doorbot: info
+    ghlocalapi.bluetooth: info
