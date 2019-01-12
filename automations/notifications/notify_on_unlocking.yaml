@@ -13,23 +13,21 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
+#
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                        #   
+# Front Door Lock                     #      
+#                                        #   
+# # # # # # # # # # # # # # # # # # # # # # #
 # - - - - - - - - - - - - - - - - - - - - - -
-# On Start - sets theme and rebuilds
-# LoveLace UI
+# Alarm response
 # - - - - - - - - - - - - - - - - - - - - - -
-alias: Ryan is home
-initial_state: 'on'
+alias: Notify on door unlocking
 trigger:
   platform: state
-  entity_id: device_tracker.ryans_pixel
-  from: 'not_home'
-  to: 'home'
-  for:
-    hours: 0
-    minutes: 0
-    seconds: 30
+  entity_id: binary_sensor.front_door_lock
+  to: 'on'
 action:
   service: notify.notify
   data:
-    message: "Sent from home assistant based on state change"
-    title: "Method 1"
+    message: 'Front door has been unlocked'

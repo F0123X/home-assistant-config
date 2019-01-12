@@ -1,0 +1,27 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+# - - - - - - - - - - - - - - - - - - - - - -
+# On Start - sets theme and rebuilds
+# LoveLace UI
+# - - - - - - - - - - - - - - - - - - - - - -
+alias: Start Up Lighting
+initial_state: 'on'
+trigger:
+  platform: homeassistant
+  event: start
+action:
+  service: script.turn_on
+  entity_id: script.startup

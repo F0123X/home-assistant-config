@@ -14,14 +14,21 @@
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
 # - - - - - - - - - - - - - - - - - - - - - -
-# On Start - sets theme and rebuilds
-# LoveLace UI
+# Motion sensor associated with light switch
+# 
 # - - - - - - - - - - - - - - - - - - - - - -
-alias: 'Set theme and rebuild lovelace ui'
-initial_state: 'off'
+alias: Office Lights Off
+initial_state: 'on'
 trigger:
-  platform: homeassistant
-  event: start
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.lighting_office
+  - platform: state
+    entity_id: group.office_lights
+    to: 'off'
 action:
-  service: script.turn_on
-  entity_id: script.on_start
+  - service: timer.cancel
+    entity_id: timer.lighting_office
+  - service: homeassistant.turn_off
+    entity_id: group.office_lights

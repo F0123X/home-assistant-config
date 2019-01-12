@@ -13,21 +13,21 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-#
-# # # # # # # # # # # # # # # # # # # # # # #
-#                                        #   
-# Front Door Lock                     #      
-#                                        #   
-# # # # # # # # # # # # # # # # # # # # # # #
 # - - - - - - - - - - - - - - - - - - - - - -
-# Alarm response
+# Motion sensor associated with light switch
+# 
 # - - - - - - - - - - - - - - - - - - - - - -
-alias: Notify on door unlocking
+alias: Downstairs Bathroom Motion Sensor Off
+initial_state: 'on'
 trigger:
   platform: state
-  entity_id: binary_sensor.front_door_lock
-  to: 'on'
+  entity_id: binary_sensor.downstairs_bathroom_motion_sensor
+  to: 'off'
+  for:
+    hours: 0
+    minutes: 0
+    seconds: 2
 action:
-  service: notify.notify
-  data:
-    message: 'Front door has been unlocked'
+  - service: light.turn_off
+    entity_id: light.downstairs_bathroom_multisensor_led
+  
