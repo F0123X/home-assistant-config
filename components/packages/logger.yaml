@@ -24,25 +24,22 @@ logger:
 # - - - - - - - - - - - - - - - - - - - - - -
   logs:
 # - - - - - - - - - - - - - - - - - - - - - -
-#   Monitoring Components
-# - - - - - - - - - - - - - - - - - - - - - -
-    async_upnp_client: info
-    glances: error
-    haffmpeg.core: info
-    hole: error
-# - - - - - - - - - - - - - - - - - - - - - -
 #   Homeassistant Components
 # - - - - - - - - - - - - - - - - - - - - - -
-    homeassistant: debug
     homeassistant.components.http.auth: critical
     homeassistant.components.http.view: error  
     homeassistant.components: info
+    homeassistant.components.camera: debug
+    homeassistant.components.camera.ring: info
     homeassistant.components.device_tracker.netgear: error
     homeassistant.components.device_tracker.ddwrt: error
     homeassistant.components.media_player: error
-    homeassistant.components.websocket_api: error
+    homeassistant.components.sensor.amcrest: error
+    homeassistant.components.sensor.speedtest: info
     homeassistant.components.sensor.uptime: info
     homeassistant.components.sensor.ring: info
+    homeassistant.components.tts: error
+    homeassistant.components.websocket_api: error
     homeassistant.components.zwave.util: error
     homeassistant.components.recorder: critical
     homeassistant.core: critical
@@ -50,6 +47,13 @@ logger:
     homeassistant.helpers.storage: critical
     homeassistant.helpers.restore_state: info
     homeassistant.util.json: error
+# - - - - - - - - - - - - - - - - - - - - - -
+#   Monitoring Components
+# - - - - - - - - - - - - - - - - - - - - - -
+    async_upnp_client: info
+    glances: error
+    haffmpeg.core: info
+    hole: error
 # - - - - - - - - - - - - - - - - - - - - - -
 #   MQTT Components
 # - - - - - - - - - - - - - - - - - - - - - -
@@ -64,10 +68,6 @@ logger:
 #   Amcrest Platform
 # - - - - - - - - - - - - - - - - - - - - - -
     amcrest: error
-    homeassistant.setup: debug
-    homeassistant.components.camera: debug
-    homeassistant.components.sensor: debug
-    homeassistant.components.sensor.amcrest: error
 # - - - - - - - - - - - - - - - - - - - - - -
 #   Nest Platform
 # - - - - - - - - - - - - - - - - - - - - - -
@@ -111,3 +111,4 @@ logger:
     botocore: error
     ring_doorbell.doorbot: info
     ghlocalapi.bluetooth: info
+    
