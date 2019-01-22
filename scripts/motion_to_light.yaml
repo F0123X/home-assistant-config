@@ -1,0 +1,23 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+alias: Motion To Light
+sequence:
+  - service: timer.start
+    data_template:
+      entity_id: '{{lights_on_timer}}'
+  - service: homeassistant.turn_on
+    data_template:
+      entity_id: '{{lights_group}}'

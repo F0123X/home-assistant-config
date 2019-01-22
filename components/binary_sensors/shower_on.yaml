@@ -13,15 +13,12 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-alias: Motion To Light On
-sequence:
-  - service: timer.start
-    data_template:
-      entity_id: '{{lights_on_timer}}'
-  - service: homeassistant.turn_on
-    data_template:
-      entity_id: '{{lights_group}}'
-  - service: light.turn_on
-    data_template:
-      entity_id: '{{multisensor_led}}'
-      rgb_color: [0, 255, 255]
+platform: template
+sensors:
+  shower:
+    friendly_name: Shower
+    delay_off:
+      minutes: 5
+    value_template: "{{ states('sensor.upstairs_bathroom_humidity')|float > 50 }}"
+    entity_id: sensor.upstairs_bathroom_humidity
+    device_class: moisture

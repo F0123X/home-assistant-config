@@ -13,20 +13,12 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-# - - - - - - - - - - - - - - - - - - - - - -
-# On Start - sets theme and rebuilds
-# LoveLace UI
-# - - - - - - - - - - - - - - - - - - - - - -
-alias: Living Room Motion Sensor Off
-initial_state: 'on'
-trigger:
-  platform: state
-  entity_id: binary_sensor.living_room_motion_sensor
-  to: 'off'
-  for:
-    hours: 0
-    minutes: 0
-    seconds: 2
-action:
-  service: light.turn_off
-  entity_id: light.living_room_multisensor_led
+floorplan_view:
+  name: Floorplan View
+  options:
+    - Default
+    - Living Room
+    - Office
+    - Dining Room
+  initial: Default
+  icon: mdi:cloud-braces

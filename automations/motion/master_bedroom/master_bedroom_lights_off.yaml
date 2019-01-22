@@ -1,0 +1,34 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+# - - - - - - - - - - - - - - - - - - - - - -
+# Motion sensor associated with light switch
+# 
+# - - - - - - - - - - - - - - - - - - - - - -
+alias: Master Bedroom Lights Off
+initial_state: 'on'
+trigger:
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.lighting_master_bedroom
+  - platform: state
+    entity_id: group.master_bedroom_lights
+    to: 'off'
+action:
+  - service: timer.cancel
+    entity_id: timer.lighting_master_bedroom
+  - service: homeassistant.turn_off
+    entity_id: group.master_bedroom_lights

@@ -1,0 +1,34 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+# - - - - - - - - - - - - - - - - - - - - - -
+# Motion sensor associated with light switch
+# 
+# - - - - - - - - - - - - - - - - - - - - - -
+alias: Dining Room Lights Off
+initial_state: 'on'
+trigger:
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.lighting_dining_room
+  - platform: state
+    entity_id: group.dining_room_lights
+    to: 'off'
+action:
+  - service: timer.cancel
+    entity_id: timer.lighting_dining_room
+  - service: homeassistant.turn_off
+    entity_id: group.dining_room_lights

@@ -1,0 +1,20 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+name: floorplan
+sidebar_title: Floorplan - Main
+sidebar_icon: mdi:cloud-braces
+url_path: main
+config: !include ../../components/floorplans/main_floorplan.yaml

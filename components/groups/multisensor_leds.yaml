@@ -13,10 +13,10 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-multisensor_leds:
-  name: Multisensor LEDs
-  entities:
-    - light.living_room_multisensor_led
-    - light.office_sensor_led
-    - light.downstairs_bathroom_multisensor_led
-    
+name: Multisensor LEDs
+entities:
+  - light.living_room_multisensor_led
+  - light.office_multisensor_led
+  - light.downstairs_bathroom_multisensor_led
+  - light.master_bedroom_multisensor_led
+  - light.dining_room_multisensor_led

@@ -13,8 +13,7 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-living_room_lights:
-  name: Living Room Lights
-  entities:
-    - switch.living_room_light
-    - switch.living_room_lamp
+name: Living Room Lights
+entities:
+  - switch.living_room_light
+  - switch.living_room_lamp

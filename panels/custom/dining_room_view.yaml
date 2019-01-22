@@ -1,0 +1,20 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+name: floorplan
+sidebar_title: Floorplan - Dining Room
+sidebar_icon: mdi:silverware
+url_path: dining-room
+config: !include ../../components/floorplans/dining_room_floorplan.yaml

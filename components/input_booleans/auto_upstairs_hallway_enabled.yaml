@@ -13,8 +13,6 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-name: floorplan
-sidebar_title: Floorplan
-sidebar_icon: mdi:cloud-braces
-url_path: floorplan
-config: !include ../../components/floorplans/floorplan.yaml
+auto_upstairs_hallway_enabled:
+  name: Auto Upstairs Hallway Enabled
+  initial: on

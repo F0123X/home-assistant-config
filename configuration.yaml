@@ -26,18 +26,6 @@ homeassistant:
   unit_system: imperial
   time_zone: America/New_York
   packages: !include_dir_named components/packages
-
-#Testing
-# More information can be found:
-# https://github.com/custom-components/custom_updater/wiki/Installation
-# custom_updater:
-#   show_installable: false
-#   hide_sensor: false
-#   track:
-#     - components
-#     - cards
-#     - python_scripts
-#   card_urls:
-#     - https://raw.githubusercontent.com/kalkih/mini-media-player/master/tracker.json
-#     - https://raw.githubusercontent.com/kuuji/button-card/master/tracker.json
-#     - https://raw.githubusercontent.com/kalkih/mini-graph-card/master/tracker.json
+  auth_providers:
+   - type: homeassistant
+   - type: legacy_api_password

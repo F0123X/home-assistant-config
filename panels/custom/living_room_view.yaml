@@ -13,11 +13,8 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-platform: mqtt
-name: Master Bedroom Motion Sensor
-state_topic: 'hass/esp8266_01'
-qos: 0
-value_template: '{{ value_json.motion }}'
-payload_on: 'motion detected'
-payload_off: 'standby'
-device_class: motion
+name: floorplan
+sidebar_title: Floorplan - Living Room
+sidebar_icon: mdi:sofa
+url_path: living_room
+config: !include ../../components/floorplans/living_room_floorplan.yaml
