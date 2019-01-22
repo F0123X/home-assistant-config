@@ -1,0 +1,24 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+floorplan_view:
+  name: Floorplan View
+  options:
+    - Default
+    - Living Room
+    - Office
+    - Dining Room
+  initial: Default
+  icon: mdi:cloud-braces
