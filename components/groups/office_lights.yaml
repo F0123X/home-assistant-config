@@ -13,7 +13,6 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-office_lights:
-  name: Office Lights
-  entities:
-    - switch.office_light_switch
+name: Office Lights
+entities:
+  - switch.office_light_switch

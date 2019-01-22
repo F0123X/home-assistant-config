@@ -13,7 +13,6 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-name: Master Bedroom Lights
+name: Dining Room Lights
 entities:
-  - switch.master_bedroom_light
-  - switch.master_bedroom_lamp
+  - switch.dining_room_light
