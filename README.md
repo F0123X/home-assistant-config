@@ -1,10 +1,14 @@
-# Ryan's Smart Home
+# Ryan's Smart Home 
 
-###### LAST CHANGED: 11/8/2018
+###### LAST CHANGED: 1/22/2019
+
+###### **Documentation is Work in Progress**
 
 ## Floor Plans
 
-![Floor Plans](www/images/floorplan/living_room_portrait_floor_plan.png)
+![Floor Plans](www/images/floorplan/floorplan.png)
+
+Using [HA Floorplan](https://github.com/pkozul/ha-floorplan) and [Inkscape](https://inkscape.org/)
 
 ## Platforms
 
@@ -40,19 +44,150 @@
 
 - Home Assistant is a home automation platform running on Python 3. It is able to track and control all devices at home and offer a platform for automating control.
 
-## Devices:
+# Devices
+## Network Devices
+<table>
+    <th></th>
+    <th>DESCRIPTION</th>
+    <th>QTY</th>
+    <tr>
+        <td width=15%>
+            <a href=http://amzn.com/B00F0DD0I6><img src="https://images-na.ssl-images-amazon.com/images/I/51jAJai8bBL._SX679_.jpg" /></a>
+        </td>
+        <td width=80%>
+            <i>Type</i>: <b>Router</b> </br>
+            <i>Manufacturer</i>: Netgear </br>
+            <i>Model</i>: Nighthawk R7000 </br>
+            <i>Firmware</i>: DD-WRT v3.0-r37015M kongac (09/23/18) </br>
+        </td>
+        <td align="center" width=5%>
+            <b>1</b>
+        </td>
+    </tr>
+    <tr>
+        <td width=15%>
+            <a href=http://amzn.com/B007JLE84C><img src="https://images-na.ssl-images-amazon.com/images/I/51QFWNaQc7L._SX679_.jpg"/></a>
+        </td>
+        <td width=80%>
+            <i>Type</i>: <b>Network Attached Storage</b> </br>
+            <i>Manufacturer</i>: Synology </br>
+            <i>Model</i>: DS412+ </br>
+            <i>Firmware</i>: DSM 6.2.1</br>
+        </td>
+        <td align="center" width=5%>
+            <b>1</b>
+        </td>
+    </tr>
+</table>
 
-- Phillips Hue Bridge </br>
-  - Philips 259982 Hue Lightstrip
-- Lowes Iris Hub v2
-  - Iris Door Sensor
-- Samsung SmartThings Hub
-  - Leviton DZPA1-1LW Decora Z-Wave Controls 15-Amp Plug-In Appliance Module
-- Amazon Echo
-  - TP-LINK Wi-Fi Smart Plug w/ Energy Monitoring (HS110)
-  - TP-LINK Wi-Fi Smart Plug (HS100)
-- Harmony Hub
-  - Xbox One
-  - Samsung TV
-  - Samsung Sound Bar
-  - Xfinity Cable
+## Single Board Computers (SBC)
+<table>
+    <th></th>
+    <th>DESCRIPTION</th>
+    <th>QTY</th>
+    <tr>
+        <td width=15%>
+            <a href=https://www.adafruit.com/product/3400><img src="https://cdn-shop.adafruit.com/970x728/3400-05.jpg" /></a>
+        </td>
+        <td width=80%>
+            <i>Type</i>: <b>Router</b> </br>
+            <i>Manufacturer</i>: Various </br>
+            <i>Model</i>: Raspberry Pi Zero W </br>
+            <i>Firmware</i>: Raspbian Stretch </br>
+        </td>
+        <td align="center" width=5%>
+            <b>3</b>
+        </td>
+    </tr>
+</table>
+
+## Development Board
+<table>
+    <th></th>
+    <th>DESCRIPTION</th>
+    <th>QTY</th>
+    <tr>
+        <td width=15%>
+            <a href=http://amzn.com/B010N1SPRK><img src="https://images-na.ssl-images-amazon.com/images/I/71lrS8DBg9L._SX355_.jpg" /></a>
+        </td>
+        <td width=80%>
+            <i>Type</i>: <b>ESP8266</b> </br>
+            <i>Manufacturer</i>: Various </br>
+            <i>Model</i>: ESP8266 NodeMCU LUA CP2102 ESP-12E</br>
+            <i>Firmware</i>: Custom </br>
+        </td>
+        <td align="center" width=5%>
+            <b>10</b>
+        </td>
+    </tr>
+</table>
+
+## Sensors
+<table>
+    <th></th>
+    <th>DESCRIPTION</th>
+    <th>QTY</th>
+    <tr> 
+        <td width=15%>
+            <a href=http://amzn.com/B01DKC2GQ0><img src="https://images-na.ssl-images-amazon.com/images/I/61l0670O%2BRL._UX569_.jpg" /></a>
+        </td>
+        <td width=80%>
+            <i>Type</i>: <b>Temperature and Humitidy Sensor</b> </br>
+            <i>Manufacturer</i>: Various </br>
+            <i>Model</i>: DHT 11</br>
+            <i>Firmware</i>: N/A </br>
+        </td>
+        <td align="center" width=5%>
+            <b>15</b>
+        </td>
+    </tr>
+    <tr> 
+        <td width=15%>
+            <a href=http://amzn.com/B01DKC2GQ0><img src="https://images-na.ssl-images-amazon.com/images/I/51jRCXVtstL._SL1001_.jpg" /></a>
+        </td>
+        <td width=80%>
+            <i>Type</i>: <b>Motion Sensor</b> </br>
+            <i>Manufacturer</i>: Various </br>
+            <i>Model</i>: AM312 Mini Pyroelectric PIR</br>
+            <i>Firmware</i>: N/A </br>
+        </td>
+        <td align="center" width=5%>
+            <b>15</b>
+        </td>
+    </tr>
+    <tr> 
+        <td width=15%>
+            <a href=http://amzn.com/B01C3ZZT8W><img src="https://images-na.ssl-images-amazon.com/images/I/61v8dsUvirL._SL1200_.jpg" /></a>
+        </td>
+        <td width=80%>
+            <i>Type</i>: <b>LED</b> </br>
+            <i>Manufacturer</i>: Various </br>
+            <i>Model</i>: RGB LED Diode Lights</br>
+            <i>Firmware</i>: Custom </br>
+        </td>
+        <td align="center" width=5%>
+            <b>100</b>
+        </td>
+    </tr>
+    
+</table>
+
+
+
+
+**Pihole** </br>
+*Manufacturer*: Vilros </br>
+*Model*: Raspberry Pi Zero W </br>
+*FTL Version*: v4.1 </br>
+
+### Cameras
+
+### Hubs
+
+### Lighting
+
+### Sensors
+
+### Locks
+
+### Media
