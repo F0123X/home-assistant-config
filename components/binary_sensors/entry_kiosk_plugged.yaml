@@ -13,19 +13,7 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-# - - - - - - - - - - - - - - - - - - - - - -
-# On Start - sets theme and rebuilds
-# LoveLace UI
-# - - - - - - - - - - - - - - - - - - - - - -
-alias: Living Room Motion Sensor On
-initial_state: 'on'
-trigger:
-  platform: state
-  entity_id: binary_sensor.living_room_motion_sensor
-  to: 'on'
-action:
-  service: light.turn_on
-  data:
-    entity_id: light.living_room_multisensor_led
-    rgb_color: [0, 255, 255]
-  
+platform: mqtt
+name: Entry Kiosk Plugged
+state_topic: 'hass/kiosk/entry/plugged'
+retain: true

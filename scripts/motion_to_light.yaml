@@ -13,7 +13,7 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-alias: Motion To Light On
+alias: Motion To Light
 sequence:
   - service: timer.start
     data_template:
@@ -21,7 +21,3 @@ sequence:
   - service: homeassistant.turn_on
     data_template:
       entity_id: '{{lights_group}}'
-  - service: light.turn_on
-    data_template:
-      entity_id: '{{multisensor_led}}'
-      rgb_color: [0, 255, 255]

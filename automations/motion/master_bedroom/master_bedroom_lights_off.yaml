@@ -15,15 +15,20 @@
 # # # # # # # # # # # # # # # # # # # # # # #
 # - - - - - - - - - - - - - - - - - - - - - -
 # Motion sensor associated with light switch
+# 
 # - - - - - - - - - - - - - - - - - - - - - -
-alias: Downstairs Bathroom Motion Sensor On
+alias: Master Bedroom Lights Off
 initial_state: 'on'
 trigger:
-  platform: state
-  entity_id: binary_sensor.downstairs_bathroom_motion_sensor
-  to: 'on'
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.lighting_master_bedroom
+  - platform: state
+    entity_id: group.master_bedroom_lights
+    to: 'off'
 action:
-  service: script.motion_to_light
-  data:
-    lights_on_timer: timer.lighting_downstairs_bathroom
-    lights_group: group.downstairs_bathroom_lights
+  - service: timer.cancel
+    entity_id: timer.lighting_master_bedroom
+  - service: homeassistant.turn_off
+    entity_id: group.master_bedroom_lights

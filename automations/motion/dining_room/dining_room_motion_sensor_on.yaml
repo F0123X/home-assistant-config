@@ -16,14 +16,14 @@
 # - - - - - - - - - - - - - - - - - - - - - -
 # Motion sensor associated with light switch
 # - - - - - - - - - - - - - - - - - - - - - -
-alias: Downstairs Bathroom Motion Sensor On
+alias: Dining Room Motion Sensor On
 initial_state: 'on'
 trigger:
   platform: state
-  entity_id: binary_sensor.downstairs_bathroom_motion_sensor
+  entity_id: binary_sensor.dining_room_motion_sensor
   to: 'on'
 action:
   service: script.motion_to_light
   data:
-    lights_on_timer: timer.lighting_downstairs_bathroom
-    lights_group: group.downstairs_bathroom_lights
+    lights_on_timer: timer.lighting_dining_room
+    lights_group: group.dining_room_lights
