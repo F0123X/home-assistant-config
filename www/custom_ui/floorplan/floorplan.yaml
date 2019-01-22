@@ -13,19 +13,23 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
+date_format: MMM-DD-YYYY
+log_level: error
 
-# - - - - - - - - - - - - - - - - - - - - - -
-#  Minimialist Configuration
-# - - - - - - - - - - - - - - - - - - - - - -
-# Basic Information
-homeassistant:
-  name: Home
-  latitude: !secret collings_latitude
-  longitude: !secret collings_longitude
-  elevation: !secret collings_elevation
-  unit_system: imperial
-  time_zone: America/New_York
-  packages: !include_dir_named components/packages
-  auth_providers:
-   - type: homeassistant
-   - type: legacy_api_password
+fully_kiosk:
+
+  - name: Wall Display
+    address: 4C:0B:BE:18:8C:16
+    motion_sensor: binary_sensor.bedroom_motion
+    plugged_sensor: binary_sensor.bedroom_plugged
+    media_player: media_player.bedroom_alarm_panel
+
+  # - name: Entry Alarm Panel
+  #   address: 00:FC:8B:4A:D5:CF
+  #   entities:
+  #     - binary_sensor.entry_motion
+  #     - binary_sensor.entry_plugged
+  #     - media_player.entry_alarm_panel
+
+pages:
+  -  /local/custom_ui/floorplan/wall_display.yaml

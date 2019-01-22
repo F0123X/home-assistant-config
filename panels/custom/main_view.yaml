@@ -13,19 +13,8 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-
-# - - - - - - - - - - - - - - - - - - - - - -
-#  Minimialist Configuration
-# - - - - - - - - - - - - - - - - - - - - - -
-# Basic Information
-homeassistant:
-  name: Home
-  latitude: !secret collings_latitude
-  longitude: !secret collings_longitude
-  elevation: !secret collings_elevation
-  unit_system: imperial
-  time_zone: America/New_York
-  packages: !include_dir_named components/packages
-  auth_providers:
-   - type: homeassistant
-   - type: legacy_api_password
+name: floorplan
+sidebar_title: Floorplan - Main
+sidebar_icon: mdi:cloud-braces
+url_path: main
+config: !include ../../components/floorplans/main_floorplan.yaml

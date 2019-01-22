@@ -13,7 +13,7 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-name: Demo Floorplan
+name: Floorplan
 image: /local/custom_ui/floorplan/floorplan.svg
 stylesheet: /local/custom_ui/floorplan/floorplan.css
 
@@ -25,6 +25,12 @@ date_format: MM-DD-YYYY   # Date format to use in hover-over text
 
 # last_motion_entity: sensor.template_last_motion
 # last_motion_class: last-motion
+default_page: home_layer
+pages:
+  - home_layer
+  - living_room_layer
+  - office_layer
+  - dining_room_layer
 
 groups:
 
@@ -108,33 +114,265 @@ groups:
       - binary_sensor.upstairs_bathroom_motion_sensor
       - binary_sensor.downstairs_bathroom_motion_sensor
       - binary_sensor.dining_room_motion_sensor
-      
     image_template: '
       var imageName = "";
-      switch (entity.state) {
-        case "on":
-          imageName = "run";
-          break;
-        case "off":
-          imageName = "walk";
-          break;
+      if (this.activePage === "home_layer") {
+        switch (entity.state) {
+          case "on":
+            imageName = "run";
+            break;
+          case "off":
+            imageName = "walk";
+            break;
+        }
+      } else {
+        imageName = "transparent";
       }
       return "/local/custom_ui/floorplan/images/presence/" + imageName + ".svg";
       '
-  - name: Room Selection
-    elements:
-      - room_select_button
-    action:
-      domain: class
-      service: toggle
-      data:
-        elements:
-          - room_select_layer
-        classes:
-          - layer-visible
-          - layer-hidden
-        default_class: layer-hidden
+    class_template: '
+      if (this.activePage === "home_layer") {
+        return "layer-visible";
+      } else {
+        return "layer-hidden";
+      }
+    '
+
+  # - name: Home Layer
+  #   elements:
+  #     - go_to_house
+  #   action:
+  #     domain: input_select
+  #     service: select_option
+  #     data:
+  #       entity_id: input_select.floorplan_view
+  #       option: Default
         
+  # - name: Living Room Layer
+  #   elements:
+  #     - toggle_view_living_room
+  #   action:
+  #     domain: input_select
+  #     service: select_option
+  #     data:
+  #       entity_id: input_select.floorplan_view
+  #       option: Living Room
+
+  # - name: Office Layer
+  #   elements:
+  #     - toggle_view_office
+  #   action:
+  #     domain: input_select
+  #     service: select_option
+  #     data:
+  #       entity_id: input_select.floorplan_view
+  #       option: Office
+
+  # - name: Dining Room Layer
+  #   elements:
+  #     - toggle_view_dining_room
+  #   action:
+  #     domain: input_select
+  #     service: select_option
+  #     data:
+  #       entity_id: input_select.floorplan_view
+  #       option: Dining Room
+
+  # - name: Layer Select
+  #   entities:
+  #     - input_select.floorplan_view
+  #   action:
+  #     domain: class
+  #     service: select
+  #     data:
+  #       elements:
+  #         - id: home_layer
+  #           class_template: '
+  #             var className = "";
+  #             switch (entity.state) {
+  #               case "Default":
+  #                 className = "layer-visible";
+  #                 break;
+  #               default:
+  #                 className = "layer-hidden";
+  #             }
+  #             return className;
+  #           '
+  #         - id: living_room_layer
+  #           class_template: '
+  #             var className = "";
+  #             switch (entity.state) {
+  #               case "Living Room":
+  #                 className = "layer-visible";
+  #                 break;
+  #               default:
+  #                 className = "layer-hidden";
+  #             }
+  #             return className;
+  #           '
+  #         - id: office_layer
+  #           class_template: '
+  #             var className = "";
+  #             switch (entity.state) {
+  #               case "Office":
+  #                 className = "layer-visible";
+  #                 break;
+  #               default:
+  #                 className = "layer-hidden";
+  #             }
+  #             return className;
+  #           '
+  #         - id: dining_room_layer
+  #           class_template: '
+  #             var className = "";
+  #             switch (entity.state) {
+  #               case "Dining Room":
+  #                 className = "layer-visible";
+  #                 break;
+  #               default:
+  #                 className = "layer-hidden";
+  #             }
+  #             return className;
+  #           '
+
+
+  - name: Main Layer
+    elements:
+      - toggle_view_main
+    action:
+      domain: page
+      service: navigate
+      data:
+        select: home_layer
+        pages:
+          - home_layer
+          - living_room_layer
+          - office_layer
+          - dining_room_layer
+
+  - name: Living Room Layer
+    elements:
+      - toggle_view_living_room
+    action:
+      domain: page
+      service: navigate
+      data:
+        select: living_room_layer
+        pages:
+          - home_layer
+          - living_room_layer
+          - office_layer
+          - dining_room_layer
+
+  - name: Office Layer
+    elements:
+      - toggle_view_office
+    action:
+      domain: page
+      service: navigate
+      data:
+        select: office_layer
+        pages:
+          - home_layer
+          - living_room_layer
+          - office_layer
+          - dining_room_layer
+
+  - name: Dining Room Layer
+    elements:
+      - toggle_view_dining_room
+    action:
+      domain: page
+      service: navigate
+      data:
+        select: dining_room_layer
+        pages:
+          - home_layer
+          - living_room_layer
+          - office_layer
+          - dining_room_layer
+
+
+  # - name: Main Layer
+  #   elements:
+  #     - toggle_view_main
+  #   action:
+  #     domain: class
+  #     service: select
+  #     data:
+  #       elements:
+  #         - id: home_layer
+  #           class: layer-visible
+  #         - id: living_room_layer
+  #           class: layer-hidden
+  #         - id: office_layer
+  #           class: layer-hidden
+  #         - id: dining_room_layer
+  #           class: layer-hidden
+
+
+  # - name: Living Room Layer
+  #   elements:
+  #     - toggle_view_living_room
+  #   action:
+  #     domain: class
+  #     service: select
+  #     data:
+  #       elements:
+  #         - id: home_layer
+  #           class: layer-hidden
+  #         - id: living_room_layer
+  #           class: layer-visible
+  #         - id: office_layer
+  #           class: layer-hidden
+  #         - id: dining_room_layer
+  #           class: layer-hidden
+
+  # - name: Office Layer
+  #   elements:
+  #     - toggle_view_office
+  #   action:
+  #     domain: class
+  #     service: select
+  #     data:
+  #       elements:
+  #         - id: home_layer
+  #           class: layer-hidden
+  #         - id: living_room_layer
+  #           class: layer-hidden
+  #         - id: office_layer
+  #           class: layer-visible
+  #         - id: dining_room_layer
+  #           class: layer-hidden
+
+  # - name: Dining Room Layer
+  #   elements:
+  #     - toggle_view_dining_room
+  #   action:
+  #     domain: class
+  #     service: select
+  #     data:
+  #       elements:
+  #         - id: home_layer
+  #           class: layer-hidden
+  #         - id: living_room_layer
+  #           class: layer-hidden
+  #         - id: office_layer
+  #           class: layer-hidden
+  #         - id: dining_room_layer
+  #           class: layer-visible
+
+
+  # - name: Defaults
+  #   elements:
+  #     - reset_view
+  #   action:
+  #     data:
+  #       elements:
+  #       - living_room_layer
+  #       - office_layer
+  #       - dining_room_layer
+  #       default_class: layer-hidden
           
 
   # - name: NVR

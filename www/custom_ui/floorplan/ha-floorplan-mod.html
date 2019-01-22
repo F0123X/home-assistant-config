@@ -27,17 +27,17 @@
 
       #errors {
         color: #FF0000;
-        display: none;
+        /* display: none; */
       }
 
       #warnings {
         color: #FF851B;
-        display: none;
+        /* display: none; */
       }
 
       #debug {
         color: #000000;
-        display: none;
+        /* display: none; */
       }
     </style>
 
@@ -111,6 +111,10 @@
           type: Boolean,
           value: false,
         },
+        activePage: {
+          type: String,
+          value: 'home_layer',
+        },
       };
     }
 
@@ -175,6 +179,11 @@
       if (this.config.groups.find(entityGroup => entityGroup.state_transitions)) {
         setInterval(this.updateStateTransitions.bind(this), 100);
       }
+      
+      /* Added by Ryan Leonard 1/21/2019 */
+      /* Select default page at start */
+      /* debug.print(this.config) */
+      // this.activePage = String(this.instance.config.default_page);
     }
 
     handleWindowError(msg, url, lineNo, columnNo, error) {
@@ -714,14 +723,12 @@
       if (elementConfig.group.action) {
         let action = elementConfig.group.action;
         if (action.service) {
+          let svg = this.instance.$.floorplan.querySelector('svg');
           switch (action.domain) {
             case 'class':
-
               switch (action.service) {
                 case 'toggle':
-                  let svg = this.instance.$.floorplan.querySelector('svg');
                   let classes = action.data.classes;
-
                   for (let otherElementId of action.data.elements) {
                     let otherSvgElement = $(svg).find(`[id="${otherElementId}"]`);
 
@@ -738,9 +745,33 @@
                     }
                   }
                   break;
+                /* Added by Ryan Leonard 1/21/2019 */
+                case 'select':
+                  for (let otherElement of action.data.elements) {
+                    let otherSvgElement = $(svg).find(`[id="${otherElement.id}"]`);
+                    let otherSvgElementclass = otherElement.class;
+                    $(otherSvgElement).removeClass().addClass(otherSvgElementclass);
+                  }
+                  break;
               }
               break;
-
+            /* Added by Ryan Leonard 1/21/2019 */
+            case 'page':
+              switch (action.service) {
+                case 'navigate':
+                    /* Added by Ryan Leonard 1/21/2019 */
+                  for (let pageElement of this.instance.config.pages) {
+                    let pageSvgElement = $(svg).find(`[id="${pageElement}"]`);
+                    $(pageSvgElement).removeClass().addClass('layer-hidden');
+                  }
+                  let selectSvgElement = $(svg).find(`[id="${action.data.select}"]`);
+                  $(selectSvgElement).removeClass().addClass('layer-visible');
+                  this.instance.activePage = action.data.select;
+                  break;
+                default:
+                  break;
+              }
+              break;
             default:
               domain = action.domain
               let data = action.data ? action.data : {};
@@ -956,7 +987,7 @@
       ];
       return rgb;
     }
-
+    
     fire(type, detail, options) {
       options = options || {};
       detail = (detail === null || detail === undefined) ? {} : detail;

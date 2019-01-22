@@ -1,0 +1,269 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+name: Wall Display
+image: /local/custom_ui/floorplan/wall_display.svg
+stylesheet: /local/custom_ui/floorplan/wall_display.css
+
+# These options are optional
+warnings:                  # enable warnings (to find out why things might ot be working correctly)
+# pan_zoom:                  # enable experimental panning / zooming
+# hide_app_toolbar:          # hide the application toolbar (when used as a custom panel)
+date_format: MM-DD-YYYY   # Date format to use in hover-over text
+
+# last_motion_entity: sensor.template_last_motion
+# last_motion_class: last-motion
+
+rules:
+
+  # - name: Sensors
+  #   entities:
+  #     -  sensor.dark_sky_temperature
+  #   #text_template: '${entity.state ? entity.state : "unknown"}'
+  #   # An example of rounding up a number, i.e. a temperature of 90.1 becomes 91
+  #   text_template: '${entity.state ? Math.ceil(entity.state) : "undefined"}'  
+  #   class_template: '
+  #     var temp = parseFloat(entity.state.replace("°", ""));
+  #     if (temp < 10)
+  #       return "temp-low";
+  #     else if (temp < 30)
+  #       return "temp-medium";
+  #     else
+  #       return "temp-high";
+  #     '
+  - name: text_font_date
+    entities:
+      - sensor.date
+    class_template: 'return "static-text-date";'
+
+  - name: text_font_time
+    entities:
+      - sensor.time
+    class_template: 'return "static-text-time";'
+
+  - name: switches
+    entities:
+      - switch.dining_room_light
+      - switch.downstairs_bathroom_light
+      - switch.living_room_light
+      - switch.living_room_lamp
+      - switch.master_bedroom_light
+      - switch.master_bedroom_lamp
+      - switch.upstairs_bathroom_light
+      - switch.upstairs_hallway_light
+      - switch.office_light_switch
+    states:
+      - state: 'on'
+        class: 'light-on'
+      - state: 'off'
+        class: 'light-off'
+    action:
+      domain: homeassistant   # This optional parameter allows you to use other services such as homeassistant.toggle like here.
+      service: toggle
+
+
+  - name: binary sensors
+    entities:
+      - binary_sensor.back_door
+      - binary_sensor.basement_door
+      - binary_sensor.front_door
+      - binary_sensor.front_door_lock
+      - binary_sensor.front_left_window
+      - binary_sensor.front_right_window
+    states:
+      - state: 'off'
+        class: 'binary-closed'
+      - state: 'on'
+        class: 'binary-open'
+
+  - name: temperatures
+    entities:
+      - sensor.dining_room_temperature
+      - sensor.downstairs_bathroom_temperature
+      - sensor.kitchen_temperature
+      - sensor.living_room_temperature
+      - sensor.office_temperature
+      - sensor.upstairs_bathroom_temperature
+      - sensor.master_bedroom_temperature
+    text_template: '${entity.state ? Math.ceil(entity.state) + "°F" : "undefined"}'
+    class_template: 'return "static-text";'
+
+  - name: presence sensors
+    entities:
+      - binary_sensor.living_room_motion_sensor
+      - binary_sensor.master_bedroom_motion_sensor
+      - binary_sensor.office_motion_sensor
+      - binary_sensor.upstairs_bathroom_motion_sensor
+      - binary_sensor.downstairs_bathroom_motion_sensor
+      - binary_sensor.dining_room_motion_sensor
+      
+    image_template: '
+      var imageName = "";
+      switch (entity.state) {
+        case "on":
+          imageName = "run";
+          break;
+        case "off":
+          imageName = "walk";
+          break;
+      }
+      return "/local/custom_ui/floorplan/images/presence/" + imageName + ".svg";
+      '
+  - name: Home Layer
+    elements:
+      - go_to_house
+    action:
+      domain: class
+      service: select
+      data:
+        elements:
+          - id: home_layer
+            class: layer-hidden
+          - id: living_room_layer
+            class: layer-visible
+          - id: office_layer
+            class: layer-hidden
+          - id: dining_room_layer
+            class: layer-hidden
+
+
+  - name: Living Room Layer
+    elements:
+      - toggle_view_living_room
+    action:
+      domain: class
+      service: select
+      data:
+        elements:
+          - id: home_layer
+            class: layer-hidden
+          - id: living_room_layer
+            class: layer-visible
+          - id: office_layer
+            class: layer-hidden
+          - id: dining_room_layer
+            class: layer-hidden
+
+  - name: Office Layer
+    elements:
+      - toggle_view_office
+    action:
+      domain: class
+      service: select
+      data:
+        elements:
+          - id: home_layer
+            class: layer-hidden
+          - id: living_room_layer
+            class: layer-hidden
+          - id: office_layer
+            class: layer-visible
+          - id: dining_room_layer
+            class: layer-hidden
+
+  - name: Dining Room Layer
+    elements:
+      - toggle_view_dining_room
+    action:
+      domain: class
+      service: select
+      data:
+        elements:
+          - id: home_layer
+            class: layer-hidden
+          - id: living_room_layer
+            class: layer-hidden
+          - id: office_layer
+            class: layer-hidden
+          - id: dining_room_layer
+            class: layer-visible
+
+
+  - name: Defaults
+    elements:
+      - go_to_house
+    action:
+      data:
+        elements:
+        - living_room_layer
+        - office_layer
+        - dining_room_layer
+        default_class: layer-hidden
+          
+
+  # - name: NVR
+  #   entities:
+  #     - binary_sensor.blue_iris_nvr
+  #   text_template: '${(entity.state === "on") ? "online" : "offline"}'
+  #   states:
+  #     - state: 'off'
+  #       class: 'danger-text'
+  #     - state: 'on'
+  #       class: 'success-text'
+
+  # - name: Alarm Panel
+  #   entities:
+  #     - alarm_control_panel.alarm
+  #   states:
+  #     - state: 'armed_away'
+  #       class: 'alarm-armed'
+  #     - state: 'armed_home'
+  #       class: 'alarm-armed'
+  #     - state: 'disarmed'
+  #       class: 'alarm-disarmed'
+
+  # - name: Binary sensors
+  #   entities:
+  #     - binary_sensor.front_hallway
+  #     - binary_sensor.kitchen
+  #     - binary_sensor.master_bedroom
+  #     - binary_sensor.theatre_room
+  #   states:
+  #     - state: 'off'
+  #       class: 'info-background'
+  #     - state: 'on'
+  #       class: 'warning-background'
+  #   state_transitions:
+  #     - name: On to off
+  #       from_state: 'on'
+  #       to_state: 'off'
+  #       duration: 10
+
+  - name: Cameras
+    entities:
+      - camera.front_door_camera
+      - camera.living_room_camera
+      - camera.office_camera
+      # - camera.backyard
+    states:
+      - state: 'idle'
+        class: 'camera-idle'
+        
+#        - name: thermostat_temp
+#          entities:
+#            - climate.downstairs
+#            - climate.upstairs
+#          text_template: '${entity.attributes.current_temperature ? entity.attributes.current_temperature : "undefined"}'
+#
+# The above text_template uses extended attributes from the climate.* objects to get current temperature.
+
+#        - name: text_states
+#          entities:
+#            - sensor.downstairs_thermostat_humidity
+#            - sensor.dark_sky_temperature
+#            - sensor.last_message
+#          text_template: '${entity.state ? entity.state.replace(/\s{2,}/g,"") : "undefined"}'
+#
+# The above text_template uses jQuery syntax to search and replace any instance of 2 consecutive (or more) spaces in a string of text.

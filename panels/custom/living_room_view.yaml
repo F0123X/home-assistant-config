@@ -14,7 +14,7 @@
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
 name: floorplan
-sidebar_title: Floorplan
-sidebar_icon: mdi:cloud-braces
-url_path: floorplan
-config: !include ../../components/floorplans/floorplan.yaml
+sidebar_title: Floorplan - Living Room
+sidebar_icon: mdi:sofa
+url_path: living_room
+config: !include ../../components/floorplans/living_room_floorplan.yaml
