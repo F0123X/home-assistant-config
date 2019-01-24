@@ -20,9 +20,9 @@
 # Basic Information
 homeassistant:
   name: Home
-  latitude: !secret collings_latitude
-  longitude: !secret collings_longitude
-  elevation: !secret collings_elevation
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  elevation: !secret home_elevation
   unit_system: imperial
   time_zone: America/New_York
   packages: !include_dir_named components/packages
