@@ -4,6 +4,13 @@ language: python
 python:
   - "3.6.4"
 
+# Enable 3.7 without globally enabling sudo and dist: xenial for other build jobs
+matrix:
+  include:
+    - python: 3.7
+      dist: xenial
+      sudo: true
+
 before_install:
   - mv travis_secrets.yaml secrets.yaml
   - touch ./home-assistant_v2.db
@@ -13,4 +20,5 @@ install:
   - pip3 install homeassistant
   - hass --version
 
-script: hass -c . --script check_config --info all
+script:
+  - hass -c . --script check_config
