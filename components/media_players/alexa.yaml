@@ -17,3 +17,14 @@ platform: alexa
 email: !secret alexa_email
 password: !secret alexa_password
 url: "amazon.com"
+exclude_devices:
+  - "This Device"
+  - "Dining Room"
+  - "Family Room"
+  - "Living Room"
+  - "FireTV Stick"
+  - "Ryan's 2nd Sonos One"
+  - "Ryan's Sonos Beam"
+  - "Ryan's Sonos One"
+  - "Everywhere"
+  - "Ryan's Alexa Apps"

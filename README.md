@@ -1,6 +1,8 @@
 # Ryan's Smart Home 
 
-###### LAST CHANGED: 1/22/2019
+[![Build Status](https://travis-ci.org/F0123X/home-assistant-config.svg?branch=master)](https://travis-ci.org/F0123X/home-assistant-config)
+
+###### LAST CHANGED: 1/24/2019
 
 ###### **Documentation is Work in Progress**
 
