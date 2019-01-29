@@ -13,5 +13,22 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-platform: ring
-name: Doorbell Camera
+# - - - - - - - - - - - - - - - - - - - - - -
+# Ryan is home
+# - - - - - - - - - - - - - - - - - - - - - -
+alias: Mark as home
+trigger:
+  - platform: state
+    entity_id: input_select.ryan_status_dropdown
+    to: 'Just Arrived'
+    for:
+      minutes: 10
+  - platform: state
+    entity_id: input_select.ryan_status_dropdown
+    from: 'Just Left'
+    to: 'Just Arrived'
+action:
+  service: input_select.select_option
+  data_template:
+    entity_id: '{{ trigger.entity_id }}'
+    option: Home

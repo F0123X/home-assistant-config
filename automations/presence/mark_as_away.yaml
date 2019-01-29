@@ -13,7 +13,18 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-platform: mqtt
-name: Entry Kiosk Motion
-state_topic: 'hass/kiosk/entry/motion'
-retain: true
+# - - - - - - - - - - - - - - - - - - - - - -
+# Ryan is away
+# - - - - - - - - - - - - - - - - - - - - - -
+alias: Mark as away
+trigger:
+  - platform: state
+    entity_id: input_select.ryan_status_dropdown
+    to: 'Just Left'
+    for:
+      minutes: 10
+action:
+  service: input_select.select_option
+  data_template:
+    entity_id: '{{ trigger.entity_id }}'
+    option: Away
