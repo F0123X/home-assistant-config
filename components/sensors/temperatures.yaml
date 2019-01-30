@@ -1,0 +1,24 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+platform: template
+sensors:
+  temperatures:
+    friendly_name: Temperatures
+    value_template: >-
+      {% for state in states.sensor if 'temperature' in state.entity_id and state.state != 'unavailable' -%}
+        {%- if loop.first %}The {% elif loop.last %} and the {% else %}, the {% endif -%}
+        {{ state.name | lower }} is {{state.state_with_unit}}
+      {%- endfor %}.
