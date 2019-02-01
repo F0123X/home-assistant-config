@@ -17,8 +17,11 @@ platform: template
 sensors:
   temperatures:
     friendly_name: Temperatures
-    value_template: >-
+    value_template: >
+      {% macro get_temperatures() %}
       {% for state in states.sensor if 'temperature' in state.entity_id and state.state != 'unavailable' -%}
-        {%- if loop.first %}The {% elif loop.last %} and the {% else %}, the {% endif -%}
-        {{ state.name | lower }} is {{state.state_with_unit}}
+      {%- if loop.first %}The {% elif loop.last %} and the {% else %}, the {% endif -%}
+      {{ state.name | lower }} is {{state.state_with_unit}}
       {%- endfor %}.
+      {%- endmacro -%}
+      {{ get_temperatures()|truncate }}
