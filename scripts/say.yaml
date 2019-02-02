@@ -31,8 +31,8 @@ sequence:
         {% endif %}
 
         {% if entity_id is not string and entity_id is sequence %}
-          {% if {{ master }} not in entity_id %}
-          {{ entity_id.append({{ master }})
+          {% if master not in entity_id %}
+          {% set entity_id = entity_id.append(master) %}
           {% endif %}
           {% set entity_id = entity_id|join(', ') %}
         {% endif %}
