@@ -1,0 +1,29 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+alias: Pause TV
+sequence:
+  - condition: and
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.samsung_smart_tv
+        state: 'on'
+  - service: remote.send_command
+    data:
+      entity_id: remote.living_room
+      command:
+        - Pause
+      device: 49552536
+      delay_secs: 0.5

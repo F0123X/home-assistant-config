@@ -1,0 +1,26 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+alias: Temperatures
+sequence:
+  - service: script.say
+    data:
+      master: media_player.living_room_sonos
+      entity_id:
+        - media_player.living_room_sonos
+        - media_player.family_room_sonos
+        - media_player.dining_room_sonos
+      message: !include ../messages/temperatures.yaml
+      volume: 0.4

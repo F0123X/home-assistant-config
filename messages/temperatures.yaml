@@ -1,0 +1,33 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+>
+  {% macro outside_temperature() -%}
+  Currently, it is {{ states.sensor.outside_temperature.state | round(0) }} degrees outside.
+  {%- endmacro -%}
+  
+  {% macro inside_temperatures() %}
+  {% for state in states.sensor if 'temperature' in state.entity_id and state.state != 'unavailable' and 'outside' not in state.entity_id and 'thermostat' not in state.entity_id -%}
+  {%- if loop.first %}The {% elif loop.last %} and the {% else %}, the {% endif -%}
+  {{ state.name | lower }} is {{state.state | round(0)}} degrees.
+  {%- endfor %}.
+  {%- endmacro -%}
+  
+  {%- macro get_temperatures() -%}
+  {{ outside_temperature() }}
+  {{ inside_temperatures() }}
+  {%- endmacro -%}
+  
+  {{ get_temperatures() }}
