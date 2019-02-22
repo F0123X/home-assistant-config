@@ -13,7 +13,7 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-darkcyan:
+door_closed:
   # Main colors that can be changed
     primary-color: "rgb(0, 188, 212)"
     disabled-text-color: "rgb(84, 84, 84)"
