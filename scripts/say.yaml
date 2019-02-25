@@ -16,10 +16,11 @@
 alias: Say
 sequence:
   - service: script.pause_tv
+  - delay: '00:00:05'
   - service: script.sonos_say
     data_template:
       master: "{{ master }}"
-      volume: "{{ volume }}"
+      volume_level: "{{ volume_level }}"
       message: "{{ message }}"
       entity_id: >-
         {% if entity_id | length == 0 %}
@@ -31,11 +32,9 @@ sequence:
         {% endif %}
 
         {% if entity_id is not string and entity_id is sequence %}
-          {% if master not in entity_id %}
-          {% set entity_id = entity_id.append(master) %}
-          {% endif %}
           {% set entity_id = entity_id|join(', ') %}
         {% endif %}
         
         {{ entity_id }}
+  - delay: '00:00:10'
   - service: script.play_tv

@@ -18,7 +18,7 @@
 # 
 # - - - - - - - - - - - - - - - - - - - - - -
 alias: Dining Room Lights Off
-initial_state: 'on'
+initial_state: 'off'
 trigger:
   - platform: event
     event_type: timer.finished

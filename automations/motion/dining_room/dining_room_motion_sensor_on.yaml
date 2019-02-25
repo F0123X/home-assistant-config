@@ -17,7 +17,7 @@
 # Motion sensor associated with light switch
 # - - - - - - - - - - - - - - - - - - - - - -
 alias: Dining Room Motion Sensor On
-initial_state: 'on'
+initial_state: 'off'
 trigger:
   platform: state
   entity_id: binary_sensor.dining_room_motion_sensor

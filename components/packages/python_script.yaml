@@ -13,7 +13,4 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-platform: speedtest
-monitored_conditions:
-  - download
-  - upload
+python_script:

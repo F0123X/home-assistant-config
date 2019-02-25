@@ -18,3 +18,6 @@ sequence:
   - service: notify.notify
     data:
       message: Home Assistant is starting up!
+  - service: frontend.set_theme
+    data:
+      name: darkcyan

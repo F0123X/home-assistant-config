@@ -13,21 +13,43 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
->
+>-
   {% macro outside_temperature() -%}
-  Currently, it is {{ states.sensor.outside_temperature.state | round(0) }} degrees outside.
+  Currently, it is {{ states.sensor.outside_temperature.state|round(0) }} degrees outside.
   {%- endmacro -%}
   
-  {% macro inside_temperatures() %}
-  {% for state in states.sensor if 'temperature' in state.entity_id and state.state != 'unavailable' and 'outside' not in state.entity_id and 'thermostat' not in state.entity_id -%}
-  {%- if loop.first %}The {% elif loop.last %} and the {% else %}, the {% endif -%}
-  {{ state.name | lower }} is {{state.state | round(0)}} degrees.
-  {%- endfor %}.
+  {%- macro living_room_temperature() -%}
+  Inside, the living room is {{states.sensor.living_room_temperature.state|round(0) }} degrees.
   {%- endmacro -%}
-  
+
+  {%- macro downstairs_bathroom_temperature() -%}
+  The downstairs bathroom is {{states.sensor.downstairs_bathroom_temperature.state|round(0) }} degrees.
+  {%- endmacro -%}
+
+  {% macro upstairs_bathroom_temperature() -%}
+  The upstairs bathroom is {{states.sensor.upstairs_bathroom_temperature.state|round(0) }} degrees.
+  {%- endmacro -%}
+
+  {% macro dining_room_temperature() -%}
+  The dining room is {{states.sensor.dining_room_temperature.state|round(0) }} degrees.
+  {%- endmacro -%}
+
+  {% macro kitchen_temperature() -%}
+  The kitchen is {{states.sensor.kitchen_temperature.state|round(0) }} degrees.
+  {%- endmacro -%}
+
+  {% macro office_temperature() -%}
+  The office is {{states.sensor.office_temperature.state|round(0) }} degrees.
+  {%- endmacro -%}
+
   {%- macro get_temperatures() -%}
   {{ outside_temperature() }}
-  {{ inside_temperatures() }}
+  {{ living_room_temperature() }}
+  {{ downstairs_bathroom_temperature() }}
+  {{ dining_room_temperature() }}
+  {{ kitchen_temperature() }}
+  {{ upstairs_bathroom_temperature() }}
+  {{ office_temperature() }}
   {%- endmacro -%}
   
-  {{ get_temperatures() }}
+  {{- get_temperatures() -}}

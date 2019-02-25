@@ -17,7 +17,7 @@
 # Motion sensor associated with light switch
 # - - - - - - - - - - - - - - - - - - - - - -
 alias: Master Bedroom Motion Sensor On
-initial_state: 'on'
+initial_state: 'off'
 trigger:
   platform: state
   entity_id: binary_sensor.master_bedroom_motion_sensor
