@@ -16,4 +16,5 @@
 platform: tplink
 name: Upstairs Bathroom Light
 host: !secret ip_tplink_h200_01
-icon: mdi:lightbulb
+enable_leds: true
+# icon: mdi:lightbulb

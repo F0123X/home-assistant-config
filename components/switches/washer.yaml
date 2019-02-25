@@ -16,4 +16,5 @@
 platform: tplink
 name: Washer
 host: !secret ip_tplink_h110_02
-icon: mdi:tumble-dryer
+enable_leds: true
+# icon: mdi:tumble-dryer

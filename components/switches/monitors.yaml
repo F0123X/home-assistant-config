@@ -16,4 +16,5 @@
 platform: tplink
 name: Monitors
 host: !secret ip_tplink_h110_01
-icon: mdi:monitor-multiple
+enable_leds: true
+# icon: mdi:monitor-multiple

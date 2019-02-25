@@ -16,4 +16,5 @@
 platform: tplink
 name: Dining Room Light
 host: !secret ip_tplink_h210_01
-icon: mdi:lightbulb
+enable_leds: true
+# icon: mdi:lightbulb
