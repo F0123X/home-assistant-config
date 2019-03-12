@@ -1,0 +1,25 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+platform: mqtt
+name: MQTT Blinds
+command_topic: "hass/esp8266_09/blinds/cmd"
+state_topic: "hass/esp8266_09/blinds/state"
+payload_open: "ON"
+payload_close: "OFF"
+payload_stop: "STOP"
+qos: 2
+retain: true
+optimistic: false

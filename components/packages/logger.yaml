@@ -39,7 +39,8 @@ logger:
     homeassistant.components.sensor.speedtest: info
     homeassistant.components.sensor.uptime: info
     homeassistant.components.sensor.ring: info
-    homeassistant.components.tts: error
+    homeassistant.components.media_player.sonos: debug
+    homeassistant.components.tts: debug
     homeassistant.components.websocket_api: error
     homeassistant.components.zwave.util: error
     homeassistant.components.recorder: critical
@@ -93,6 +94,9 @@ logger:
     pyupdate.ha_custom.custom_components: info
     pyupdate.ha_custom.custom_cards: info
     pyupdate.ha_custom.common: info
+    pyupdate.ha_custom.python_scripts: info
+    pyupdate.log: info
+    custom_components.custom_updater: info
 # - - - - - - - - - - - - - - - - - - - - - -
 #   New Harmony Platform
 # - - - - - - - - - - - - - - - - - - - - - -
@@ -112,4 +116,6 @@ logger:
     botocore: error
     ring_doorbell.doorbot: info
     ghlocalapi.bluetooth: info
+    github.Requester: info
+    
     
