@@ -14,4 +14,4 @@
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
 platform: cert_expiry
-host: !secret ha_base_url
+host: !secret cert_base_url
