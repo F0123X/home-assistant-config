@@ -13,8 +13,16 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-platform: tplink
-name: Master Bedroom Lamp
-host: !secret ip_tplink_h100_03
-enable_leds: true
-# icon: mdi:lightbulb
+tplink:
+  discovery: false
+  switch:
+    - host: 192.168.1.3
+    - host: 192.168.1.4
+    - host: 192.168.1.5
+    - host: 192.168.1.6
+    - host: 192.168.1.7
+    - host: 192.168.1.10
+    - host: 192.168.1.11
+    - host: 192.168.1.13
+    - host: 192.168.1.14
+    - host: 192.168.1.15
