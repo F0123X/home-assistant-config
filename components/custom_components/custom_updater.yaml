@@ -13,9 +13,6 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-#Testing
-# More information can be found:
-# https://github.com/custom-components/custom_updater/wiki/Installation
 show_installable: false
 hide_sensor: false
 track:

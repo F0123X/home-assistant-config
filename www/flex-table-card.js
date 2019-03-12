@@ -58,12 +58,14 @@ class DataTable {
 
             // determine col-by-idx to be sorted with...
             var sort_idx = this.cols.findIndex((col) => 
-                ["attr", "prop", "attr_as_list"].some(attr => 
+                ["id", "attr", "prop", "attr_as_list"].some(attr => 
                     attr in col && sort_col == col[attr]));
 
             // if applicable sort according to config
             if (sort_idx > -1)
-                this.rows.sort((x, y) => sort_dir * compare(x.data[sort_idx], y.data[sort_idx]));
+                this.rows.sort((x, y) => sort_dir * compare(
+                    x.data[sort_idx] && x.data[sort_idx].content, 
+                    y.data[sort_idx] && y.data[sort_idx].content));
             else
                 console.error(`config.sort_by: ${this.cfg.sort_by}, but column not found!`);
         }
@@ -91,6 +93,8 @@ class DataRow {
 
     get_raw_data(col_cfgs) {
         this.raw_data = col_cfgs.map((col) => {			
+         
+            // collect the "raw" data from the requested source(s)
             if ("attr" in col) {
                 return ((col.attr in this.entity.attributes) ?
                     this.entity.attributes[col.attr] : null);
@@ -100,7 +104,7 @@ class DataRow {
                 if (col.prop == "object_id") {
                     return this.entity.entity_id.split(".").slice(1).join(".");
 
-                    // 'name' automagically resolves to most verbose name
+                // 'name' automagically resolves to most verbose name
                 } else if (col.prop == "name") {
                     if ("friendly_name" in this.entity.attributes)
                         return this.entity.attributes.friendly_name;
@@ -111,7 +115,7 @@ class DataRow {
                     else
                         return this.entity.entity_id;
 
-                    // other state properties seem to work as expected...
+                // other state properties seem to work as expected...
                 } else
                     return ((col.prop in this.entity) ? this.entity[col.prop] : null);
 
@@ -131,13 +135,21 @@ class DataRow {
         this.data = this.raw_data.map((raw, idx) => {
             if (raw === "undefined" || typeof raw === "undefined" || raw === null) 
                 return ((this.strict) ? null : "n/a");
-            let x = raw;
-            return (col_cfgs[idx].modify) ? eval(col_cfgs[idx].modify) : x;
-        });
 
+            // finally, put it all together
+            let x = raw;
+            let cfg = col_cfgs[idx];
+            return new Object({
+                content: (cfg.modify) ? eval(cfg.modify) : x,
+                pre: cfg.prefix || "", 
+                suf: cfg.suffix || "",
+                css: cfg.align || "left",
+                hide: cfg.hidden
+            });
+        });
         this.hidden = this.data.some(data => (data === null));
         return this;
-    }
+    };
 }
 
 
@@ -196,34 +208,41 @@ class FlexTableCard extends HTMLElement {
 
         // some css style
         style.textContent = `
-                        table {
-                                width: 100%;
-                                padding: 16px;
-                        }
-                        thead th { text-align: left; }
-                        tbody tr:nth-child(odd)  { background-color: var(--paper-card-background-color); }
-                        tbody tr:nth-child(even) { background-color: var(--secondary-background-color);  }
-                `;
+              table        { width: 100%;         padding: 16px;        }
+              thead th     { text-align: left;                          }
+              tr td, th    { padding-left: 0.5em; padding-right: 0.5em; } 
+              tr td.left,   th.left   { text-align: left;               }
+              tr td.center, th.center { text-align: center;             }
+              tr td.right,  th.right  { text-align: right;              } 
+              tbody tr:nth-child(odd)  { background-color: var(--paper-card-background-color); }
+              tbody tr:nth-child(even) { background-color: var(--secondary-background-color);  }
+        `;
         // table skeleton, body identified with: 'flextbl'
         content.innerHTML = `
                 <table>
                     <thead>
-                        <tr>${this.tbl.headers.map((name) => `<th>${name}</th>`).join("")}</tr>
+                        <tr>${this.tbl.headers.map(
+                          (name, idx) => `<th class="${cfg.columns[idx].align || 'left'}">${name}</th>`)
+                          .join("")}</tr>
                     </thead>
                     <tbody id='flextbl'></tbody>
                 </table>
                 `;
+        // push css-style & table as content into the card's DOM tree
         card.appendChild(style);
         card.appendChild(content);
-        root.appendChild(card)
+        // append card to _root_ node...
+        root.appendChild(card);
         this._config = cfg;
     }
 
     _updateContent(element, rows) {
         // callback for updating the cell-contents
         element.innerHTML = rows.map((row) => 
-            `<tr id="entity_row_${row.entity.entity_id}">${row.data.map((cell) => 
-                `<td>${cell}</td>`).join("")}</tr>`).join("");
+            `<tr id="entity_row_${row.entity.entity_id}">${row.data.map(
+                (cell) => ((!cell.hide) ? 
+                    `<td class="${cell.css}">${cell.pre}${cell.content}${cell.suf}</td>` : "")
+            ).join("")}</tr>`).join("");
 
         // if configured, set clickable row to show entity popup-dialog
         rows.forEach(row => {
