@@ -15,11 +15,12 @@
 # # # # # # # # # # # # # # # # # # # # # # #
 platform: mqtt
 name: MQTT Blinds
-command_topic: "hass/esp8266_09/blinds/cmd"
 state_topic: "hass/esp8266_09/blinds/state"
-payload_open: "ON"
-payload_close: "OFF"
+command_topic: "hass/esp8266_09/blinds/cmd"
+#position_topic: "hass/esp8266_09/blinds/pos"
+payload_open: "OPEN"
+payload_close: "CLOSE"
 payload_stop: "STOP"
-qos: 2
+qos: 0
 retain: true
 optimistic: false
