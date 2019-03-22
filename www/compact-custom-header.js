@@ -1,4 +1,4 @@
-import "./compact-custom-header-editor.js?v=1.0.1b3";
+import "./compact-custom-header-editor.js?v=1.0.1b4";
 
 export const LitElement = Object.getPrototypeOf(
   customElements.get("ha-panel-lovelace")
@@ -29,7 +29,6 @@ export const defaultConfig = {
   clock_am_pm: true,
   clock_date: false,
   disable: false,
-  background_image: false,
   main_config: false,
   hide_tabs: [],
   show_tabs: []
@@ -189,6 +188,7 @@ if (!customElements.get("compact-custom-header")) {
     }
 
     run() {
+      const hassVersion = parseFloat(this.hass.config.version.slice(0, 4));
       const root = this.rootElement;
       this.editMode =
         root.querySelector("app-toolbar").className == "edit-mode";
@@ -228,7 +228,7 @@ if (!customElements.get("compact-custom-header")) {
           if (this.cchConfig[button] == "clock") {
             this.insertClock(
               buttons,
-              button == "options"
+              button == "options" || button == "menu" && hassVersion > 0.88
                 ? buttons[button]
                 : buttons[button].shadowRoot,
               tabContainer,
@@ -303,18 +303,17 @@ if (!customElements.get("compact-custom-header")) {
     }
 
     styleHeader(root, tabContainer, marginRight) {
-      // Hide header completely if set to false in config.
+      let view = root.querySelector("ha-app-layout").querySelector(
+        '[id="view"]'
+      );
+
       if (!this.cchConfig.header) {
         root.querySelector("app-header").style.display = "none";
-        return;
+        view.style.minHeight = "100vh"
+        return
+      } else {
+        view.style.minHeight = "calc(100vh - 49px)"
       }
-
-      root
-        .querySelector("ha-app-layout")
-        .querySelector('[id="view"]').style.paddingBottom = this.cchConfig
-        .background_image
-        ? "64px"
-        : "";
 
       if (tabContainer) {
         // Add margin to left side of tabs for menu buttom.
@@ -368,7 +367,23 @@ if (!customElements.get("compact-custom-header")) {
             wrapper.addEventListener("click", () => {
               paperIconButton.click();
             });
+            paperIconButton.style.pointerEvents="none";
             this.insertMenuItem(menu_items, wrapper);
+            if (button == "notifications") {
+              let style = document.createElement( 'style' );
+              style.innerHTML = `
+                .indicator {
+                  top: 5px;
+                  right: 0px;
+                  width: 10px;
+                  height: 10px;
+                }
+                .indicator > div{
+                  display:none;
+                }
+              `;
+              paperIconButton.parentNode.appendChild( style )
+            }
           }
         } else if (this.cchConfig[button] == "hide") {
           buttons[button].style.display = "none";
@@ -443,10 +458,10 @@ if (!customElements.get("compact-custom-header")) {
           ? 110
           : 80;
 
-      if (this.cchConfig.notifications == "clock") {
+      if (this.cchConfig.notifications == "clock" &&
+          this.cchConfig.clock_date) {
         let style = document.createElement( 'style' );
-        if (this.config.clock_date) {
-          style.innerHTML = `
+        style.innerHTML = `
           .indicator {
             top: unset;
             bottom: -3px;
@@ -459,19 +474,6 @@ if (!customElements.get("compact-custom-header")) {
             display:none;
           }
         `;
-        } else {
-          style.innerHTML = `
-          .indicator {
-            top: 5px;
-            right: -10px;
-            width: 10px;
-            height: 10px;
-          }
-          .indicator > div{
-            display:none;
-          }
-        `;
-        }
         buttons.notifications.shadowRoot.appendChild( style )
       }
 
@@ -485,13 +487,26 @@ if (!customElements.get("compact-custom-header")) {
 
         clockElement = document.createElement("p");
         clockElement.setAttribute("id", "cch_clock");
-        let clockAlign = this.cchConfig.menu == "clock" ? "left" : "right";
-        let marginTop = this.cchConfig.clock_date ? "-6px" : "2px";
+        let clockAlign = "center";
+        let padding = "";
+        let fontSize = "";
+        if (this.cchConfig.clock_date && this.cchConfig.menu == "clock") {
+          clockAlign = "left";
+          padding = "padding-left:5px";
+          fontSize = "font-size:12pt";
+        } else if (this.cchConfig.clock_date) {
+          clockAlign = "right";
+          padding = "padding-right:5px";
+          fontSize = "font-size:12pt";
+        }
+        let marginTop = this.cchConfig.clock_date ? "-4px" : "2px";
         clockElement.style.cssText = `
               width: ${clockWidth}px;
               margin-top: ${marginTop};
               margin-left: -8px;
               text-align: ${clockAlign};
+              ${padding};
+              ${fontSize};
             `;
         clockIronIcon.parentNode.insertBefore(clockElement, clockIronIcon);
         clockIronIcon.style.display = "none";
