@@ -46,7 +46,7 @@ appdaemon/
 .config.json
 .sessions.json
 flows_cred.json
-node*home-assistant.json
+node*home-assistant*.json
 package.json
 settings.js
 package-lock.json
@@ -54,3 +54,4 @@ package-lock.json
 .templates/
 notebooks/
 ..trash/
+.vscode/
