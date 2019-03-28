@@ -149,14 +149,14 @@ svg * {
 .static-text-date {
   font-family: Arial !important;
   font-weight: bold !important;
-  font-size: 16px !important;
+  font-size: 6px !important;
   fill: #349FF1 !important;
 }
 
 .static-text-time {
   font-family: Arial !important;
   font-weight: bold !important;
-  font-size: 32px !important;
+  font-size: 10px !important;
   fill: #349FF1 !important;
 }
 

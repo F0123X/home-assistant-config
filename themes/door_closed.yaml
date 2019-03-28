@@ -1,0 +1,45 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+door_closed:
+  # Main colors that can be changed
+    primary-color: "rgb(0, 188, 212)"
+    disabled-text-color: "rgb(84, 84, 84)"
+    divider-color: "rgba(255, 255, 255, 0.12)"
+    paper-card-background-color: "rgb(78, 78, 78)"
+    paper-grey-200: "rgb(25, 25, 25)"
+    paper-item-icon-color: "rgb(211, 211, 211)"
+    paper-listbox-background-color: "rgb(32, 32, 32)"
+    paper-listbox-color: "rgb(255, 255, 255)"
+    primary-background-color: "rgb(48, 48, 48)"
+    primary-text-color: "rgb(207, 207, 207)"
+    secondary-background-color: "rgb(43, 43, 43)"
+    secondary-text-color: "rgb(4, 167, 188)"
+  # Colors based on variables, see above
+    label-badge-background-color: "var(--secondary-background-color)"
+    label-badge-text-color: "var(--text-primary-color)"
+    paper-card-header-color: "#var(--paper-item-icon-color)"
+    paper-grey-50: "var(--primary-text-color)"
+    paper-item-icon-active-color: "var(--primary-color)"
+    paper-item-icon_-_color: "var(--primary-text-color)"
+    paper-slider-active-color: "var(--primary-color)"
+    paper-slider-knob-color: "var(--primary-color)"
+    paper-slider-knob-start-color: "var(--primary-color)"
+    paper-slider-pin-color: "var(--primary-color)"
+    paper-slider-secondary-color: "var(--light-primary-color)"     
+    paper-toggle-button-checked-ink-color: "var(--dark-primary-color)"
+    paper-toggle-button-checked-button-color: "var(--primary-color)"
+    paper-toggle-button-checked-bar-color: "var(--light-primary-color)"
+    paper-toggle-button-unchecked-bar-color: "var(--primary-text-color)"

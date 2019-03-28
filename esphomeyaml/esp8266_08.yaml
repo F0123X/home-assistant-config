@@ -47,7 +47,7 @@ binary_sensor:
                 brightness: 100%
                 red: 0%
                 green: 100%
-                blue: 100%
+                blue: 0%
             - delay: 3s
             - light.turn_off: ${location_id}_multisensor_led
 

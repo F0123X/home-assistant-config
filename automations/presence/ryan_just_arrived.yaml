@@ -1,0 +1,34 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+# - - - - - - - - - - - - - - - - - - - - - -
+# Ryan is home
+# - - - - - - - - - - - - - - - - - - - - - -
+alias: Ryan just arrived
+trigger:
+  platform: state
+  entity_id: device_tracker.ryan_pixel
+  from: 'not_home'
+  to: 'home'
+action:
+  service: input_select.select_option
+  data_template:
+    entity_id: input_select.ryan_status_dropdown
+    option: >
+      {% if states.input_select.ryan_status_dropdown.state == 'Just Left' %}
+        Home
+      {% else %}
+        Just Arrived
+      {% endif %}

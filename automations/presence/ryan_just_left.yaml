@@ -1,0 +1,29 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+# - - - - - - - - - - - - - - - - - - - - - -
+# Ryan just left
+# - - - - - - - - - - - - - - - - - - - - - -
+alias: Ryan just left
+trigger:
+  platform: state
+  entity_id: device_tracker.ryan_pixel
+  from: 'home'
+  to: 'not_home'
+action:
+  service: input_select.select_option
+  data:
+    entity_id: input_select.ryan_status_dropdown
+    option: 'Just Left'

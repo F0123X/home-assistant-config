@@ -59,6 +59,8 @@
   
 "binary_sensor.*_door":
   device_class: door
+  templates:
+    theme: if (state === 'on') return 'red_badge'; else return 'blue_badge';
 "binary_sensor.*_window":
   device_class: window
 "binary_sensor.*_leak_sensor":
@@ -73,7 +75,9 @@
   device_class: lock
 "binary_sensor.*_thermostat_*":
   hidden: true
-  
-  
+
 "timer.*":
   hidden: true
+
+"*.*":
+  custom_ui_state_card: state-card-custom-ui

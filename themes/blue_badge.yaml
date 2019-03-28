@@ -1,0 +1,23 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+blue_badge:
+  label-badge-red: "rgb(0, 188, 212)"
+  label-badge-blue: "rgb(0, 188, 212)"
+  label-badge-border-color: "rgb(0, 188, 212)"
+  label-badge-background-color: "rgb(43, 43, 43)"
+  label-badge-text-color: "rgb(255, 255, 255)"
+  ha-label-badge.binary_sensor: "rgb(0, 188, 212)"
+  paper-item-icon-active-color: "rgb(0, 188, 212)"
