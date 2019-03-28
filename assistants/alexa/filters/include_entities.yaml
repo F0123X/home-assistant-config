@@ -16,6 +16,7 @@
 include_entities:
   - sensor.office_temperature
   - sensor.living_room_thermostat_temperature
+  - script.who_is_on_porch
   # - group.downstairs_bathroom_lights
   # - group.living_room_lights
   # - group.master_bedroom_lights

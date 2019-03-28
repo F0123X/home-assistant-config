@@ -13,7 +13,6 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-platform: generic
-name: Living Room Camera
-still_image_url: !secret living_room_camera
-stream_source: !secret living_room_camera_stream
+cast:
+  media_player:
+    - host: 192.168.1.203
