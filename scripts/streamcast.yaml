@@ -13,7 +13,11 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-script.who_is_on_porch:
-  name: Who is on Porch
-  description: Makes porch camera stream to living room TV
-  display_categories: OTHER
+alias: Streamcast
+sequence:
+  - service: media_player.turn_on
+    entity_id: media_player.samsung_smart_tv
+  - service: camera.play_stream
+    data: 
+      entity_id: "{{ entity_id }}"
+      media_player: media_player.entryway_tv

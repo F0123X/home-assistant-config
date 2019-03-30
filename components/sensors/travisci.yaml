@@ -13,7 +13,7 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-script.who_is_on_porch:
-  name: Who is on Porch
-  description: Makes porch camera stream to living room TV
-  display_categories: OTHER
+platform: travisci
+api_key: !secret travisci_access_token
+branch: 'dev'
+repository: 'home-assistant-config'

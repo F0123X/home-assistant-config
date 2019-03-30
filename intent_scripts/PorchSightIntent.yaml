@@ -13,7 +13,9 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-script.who_is_on_porch:
-  name: Who is on Porch
-  description: Makes porch camera stream to living room TV
-  display_categories: OTHER
+PorchSightIntent:
+  action:
+    service: script.turn_on
+    entity_id: script.who_is_on_porch
+  speech:
+    text: OK
