@@ -17,7 +17,7 @@ before_install:
   - touch ./home-assistant.log
   - touch ./OZW_Log.txt
 install:
-  - pip3 install homeassistant
+  - pip3 install homeassistant=rc
   - hass --version
 
 script:
