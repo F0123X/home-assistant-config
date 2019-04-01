@@ -117,5 +117,12 @@ logger:
     ring_doorbell.doorbot: info
     ghlocalapi.bluetooth: info
     github.Requester: info
-    
+    pychromecast: info
+    pychromecast.socket_client: info
+    pychromecast.controllers: info
+    root: info
+    hass_nabucasa: info
+    hass_nabucasa.cloud_api: info
+    hass_nabucasa.iot: info
+    hass_nabucasa.remote: info
     
