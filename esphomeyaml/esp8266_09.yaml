@@ -1,0 +1,42 @@
+##########################
+# Motorized Blinds
+# 
+##########################
+esphomeyaml:
+  name: esp8266_09
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: 'Nighthawk-Secure'
+  password: 'meoldicbreeze058'
+
+# Enable logging
+logger:
+  baud_rate: 115200
+
+# Enable Home Assistant API
+api:
+  services:
+    - service: control_servo
+      variables:
+        level: float
+      then:
+        - servo.write:
+            id: my_servo
+            level: !lambda 'return level / 100.0;'
+
+ota:
+  password: 'yellowtable700'
+
+# Example configuration entry
+servo:
+  - id: my_servo
+    output: pwm_output
+
+# Example output platform
+output:
+  - platform: esp8266_pwm
+    id: pwm_output
+    pin: D1
+    frequency: 50 Hz
