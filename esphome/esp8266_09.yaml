@@ -2,14 +2,14 @@
 # Motorized Blinds
 # 
 ##########################
-esphomeyaml:
+esphome:
   name: esp8266_09
   platform: ESP8266
   board: nodemcuv2
 
 wifi:
   ssid: 'Nighthawk-Secure'
-  password: 'meoldicbreeze058'
+  password: 'melodicbreeze058'
 
 # Enable logging
 logger:

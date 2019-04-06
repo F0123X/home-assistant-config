@@ -4,7 +4,7 @@ substitutions:
   location: 'Master Bedroom'
   location_id: 'master_bedroom'
 
-esphomeyaml:
+esphome:
   name: esp8266_${devicenumber}
   platform: ESP8266
   board: nodemcuv2

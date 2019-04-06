@@ -3,7 +3,7 @@ substitutions:
   deviceip: '192.168.1.163'
   location: 'Upstairs Bathroom'
 
-esphomeyaml:
+esphome:
   name: esp8266_${devicenumber}
   platform: ESP8266
   board: nodemcuv2
