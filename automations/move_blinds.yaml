@@ -1,0 +1,24 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+alias: Move Blinds
+trigger:
+  platform: state
+  entity_id: input_number.servo_control
+action:
+  # Replace livingroom with the name you gave the ESP
+  - service: esphome.esp8266_09_control_servo
+    data_template:
+      level: '{{ trigger.to_state.state | int }}'

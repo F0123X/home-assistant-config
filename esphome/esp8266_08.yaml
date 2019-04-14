@@ -4,7 +4,7 @@ substitutions:
   location: 'Downstairs Bathroom'
   location_id: 'downstairs_bathroom'
 
-esphomeyaml:
+esphome:
   name: esp8266_${devicenumber}
   platform: ESP8266
   board: nodemcuv2

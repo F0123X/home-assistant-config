@@ -16,8 +16,11 @@ before_install:
   - touch ./home-assistant_v2.db
   - touch ./home-assistant.log
   - touch ./OZW_Log.txt
+  - mkdir ./tensorflow
+  - touch ./tensorflow/frozen_inference_graph.pb
+
 install:
-  - pip3 install homeassistant
+  - pip3 install --pre homeassistant
   - hass --version
 
 script:
