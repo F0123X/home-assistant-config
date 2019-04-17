@@ -23,9 +23,9 @@ logger:
 # Specific Logs
 # - - - - - - - - - - - - - - - - - - - - - -
   logs:
-# - - - - - - - - - - - - - - - - - - - - - -
-#   Homeassistant Components
-# - - - - - - - - - - - - - - - - - - - - - -
+# # - - - - - - - - - - - - - - - - - - - - - -
+# #   Homeassistant Components
+# # - - - - - - - - - - - - - - - - - - - - - -
     homeassistant.components.http.auth: critical
     homeassistant.components.http.view: error  
     homeassistant.components: info
@@ -33,6 +33,7 @@ logger:
     homeassistant.components.camera.ring: info
     homeassistant.components.device_tracker.netgear: error
     homeassistant.components.device_tracker.ddwrt: error
+    homeassistant.components.image_processing: debug
     homeassistant.components.media_player: debug
     homeassistant.components.media_player.sonos: debug
     homeassistant.components.python_script: debug
@@ -49,67 +50,67 @@ logger:
     homeassistant.helpers.storage: critical
     homeassistant.helpers.restore_state: info
     homeassistant.util.json: error
-# - - - - - - - - - - - - - - - - - - - - - -
-#   Monitoring Components
-# - - - - - - - - - - - - - - - - - - - - - -
+# # - - - - - - - - - - - - - - - - - - - - - -
+# #   Monitoring Components
+# # - - - - - - - - - - - - - - - - - - - - - -
     async_upnp_client: info
     glances: error
     haffmpeg.core: info
     hole: error
-# - - - - - - - - - - - - - - - - - - - - - -
-#   MQTT Components
-# - - - - - - - - - - - - - - - - - - - - - -
+# # - - - - - - - - - - - - - - - - - - - - - -
+# #   MQTT Components
+# # - - - - - - - - - - - - - - - - - - - - - -
     hbmqtt: debug
     hbmqtt.mqtt: error
     hbmqtt.broker: error
-# - - - - - - - - - - - - - - - - - - - - - -
-#   TP-LINK Switches 
-# - - - - - - - - - - - - - - - - - - - - - -
+# # - - - - - - - - - - - - - - - - - - - - - -
+# #   TP-LINK Switches 
+# # - - - - - - - - - - - - - - - - - - - - - -
     pyHS100: error
-# - - - - - - - - - - - - - - - - - - - - - -
-#   Amcrest Platform
-# - - - - - - - - - - - - - - - - - - - - - -
+# # - - - - - - - - - - - - - - - - - - - - - -
+# #   Amcrest Platform
+# # - - - - - - - - - - - - - - - - - - - - - -
     amcrest: error
-# - - - - - - - - - - - - - - - - - - - - - -
-#   Nest Platform
-# - - - - - - - - - - - - - - - - - - - - - -
+# # - - - - - - - - - - - - - - - - - - - - - -
+# #   Nest Platform
+# # - - - - - - - - - - - - - - - - - - - - - -
     nest.nest: error
     suds: error
-# - - - - - - - - - - - - - - - - - - - - - -
-#   ZWave Platform
-# - - - - - - - - - - - - - - - - - - - - - -
+# # - - - - - - - - - - - - - - - - - - - - - -
+# #   ZWave Platform
+# # - - - - - - - - - - - - - - - - - - - - - -
     libopenzwave: error
     openzwave: error
-# - - - - - - - - - - - - - - - - - - - - - -
-#   Netgear Platform
-# - - - - - - - - - - - - - - - - - - - - - -
+# # - - - - - - - - - - - - - - - - - - - - - -
+# #   Netgear Platform
+# # - - - - - - - - - - - - - - - - - - - - - -
     pynetgear: error
-# - - - - - - - - - - - - - - - - - - - - - -
-#   Custom Components Platform
-# - - - - - - - - - - - - - - - - - - - - - -
+# # - - - - - - - - - - - - - - - - - - - - - -
+# #   Custom Components Platform
+# # - - - - - - - - - - - - - - - - - - - - - -
     pywemo.subscribe: error
-# - - - - - - - - - - - - - - - - - - - - - -
-#   Custom Components Platform
-# - - - - - - - - - - - - - - - - - - - - - -
+# # - - - - - - - - - - - - - - - - - - - - - -
+# #   Custom Components Platform
+# # - - - - - - - - - - - - - - - - - - - - - -
     pyupdate.ha_custom.custom_components: info
     pyupdate.ha_custom.custom_cards: info
     pyupdate.ha_custom.common: info
     pyupdate.ha_custom.python_scripts: info
     pyupdate.log: info
     custom_components.custom_updater: info
-# - - - - - - - - - - - - - - - - - - - - - -
-#   New Harmony Platform
-# - - - - - - - - - - - - - - - - - - - - - -
+# # - - - - - - - - - - - - - - - - - - - - - -
+# #   New Harmony Platform
+# # - - - - - - - - - - - - - - - - - - - - - -
     pyharmony.client: info
     websockets.protocol: info
     aioharmony: info
-# - - - - - - - - - - - - - - - - - - - - - -
-#   ESPHome Platform
-# - - - - - - - - - - - - - - - - - - - - - -
+# # - - - - - - - - - - - - - - - - - - - - - -
+# #   ESPHome Platform
+# # - - - - - - - - - - - - - - - - - - - - - -
     aioesphomeapi.client: info
-# - - - - - - - - - - - - - - - - - - - - - -
-#   Unidentified Components Platform
-# - - - - - - - - - - - - - - - - - - - - - -
+# # - - - - - - - - - - - - - - - - - - - - - -
+# #   Unidentified Components Platform
+# # - - - - - - - - - - - - - - - - - - - - - -
     sseclient: info
     transitions.core: error
     passlib.registry: error
