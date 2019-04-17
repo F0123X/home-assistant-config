@@ -1,0 +1,25 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+platform: template
+sensors:
+  facebox_detection:
+    friendly_name: Facebox Detection
+    value_template: >-
+      {% if is_state('image_processing.living_room', '0') %}
+        No face recognized
+      {% else %}
+        {{ states.image_processing.living_room.attributes.faces[0]["name"].title }}
+      {% endif %}

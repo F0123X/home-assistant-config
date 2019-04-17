@@ -17,5 +17,10 @@ platform: template
 sensors:
   front_door_lock_battery:
     friendly_name: Front Door Lock Battery
-    value_template: '{{ states.zwave.front_door_lock.attributes.battery_level }}'
+    value_template: >-
+      {% if state_attr('zwave.front_door_lock', 'is_ready') %}
+        {{ states.zwave.front_door_lock.attributes.battery_level }}
+      {% else %}
+        0
+      {% endif %}    
     entity_id: zwave.front_door_lock
