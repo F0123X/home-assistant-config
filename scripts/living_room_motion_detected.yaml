@@ -1,0 +1,24 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+alias: Living Room Motion Detected
+sequence:
+  - service: camera.snapshot
+    data:
+      entity_id:  camera.living_room_camera
+      filename: 'www/facebox/tmp/image.jpg'
+  - delay: 00:00:01
+  - service: image_processing.scan
+    entity_id: image_processing.living_room

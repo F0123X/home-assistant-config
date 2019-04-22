@@ -1,0 +1,55 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+# @todo Fix binary sensor
+# @body Fix the probabilities and make the threshold higher for shower binary sensor
+name: Shower
+platform: bayesian
+prior: 0.1
+probability_threshold: 0.5
+device_class: moisture
+observations:
+  # Most likely scenerios to least likely
+  # shower on -> high probability given that humidity > 94
+  # shower off -> medium probability given that humidity > 94
+  - platform: 'numeric_state'
+    entity_id: sensor.upstairs_bathroom_humidity
+    above: 94
+    prob_given_true: 0.95 # chance that if shower is on humidity is above 94
+    prob_given_false: 0.30 # chance that if shower is off humidity is above 94
+
+  # shower on -> very low probability given that humidity < 50
+  # shower off -> very high probability given that humidity < 50
+  - platform: 'numeric_state'
+    entity_id: sensor.upstairs_bathroom_humidity
+    below: 60
+    prob_given_true: 0.10 # chance that if shower is on humidity is below 50
+    prob_given_false: 0.40 # chance that if shower is off humidity is below 50
+
+  # shower on -> very low probability given that bathroom light is off
+  # shower off -> medium probability given that bathroom light is off
+  - platform: 'state'
+    entity_id: switch.upstairs_bathroom_light
+    to_state: 'off'
+    prob_given_true: 0.10 # chance that if shower is on the bathroom light is on
+    prob_given_false: 0.50 # chance that if shower is off on the bathroom light is on
+
+  # shower on -> very high probability given that bathroom light is on
+  # shower off -> very high probability given that humidity < 50
+  - platform: 'state'
+    entity_id:  binary_sensor.samsung_smart_tv
+    to_state: 'off'
+    prob_given_true: 0.50
+    prob_given_false: 0.05
