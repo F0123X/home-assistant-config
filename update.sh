@@ -1,4 +1,4 @@
-#!/bin/bash
+/#!/bin/bash
 
 function get_file {
   DOWNLOAD_PATH=${2}?raw=true
