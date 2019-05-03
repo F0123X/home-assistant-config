@@ -13,6 +13,20 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-platform: uptimerobot
-api_key: !secret api_uptimerobot
-scan_interval: 600
+name: Uptime Percent
+platform: rest
+resource: https://api.uptimerobot.com/v2/getMonitors
+method: POST
+payload: !secret uptimerobot_post
+# unit_of_measurement: '%'
+# json_attributes:
+#   - stat
+#   - pagination
+#   - monitors
+# value_template: '{{ value_json["monitors"][0]["custom_uptime_ratio"] }}'
+force_update: true
+scan_interval: 3600
+value_template: '{{ value_json.monitors[0].custom_uptime_ratio }}'
+headers:
+  Content-Type: application/x-www-form-urlencoded
+  Cache-Control: no-cache
