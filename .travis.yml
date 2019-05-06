@@ -3,7 +3,7 @@ language: python
 
 # Existing Python versions
 python:
-  - "3.7.3"
+  - "3.7"
 
 before_install:
   - mv travis_secrets.yaml secrets.yaml
