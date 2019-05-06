@@ -13,20 +13,24 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-name: Uptime Percent
-platform: rest
-resource: https://api.uptimerobot.com/v2/getMonitors
-method: POST
-payload: !secret uptimerobot_post
-unit_of_measurement: '%'
-# json_attributes:
-#   - stat
-#   - pagination
-#   - monitors
-# value_template: '{{ value_json["monitors"][0]["custom_uptime_ratio"] }}'
-force_update: true
-scan_interval: 3600
-value_template: '{{ value_json.monitors[0].custom_uptime_ratio | round(1) }}'
-headers:
-  Content-Type: application/x-www-form-urlencoded
-  Cache-Control: no-cache
+platform: synologydsm
+host: !secret ip_synology_nas
+port: !secret synology_port
+username: !secret synology_username
+password: !secret synology_password
+ssl: False
+monitored_conditions:
+  - cpu_other_load
+  - cpu_user_load
+  - cpu_system_load
+  - cpu_total_load
+  - memory_real_usage
+  - memory_size
+  - memory_cached
+  - memory_total_swap
+  - memory_total_real
+  - network_up
+  - network_down
+  - disk_name
+  - disk_status
+  - disk_temp
