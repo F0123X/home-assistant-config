@@ -13,7 +13,4 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-platform: travisci
-api_key: !secret travisci_access_token
-branch: 'dev'
-repository: 'home-assistant-config'
+restart_basement_camera: !secret curl_restart_basement_camera

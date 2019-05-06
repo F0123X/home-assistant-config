@@ -14,6 +14,6 @@
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
 platform: generic
-name: Living Room Camera
-still_image_url: !secret living_room_camera
-stream_source: !secret living_room_camera_stream
+name: Basement Camera
+still_image_url: !secret basement_camera
+stream_source: !secret basement_camera_stream

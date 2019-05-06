@@ -13,4 +13,6 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-restart_living_room_camera: !secret curl_restart_living_room_camera
+platform: local_file
+name: Basement Snapshot
+file_path: /config/www/facebox/tmp/image.jpg
