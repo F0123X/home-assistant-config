@@ -13,17 +13,12 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-name: Uptime Percent
+name: Video Server Uptime Percent
 platform: rest
 resource: https://api.uptimerobot.com/v2/getMonitors
 method: POST
-payload: !secret uptimerobot_post
+payload: !secret uptimerobot_post_video
 unit_of_measurement: '%'
-# json_attributes:
-#   - stat
-#   - pagination
-#   - monitors
-# value_template: '{{ value_json["monitors"][0]["custom_uptime_ratio"] }}'
 force_update: true
 scan_interval: 3600
 value_template: '{{ value_json.monitors[0].custom_uptime_ratio | round(1) }}'
