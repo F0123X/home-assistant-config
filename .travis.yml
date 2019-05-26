@@ -18,6 +18,13 @@ before_install:
   - touch ./OZW_Log.txt
 
 install:
+  - apt install autoconf automake build-essential cmake libass-dev libfreetype6-dev libjpeg-dev libtheora-dev libtool libvorbis-dev libx264-dev pkg-config wget yasm zliblg-dev
+  - wget http://ffmpeg.org/releases/ffmpeg-3.2.tar.bz2
+  - tar -xjf ffmpeg-3.2.tar.bz2
+  - cd ffmpeg-3.2
+  - ./configure --disable-static --enable-shared --disable-doc
+  - make
+  - make install
   - pip3 install --pre homeassistant
   - hass --version
 
