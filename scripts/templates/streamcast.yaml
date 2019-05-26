@@ -13,19 +13,14 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-# - - - - - - - - - - - - - - - - - - - - - -
-# On Start - sets theme and rebuilds
-# LoveLace UI
-# - - - - - - - - - - - - - - - - - - - - - -
-alias: Ryan Leonard Recognized
-initial_state: 'on'
-trigger:
-  platform: event
-  event_type: image_processing.face_detect
-  event_data:
-    name: 'Ryan Leonard'
-action:
-  service: notify.notify
-  data_template:
-    message: Ryan Leonard recognized in the living room with probability {{ trigger.event.data.confidence }}
-  
+alias: Streamcast
+sequence:
+  - service: media_player.turn_on
+    data_template:
+      entity_id: "{{ tv }}"
+    # entity_id: media_player.samsung_smart_tv
+  - service: camera.play_stream
+    data_template: 
+      entity_id: "{{ camera }}"
+      media_player: "{{ media_player }}"
+      # media_player: media_player.entryway_tv

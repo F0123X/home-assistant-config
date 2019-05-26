@@ -13,10 +13,8 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-platform: facebox
-ip_address: !secret facebox_ip
-port: 8080
-source:
-  - entity_id:  camera.basement_snapshot
-    name: Basement
-scan_interval: 604800
+alias: Start Netflix
+sequence:
+  - service: media_player.turn_on
+    entity_id: media_player.samsung_smart_tv
+  - service: rest_command.set_tv_app_netflix

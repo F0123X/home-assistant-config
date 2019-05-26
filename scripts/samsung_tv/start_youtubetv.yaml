@@ -13,4 +13,8 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-image_processing: !include_dir_list ../image_processors
+alias: Start YouTubeTV
+sequence:
+  - service: media_player.turn_on
+    entity_id: media_player.samsung_smart_tv
+  - service: rest_command.set_tv_app_youtubetv

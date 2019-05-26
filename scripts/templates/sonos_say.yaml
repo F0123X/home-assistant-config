@@ -13,28 +13,26 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-alias: Say
+alias: Sonos Say
 sequence:
-  - service: script.pause_tv
-  - delay: '00:00:05'
-  - service: script.sonos_say
+  - service: sonos.snapshot
+    data_template:
+      with_group: yes
+  - service: sonos.unjoin
+    data_template:
+      entity_id: "{{ entity_id }}"
+  - service: sonos.join
     data_template:
       master: "{{ master }}"
+      entity_id: "{{ entity_id }}"
+  - service: media_player.volume_set
+    data_template:
+      entity_id: "{{ entity_id }}"
       volume_level: "{{ volume_level }}"
+  - service: tts.google_translate_say
+    data_template:
+      entity_id: "{{ master }}"
       message: "{{ message }}"
-      entity_id: >-
-        {% if entity_id | length == 0 %}
-          {% set entity_id = [
-            'media_player.living_room_sonos',
-            'media_player.family_room_sonos',
-            'media_player.dining_room_sonos'
-          ] %}
-        {% endif %}
-
-        {% if entity_id is not string and entity_id is sequence %}
-          {% set entity_id = entity_id|join(', ') %}
-        {% endif %}
-        
-        {{ entity_id }}
-  - delay: '00:00:10'
-  - service: script.play_tv
+  - service: sonos.restore
+    data_template:
+      with_group: yes

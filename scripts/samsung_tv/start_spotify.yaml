@@ -13,12 +13,8 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-alias: Basement Motion Detected
+alias: Start Spotify
 sequence:
-  - service: camera.snapshot
-    data:
-      entity_id:  camera.basement_camera
-      filename: 'www/facebox/tmp/image.jpg'
-  - delay: 00:00:01
-  - service: image_processing.scan
-    entity_id: image_processing.basement
+  - service: media_player.turn_on
+    entity_id: media_player.samsung_smart_tv
+  - service: rest_command.set_tv_app_spotify
