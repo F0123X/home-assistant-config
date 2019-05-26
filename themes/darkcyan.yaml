@@ -15,8 +15,8 @@
 # # # # # # # # # # # # # # # # # # # # # # #
 darkcyan:
   # Main colors that can be changed
-    primary-color: "rgb(0, 188, 212)"
-    disabled-text-color: "rgb(84, 84, 84)"
+    primary-color: "rgb(30, 190, 255)"
+    disabled-text-color: "rgb(125, 125, 125)"
     divider-color: "rgba(255, 255, 255, 0.12)"
     paper-card-background-color: "rgb(78, 78, 78)"
     paper-grey-200: "rgb(25, 25, 25)"
@@ -43,3 +43,5 @@ darkcyan:
     paper-toggle-button-checked-button-color: "var(--primary-color)"
     paper-toggle-button-checked-bar-color: "var(--light-primary-color)"
     paper-toggle-button-unchecked-bar-color: "var(--primary-text-color)"
+    mode-color: "var(--primary-color)"
+    auto-color: "var(--primary-color)"

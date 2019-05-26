@@ -1,0 +1,19 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+thermostat:
+    mode-color: "var(--primary-color)"
+    auto-color: "var(--primary-color)"
+    background-color: "rgb(61, 175, 243)"
