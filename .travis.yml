@@ -20,7 +20,7 @@ addons:
       - pkg-config
       - wget
       - yasm
-      - zliblg-dev
+      - zlib1g-dev
 
 # Enable 3.7 without globally enabling sudo and dist: xenial for other build jobs
 matrix:
