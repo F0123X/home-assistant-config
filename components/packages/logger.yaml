@@ -108,6 +108,7 @@ logger:
 # #   ESPHome Platform
 # # - - - - - - - - - - - - - - - - - - - - - -
     aioesphomeapi.client: info
+    aioesphomeapi.connection: info
 # # - - - - - - - - - - - - - - - - - - - - - -
 # #   Unidentified Components Platform
 # # - - - - - - - - - - - - - - - - - - - - - -

@@ -13,10 +13,6 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-platform: facebox
-ip_address: !secret facebox_ip
-port: 8080
-source:
-  - entity_id:  camera.basement_snapshot
-    name: Basement
-scan_interval: 604800
+platform: local_file
+name: Basement Snapshot
+file_path: /config/www/facebox/tmp/image.jpg

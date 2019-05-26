@@ -29,11 +29,10 @@ sequence:
     data_template:
       entity_id: "{{ entity_id }}"
       volume_level: "{{ volume_level }}"
-  - service: tts.google_say
+  - service: tts.google_translate_say
     data_template:
       entity_id: "{{ master }}"
       message: "{{ message }}"
-  - delay: '00:00:10'
   - service: media_player.sonos_restore
     data_template:
       with_group: yes

@@ -16,7 +16,6 @@ __pycache__/
 
 # Blank Files that get recreated by Home assistant
 automations.yaml
-customize.yaml
 groups.yaml
 
 # Other private files/patterns

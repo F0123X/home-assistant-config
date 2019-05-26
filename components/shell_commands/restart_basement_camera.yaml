@@ -13,10 +13,4 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-platform: facebox
-ip_address: !secret facebox_ip
-port: 8080
-source:
-  - entity_id:  camera.basement_snapshot
-    name: Basement
-scan_interval: 604800
+restart_basement_camera: !secret curl_restart_basement_camera

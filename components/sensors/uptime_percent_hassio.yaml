@@ -13,10 +13,15 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-platform: facebox
-ip_address: !secret facebox_ip
-port: 8080
-source:
-  - entity_id:  camera.basement_snapshot
-    name: Basement
-scan_interval: 604800
+name: Hassio Uptime Percent
+platform: rest
+resource: https://api.uptimerobot.com/v2/getMonitors
+method: POST
+payload: !secret uptimerobot_post_hassio
+unit_of_measurement: '%'
+force_update: true
+scan_interval: 1800
+value_template: '{{ value_json.monitors[0].custom_uptime_ratio | round(1) }}'
+headers:
+  Content-Type: application/x-www-form-urlencoded
+  Cache-Control: no-cache

@@ -13,10 +13,12 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-platform: facebox
-ip_address: !secret facebox_ip
-port: 8080
-source:
-  - entity_id:  camera.basement_snapshot
-    name: Basement
-scan_interval: 604800
+alias: Basement Motion Detected
+sequence:
+  - service: camera.snapshot
+    data:
+      entity_id:  camera.basement_camera
+      filename: 'www/facebox/tmp/image.jpg'
+  - delay: 00:00:01
+  - service: image_processing.scan
+    entity_id: image_processing.basement

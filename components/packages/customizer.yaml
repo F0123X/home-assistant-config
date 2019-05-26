@@ -14,7 +14,7 @@
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
 customizer:
-  custom_ui: local
+  custom_ui: hosted
   hide_attributes:
     - node_id
     - value_index

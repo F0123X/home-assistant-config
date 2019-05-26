@@ -15,3 +15,4 @@
 # # # # # # # # # # # # # # # # # # # # # # #
 platform: uptimerobot
 api_key: !secret api_uptimerobot
+scan_interval: 600
