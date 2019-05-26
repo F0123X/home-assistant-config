@@ -31,9 +31,9 @@ logger:
     homeassistant.components: info
     homeassistant.components.camera: debug
     homeassistant.components.camera.ring: info
-    homeassistant.components.device_tracker.netgear: error
-    homeassistant.components.device_tracker.ddwrt: error
+    homeassistant.components.ddwrt.device_tracker: error
     homeassistant.components.image_processing: debug
+    homeassistant.components.influxdb.sensor: error
     homeassistant.components.media_player: debug
     homeassistant.components.media_player.sonos: debug
     homeassistant.components.python_script: debug
