@@ -40,6 +40,7 @@ before_install:
   - ./configure --disable-static --enable-shared --disable-doc
   - make
   - sudo make install
+  - cd ..
 
 install:
   - pip3 install --pre homeassistant
