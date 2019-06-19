@@ -1,0 +1,38 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+alias: Sonos Say
+sequence:
+  - service: sonos.snapshot
+    data_template:
+      with_group: yes
+  - service: sonos.unjoin
+    data_template:
+      entity_id: "{{ entity_id }}"
+  - service: sonos.join
+    data_template:
+      master: "{{ master }}"
+      entity_id: "{{ entity_id }}"
+  - service: media_player.volume_set
+    data_template:
+      entity_id: "{{ entity_id }}"
+      volume_level: "{{ volume_level }}"
+  - service: tts.google_translate_say
+    data_template:
+      entity_id: "{{ master }}"
+      message: "{{ message }}"
+  - service: sonos.restore
+    data_template:
+      with_group: yes

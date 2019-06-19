@@ -24,16 +24,19 @@ logger:
 # - - - - - - - - - - - - - - - - - - - - - -
   logs:
 # # - - - - - - - - - - - - - - - - - - - - - -
+# #   Homeassistant
+# # - - - - - - - - - - - - - - - - - - - - - -
+    homeassistant.components: info
+
+# # - - - - - - - - - - - - - - - - - - - - - -
 # #   Homeassistant Components
 # # - - - - - - - - - - - - - - - - - - - - - -
     homeassistant.components.http.auth: critical
     homeassistant.components.http.view: error  
-    homeassistant.components: info
-    homeassistant.components.camera: debug
+    homeassistant.components.camera: error
     homeassistant.components.camera.ring: info
-    homeassistant.components.device_tracker.netgear: error
-    homeassistant.components.device_tracker.ddwrt: error
     homeassistant.components.image_processing: debug
+    homeassistant.components.influxdb.sensor: error
     homeassistant.components.media_player: debug
     homeassistant.components.media_player.sonos: debug
     homeassistant.components.python_script: debug
@@ -50,6 +53,21 @@ logger:
     homeassistant.helpers.storage: critical
     homeassistant.helpers.restore_state: info
     homeassistant.util.json: error
+
+
+# # - - - - - - - - - - - - - - - - - - - - - -
+# #   Custom Component
+# # - - - - - - - - - - - - - - - - - - - - - -
+    custom_components: info
+# # - - - - - - - - - - - - - - - - - - - - - -
+# #   Custom Components
+# # - - - - - - - - - - - - - - - - - - - - - -
+    custom_components.edgeos: error
+    custom_components.hacs: error
+    custom_components.authenticated: info
+    custom_components.blueiris: info
+    pyunifi.controller: info
+
 # # - - - - - - - - - - - - - - - - - - - - - -
 # #   Monitoring Components
 # # - - - - - - - - - - - - - - - - - - - - - -
@@ -127,4 +145,9 @@ logger:
     hass_nabucasa.cloud_api: info
     hass_nabucasa.iot: info
     hass_nabucasa.remote: info
-    
+    pytautulli: error
+    aiounifi.api: error
+    pyhaversion: error
+    plexapi: critical
+    googledevices: info
+    pysonos: error

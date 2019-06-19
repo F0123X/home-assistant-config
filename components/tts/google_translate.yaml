@@ -1,0 +1,29 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#            translate# # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+platform: google_translate
+
+# Set the default voice language.
+language: 'en-us'
+
+# Cache voice files to a local storage.
+cache: true
+
+# Path to a location for caching the tts files.
+cache_dir: /config/tts
+base_url: !secret ha_base_url
+# Time to hold (in seconds) the voice data inside memory for fast play
+# on a media player. (min 60, max 57600)
+time_memory: 60

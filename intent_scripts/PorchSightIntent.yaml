@@ -16,6 +16,6 @@
 PorchSightIntent:
   action:
     service: script.turn_on
-    entity_id: script.who_is_on_porch
+    entity_id: script.porch_view
   speech:
     text: OK

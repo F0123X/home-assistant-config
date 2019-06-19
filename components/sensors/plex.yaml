@@ -1,0 +1,20 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+platform: plex
+host: !secret plex_ip
+name: Secure Plex
+username: !secret plex_username
+password: !secret plex_password

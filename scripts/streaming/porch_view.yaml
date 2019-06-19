@@ -1,0 +1,22 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+alias: Porch View
+sequence:
+  - service: script.streamcast
+    data: 
+      camera: camera.porch
+      media_player: media_player.entryway_tv
+      tv: media_player.samsung_smart_tv

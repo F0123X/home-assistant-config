@@ -1,0 +1,29 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+platform: generic_thermostat
+name: Master Bedroom Thermostat
+heater: switch.master_bedroom_heater
+target_sensor: sensor.master_bedroom_temperature
+min_temp: 50
+max_temp: 90
+target_temp: 70.0
+ac_mode: true
+min_cycle_duration:
+  seconds: 1
+keep_alive:
+  seconds: 1
+initial_operation_mode: "off"
+precision: 1.0

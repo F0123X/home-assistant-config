@@ -1,0 +1,39 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+alias: Say
+sequence:
+  - service: sonos.snapshot
+    data_template:
+      entity_id: "{{ sonos_entity|default('media_player.family_room_sonos') }}"
+  - service: sonos.unjoin
+    data_template:
+      entity_id: "{{ sonos_entity|default('media_player.family_room_sonos') }}"
+  - service: media_player.volume_set
+    data_template:
+      entity_id: "{{ sonos_entity|default('media_player.family_room_sonos') }}"
+      volume_level: "{{ volume|default(0.5) }}"
+  - service: tts.watson_tts_say
+    data_template:
+      entity_id: "{{ sonos_entity|default('media_player.family_room_sonos') }}"
+      message: "{{ message }}"
+  - delay: "{{ delay|default('00:00:01') }}"
+  - wait_template: "{{ is_state(sonos_entity|default('media_player.family_room_sonos'), 'playing') }}"
+    timeout: '00:00:03'
+  - wait_template: "{{ not is_state(sonos_entity|default('media_player.family_room_sonos'), 'playing') }}"
+    timeout: '00:01:00'        
+  - service: sonos.restore
+    data_template:
+      entity_id: "{{ sonos_entity|default('media_player.family_room_sonos') }}"

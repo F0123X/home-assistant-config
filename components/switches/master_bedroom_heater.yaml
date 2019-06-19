@@ -1,0 +1,25 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+platform: mqtt
+name: Master Bedroom Heater
+state_topic: 'hass/Master Bedroom Heater/state'
+command_topic: 'hass/Master Bedroom Heater/state'
+qos: 0
+payload_on: 'ON'
+payload_off: 'OFF'
+state_on: 'ON'
+state_off: 'OFF'
+retain: true

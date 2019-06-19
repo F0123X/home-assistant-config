@@ -37,7 +37,7 @@ zw*.xml
 .storage/
 deps/
 .ssh/
-tts/
+/tts/
 .cloud/
 appdaemon/
 

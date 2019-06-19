@@ -23,14 +23,20 @@
 # Alarm response
 # - - - - - - - - - - - - - - - - - - - - - -
 alias: Notify on door unlocking
+initial_state: 'on'
 trigger:
   platform: state
   entity_id: lock.front_door_lock
   to: 'unlocked'
 condition:
-  - condition: state
-    entity_id:  binary_sensor.shower
-    state:  'on'
+  condition: or
+  conditions:
+    - condition: state
+      entity_id:  binary_sensor.shower
+      state:  'on'
+    - condition: state
+      entity_id: input_boolean.auto_notify_on_door_unlocked
+      state: 'on'
 action:
   service: notify.notify
   data:

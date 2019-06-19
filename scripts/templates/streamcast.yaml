@@ -1,0 +1,26 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+alias: Streamcast
+sequence:
+  - service: media_player.turn_on
+    data_template:
+      entity_id: "{{ tv }}"
+    # entity_id: media_player.samsung_smart_tv
+  - service: camera.play_stream
+    data_template: 
+      entity_id: "{{ camera }}"
+      media_player: "{{ media_player }}"
+      # media_player: media_player.entryway_tv

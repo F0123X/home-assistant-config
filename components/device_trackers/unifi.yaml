@@ -1,0 +1,28 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+platform: unifi
+host: 10.6.23.9 #a0d7b954-unifi #172.30.33.1
+site_id: default
+username: !secret unifi_username
+password: !secret unifi_password
+verify_ssl: false
+monitored_conditions:
+  - ip
+  - is_wired
+  - name
+  - mac
+  - rssi
+  - signal

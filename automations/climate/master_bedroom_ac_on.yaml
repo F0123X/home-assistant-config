@@ -1,0 +1,32 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+# - - - - - - - - - - - - - - - - - - - - - -
+# Master Bedroom AC
+# 
+# - - - - - - - - - - - - - - - - - - - - - -
+alias: Master Bedroom AC On
+initial_state: 'on'
+trigger:
+  - platform: template
+    value_template: >-
+      {% if is_state('climate.master_bedroom_thermostat', 'cool') %}
+        {{ ( states.climate.master_bedroom_thermostat.attributes.temperature | int ) < (sensor.master_bedroom_temperature | int)  }}
+      {% else %}
+        {{ ( 85.0 | int ) < (sensor.master_bedroom_temperature | int) }}
+      {% endif %}
+action:
+  - service: switch.turn_on
+    entity_id: switch.master_bedroom_ac

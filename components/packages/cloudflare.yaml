@@ -1,0 +1,24 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+cloudflare:
+  email: !secret cloudflare_email
+  api_key: !secret cloudflare_api_key
+  zone: !secret cloudflare_zone
+  records:
+    - www
+    - plex
+    - video
+    - nas

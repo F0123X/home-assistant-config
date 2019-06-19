@@ -1,0 +1,23 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+edgeos:
+  host: edgex.hassio.cloud
+  username: !secret edge_os_username
+  password: !secret edge_os_password
+  ssl: true
+  monitored_interfaces:
+    - eth1
+  unit: 'M'
