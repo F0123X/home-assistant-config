@@ -13,6 +13,4 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-platform: generic
-name: Office Camera
-still_image_url: !secret office_camera
+platform: blueiris

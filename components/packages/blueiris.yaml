@@ -13,6 +13,23 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-platform: generic
-name: Surface Pro Camera
-still_image_url: !secret surface_pro_camera
+blueiris:
+  host: !secret bi_host
+  port: !secret bi_port
+  # [optional] Blue Iris admin username and password
+  username: !secret bi_username
+  password: !secret bi_password
+  # List of camera objects
+  camera:
+    - id: LivingRoom
+      name: Living Room
+      room: Living Room
+    - id: DiningRoom
+      name: Dining Room
+      room: Dining Room
+    - id: Porch
+      name: Porch
+      room: Outside
+    - id: Basement
+      name: Basement
+      room: Basement
