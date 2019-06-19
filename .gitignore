@@ -57,3 +57,4 @@ notebooks/
 .Trash-0/
 tensorflow/
 www/facebox/tmp/*
+.ip_authenticated.yaml
