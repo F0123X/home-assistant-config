@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/F0123X/home-assistant-config.svg?branch=master)](https://travis-ci.org/F0123X/home-assistant-config)
 
-###### LAST CHANGED: 1/24/2019
+###### LAST CHANGED: 6/19/2019
 
 ###### **Documentation is Work in Progress**
 
@@ -12,60 +12,114 @@
 
 Using [HA Floorplan](https://github.com/pkozul/ha-floorplan) and [Inkscape](https://inkscape.org/)
 
-## Platforms
+# Platforms
 
-### Voice Based
-#### Amazon Echo
-- Amazon Echo is a hands-free speaker you control with your voice. Echo connects to the Alexa Voice Service to play music, make calls, send and receive messages, provide information, news, sports scores, weather, and more—instantly. All you have to do is ask.
+## Voice Based
+### Google Assistant
 
-- Echo has seven microphones and beam forming technology so it can hear you from across the room—even while music is playing. Echo is also an expertly tuned speaker that can fill any room with 360° immersive sound. When you want to use Echo, just say the wake word “Alexa” and Echo responds instantly. If you have more than one Echo or Echo Dot, Alexa responds intelligently from the Echo you're closest to with ESP (Echo Spatial Perception).
-### Application Based
+Main reason that Google Assistant is being used over Amazon Alexa is google entities can have multiple aliases. Held off until Sonos devices were supported and have no plans to switch back. The one drawback I have noticed is my preference to refer to my home as a name (e.g. Alexa) rather than "Hey, Google"
 
-#### Samsung SmartThings
+## Z-Wave (Plus)
+### Z-Stick Gen5
 
-- Connect wirelessly with a wide range of smart devices and make them work together.
-- Monitor and control connected devices in your home using a single SmartThings app for iPhone or Android.
-- Receive alerts from connected devices when there’s unexpected activity in your home.
-- Automate connected devices in your home and set them to turn on or off when doors are opened, as people come and go, and much more.
-- Manage connected devices in your home with SmartThings Routines for Good Morning, Goodbye, Good Night, and more.
-- Control connected devices in your home with voice commands using SmartThings and Amazon Alexa or Google Home.
+Z-Stick Gen5 lets you build your own gateway. A gateway that is locally hosted. A gateway that is cloud free. One with the features and security your home need. And one that can communicate with over 230 Z-Wave devices as you gradually expand your smart home.
 
-#### Logitech Harmony
+## Zigbee
+### Samsung SmartThings
 
-- Harmony Hub turns your smartphone or tablet into a universal remote, giving you control over your home entertainment and smart home devices. You can change channels and volume, program favorites, control lights and other smart devices, and build multi-device experiences called Activities. Plus you can do it all even when you’re away from home.
+I can't wait to retire this hub. I actually have a zigbee usb drive but haven't spent the time to move my devices over.
 
-- Harmony Hub works with over 270,000 entertainment and smart home devices so you can enjoy single-touch control with your favorite brands, right out of the box. From your TV, cable and gaming console, to your AV receiver and Roku® media player—all the way to your smart lights, locks, thermostats, and even your Alexa—Harmony Hub proudly works with just about everything.
+## Infrared Remote Control
+### Logitech Harmony
 
-- Control your entire home entertainment experience without lifting a finger. With Harmony and Amazon Alexa or Google Home, you can enjoy easy, hands-free control of all the things you love. Turn on your TV, change channels, control volume, or start an Activity like “Good Morning” to play a favorite music playlist, raise the blinds, set the lights, and warm the house temperature. Your voice makes it all work, just like magic.
+This is only used to turn on/off the Xbox One X.
 
-- Lower the blinds, dim the lights, fire-up the TV for movie night—all with a tap of the finger. With Harmony Activities you can enjoy single-touch automation to trigger limitless experiences. Harmony automatically suggests everyday Activities or you can have fun creating as many as you can dream up. Time for bed? Tap “Good Night” to lock the door and turn out the lights, then fall into a deep and tranquil sleep.
+## Custom Applications
 
-### Custom Applications
+### HASSIO installed on Ubuntu Server
 
-#### Home Assistant *via Docker*
+WIP
 
-- Home Assistant is a home automation platform running on Python 3. It is able to track and control all devices at home and offer a platform for automating control.
-
-# Devices
-## Network Devices
+# Network Devices
 <table>
     <th></th>
     <th>DESCRIPTION</th>
     <th>QTY</th>
     <tr>
         <td width=15%>
-            <a href=http://amzn.com/B00F0DD0I6><img src="https://images-na.ssl-images-amazon.com/images/I/51jAJai8bBL._SX679_.jpg" /></a>
+            <a href=http://amzn.com/B078PGCGN2><img src="https://images-na.ssl-images-amazon.com/images/I/715hisuJW3L._SL1300_.jpg" /></a>
         </td>
         <td width=80%>
             <i>Type</i>: <b>Router</b> </br>
-            <i>Manufacturer</i>: Netgear </br>
-            <i>Model</i>: Nighthawk R7000 </br>
-            <i>Firmware</i>: DD-WRT v3.0-r37015M kongac (09/23/18) </br>
+            <i>Manufacturer</i>: Ubiquiti </br>
+            <i>Model</i>: EdgeRouter 4 (ER-4) </br>
+            <i>Firmware</i>: EdgeOSv2.0.1 </br>
         </td>
         <td align="center" width=5%>
             <b>1</b>
         </td>
     </tr>
+    <tr>
+        <td width=15%>
+            <a href=http://amzn.com/B01MU3WUX1><img src="https://images-na.ssl-images-amazon.com/images/I/31yCv1hSCEL.jpg" /></a>
+        </td>
+        <td width=80%>
+            <i>Type</i>: <b>POE+ Switch</b> </br>
+            <i>Manufacturer</i>: Ubiquiti </br>
+            <i>Model</i>: Ubiquiti UniFi Switch 8 60W (US-8-60W) </br>
+            <i>Firmware</i>: UniFi 5.10.24.0</br>
+        </td>
+        <td align="center" width=5%>
+            <b>1</b>
+        </td>
+    </tr>
+    <tr>
+        <td width=15%>
+            <a href=http://amzn.com/B00KFD0SEA><img src="https://images-na.ssl-images-amazon.com/images/I/612IkNZhy3L._SL1500_.jpg" /></a>
+        </td>
+        <td width=80%>
+            <i>Type</i>: <b>Switch</b> </br>
+            <i>Manufacturer</i>: Netgear </br>
+            <i>Model</i>: NETGEAR GS308-100PAS </br>
+            <i>Firmware</i>: N/A</br>
+        </td>
+        <td align="center" width=5%>
+            <b>1</b>
+        </td>
+    </tr>
+    <tr>
+        <td width=15%>
+            <a href=http://amzn.com/B015PRO512><img src="https://images-na.ssl-images-amazon.com/images/I/31u4HQbYlCL.jpg" /></a>
+        </td>
+        <td width=80%>
+            <i>Type</i>: <b>Access Point</b> </br>
+            <i>Manufacturer</i>: Ubiquiti </br>
+            <i>Model</i>: Ubiquiti Networks Unifi 802.11ac Dual-Radio PRO Access Point (UAP-AC-PRO-US) </br>
+            <i>Firmware</i>: UniFi 5.10.24.0</br>
+        </td>
+        <td align="center" width=5%>
+            <b>1</b>
+        </td>
+    </tr>
+    <tr>
+        <td width=15%>
+            <a href=http://amzn.com/B0000AZK72><img src="https://images-na.ssl-images-amazon.com/images/I/61S6TiqnKtL._SL1500_.jpg" /></a>
+        </td>
+        <td width=80%>
+            <i>Type</i>: <b>Patch Panel</b> </br>
+            <i>Manufacturer</i>: TRENDnet </br>
+            <i>Model</i>: 24-Port Cat6 Unshielded Wallmount or Rackmount Patch Panel, Compatible with Cat 3/4/5/5e/6 Cabling, TC-P24C6 </br>
+            <i>Firmware</i>: N/A</br>
+        </td>
+        <td align="center" width=5%>
+            <b>1</b>
+        </td>
+    </tr>
+</table>
+
+# Servers
+
+<table>
     <tr>
         <td width=15%>
             <a href=http://amzn.com/B007JLE84C><img src="https://images-na.ssl-images-amazon.com/images/I/51QFWNaQc7L._SX679_.jpg"/></a>
@@ -80,9 +134,23 @@ Using [HA Floorplan](https://github.com/pkozul/ha-floorplan) and [Inkscape](http
             <b>1</b>
         </td>
     </tr>
+    <tr>
+        <td width=15%>
+            <a href=http://amzn.com/B002KDIXMM><img src="https://images-na.ssl-images-amazon.com/images/I/81uydFqTQXL._SL1500_.jpg"/></a>
+        </td>
+        <td width=80%>
+            <i>Type</i>: <b>Server</b> </br>
+            <i>Manufacturer</i>: Dell </br>
+            <i>Model</i>: PowerEdge R710 </br>
+            <i>Firmware</i>: VMWARE ESXi 6.6</br>
+        </td>
+        <td align="center" width=5%>
+            <b>1</b>
+        </td>
+    </tr>
 </table>
 
-## Single Board Computers (SBC)
+# Single Board Computers (SBC)
 <table>
     <th></th>
     <th>DESCRIPTION</th>
@@ -92,7 +160,7 @@ Using [HA Floorplan](https://github.com/pkozul/ha-floorplan) and [Inkscape](http
             <a href=https://www.adafruit.com/product/3400><img src="https://cdn-shop.adafruit.com/970x728/3400-05.jpg" /></a>
         </td>
         <td width=80%>
-            <i>Type</i>: <b>Router</b> </br>
+            <i>Type</i>: <b>Raspberry Pi</b> </br>
             <i>Manufacturer</i>: Various </br>
             <i>Model</i>: Raspberry Pi Zero W </br>
             <i>Firmware</i>: Raspbian Stretch </br>
@@ -103,7 +171,7 @@ Using [HA Floorplan](https://github.com/pkozul/ha-floorplan) and [Inkscape](http
     </tr>
 </table>
 
-## Development Board
+# Development Board
 <table>
     <th></th>
     <th>DESCRIPTION</th>
@@ -124,7 +192,7 @@ Using [HA Floorplan](https://github.com/pkozul/ha-floorplan) and [Inkscape](http
     </tr>
 </table>
 
-## Sensors
+# Sensors
 <table>
     <th></th>
     <th>DESCRIPTION</th>
@@ -174,22 +242,35 @@ Using [HA Floorplan](https://github.com/pkozul/ha-floorplan) and [Inkscape](http
     
 </table>
 
-
-
-
-**Pihole** </br>
-*Manufacturer*: Vilros </br>
-*Model*: Raspberry Pi Zero W </br>
-*FTL Version*: v4.1 </br>
-
 ### Cameras
+1. Foscam x 1
+2. Amcrest x 1
+3. Digoo x 1
+4. KingKong x 1 
+5. Pi Camera x 1 
+6. Surface Pro 3 x 1
 
 ### Hubs
+1. Samsung SmartThings x 1
+2. Logitech Harmony x 1 
+3. Phillips Hue x 1  
+4. Z-Stick x 1 
 
 ### Lighting
-
-### Sensors
+1. TP-Link Light Switches (H200) x 3
+2. TP-Link Three Way Light Switches (H210) x 2
+3. TP-Link Outlets (H100) x 2
+4. Wemo Light Switch x 1
+5. Phillips Hue Light Strip x 1
 
 ### Locks
+1. Schlage Deadbolt x 1
 
 ### Media
+1. Samsung 4K Smart TV x 1
+2. Microsoft Xbox One X x 1
+3. Kiosk Surface Pro 3 x 1
+4. Sonos One x 2
+5. Sonos Beam x 1
+6. Google Display x 1
+7. Google Chromecast (4K) x 1
