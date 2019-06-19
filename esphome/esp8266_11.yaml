@@ -1,0 +1,50 @@
+##########################
+# Motorized Blinds
+# 
+##########################
+esphome:
+  name: esp8266_11
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+# Enable logging
+logger:
+  baud_rate: 115200
+
+# Enable Home Assistant API
+api:
+  services:
+    - service: control_servo
+      variables:
+        level: float
+      then:
+        - servo.write:
+            id: motor_1
+            level: !lambda 'return level / 100.0;'
+        - servo.write:
+            id: motor_2
+            level: !lambda 'return level / 100.0;'
+
+ota:
+
+# Example configuration entry
+servo:
+  - id: motor_1
+    output: pwm_output_1
+  - id: motor_2
+    output: pwm_output_2
+
+# Example output platform
+output:
+  - platform: esp8266_pwm
+    id: pwm_output_1
+    pin: D4
+    frequency: 50 Hz
+  - platform: esp8266_pwm
+    id: pwm_output_2
+    pin: D3
+    frequency: 50 Hz

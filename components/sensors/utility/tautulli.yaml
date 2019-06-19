@@ -13,7 +13,6 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-sensor.office_temperature:
-  name: Office Temperature
-  description: Temperature in upstairs office
-  display_categories: TEMPERATURE_SENSOR
+platform: tautulli
+host: a0d7b954-tautulli
+api_key: !secret tautulli_api_key

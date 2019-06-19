@@ -27,6 +27,7 @@ darkcyan:
     primary-text-color: "rgb(207, 207, 207)"
     secondary-background-color: "rgb(43, 43, 43)"
     secondary-text-color: "rgb(4, 167, 188)"
+    background: center / cover no-repeat url("/local/images/circuit.webm") fixed
   # Colors based on variables, see above
     label-badge-background-color: "var(--secondary-background-color)"
     label-badge-text-color: "var(--text-primary-color)"

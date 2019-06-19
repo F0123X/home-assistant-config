@@ -1,3 +1,22 @@
 switch.office_monitors:
   extra_data_template: >
     "${attributes.current_power_w !== 0 ? (attributes.current_power_w + 'W') : ''}"
+
+sensor.esphome_status:
+  icon: mdi:raspberry-pi
+sensor.glances_status:
+  icon: mdi:eye
+sensor.influx_status:
+  icon: mdi:database
+sensor.letsencrypt_status:
+  icon: mdi:lock-plus
+sensor.mosquitto_status:
+  icon: mdi:mixcloud
+sensor.nodered_status:
+  icon: mdi:auto-fix
+sensor.portainer_status:
+  icon: mdi:airport
+sensor.unifi_status:
+  icon: mdi:router-wireless
+sensor.vscode_status:
+  icon: mdi:visual-studio-code

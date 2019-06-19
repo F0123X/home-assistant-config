@@ -13,8 +13,6 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-platform: pi_hole
-host: !secret ip_pi_hole
-monitored_conditions:
-  - ads_blocked_today
-  - ads_percentage_today
+ring:
+  username: !secret ring_username
+  password: !secret ring_password

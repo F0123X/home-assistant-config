@@ -59,9 +59,39 @@ queries:
     measurement: '"glances"."autogen"."localhost.docker"'
     field: addon_a0d7b954_portainer.status
     where: time > now() - 5m
+  - name: Unifi Status
+    database: glances
+    group_function: last
+    measurement: '"glances"."autogen"."localhost.docker"'
+    field: addon_a0d7b954_unifi.status
+    where: time > now() - 5m
   - name: VSCode Status
     database: glances
     group_function: last
     measurement: '"glances"."autogen"."localhost.docker"'
     field: addon_a0d7b954_vscode.status
+    where: time > now() - 5m
+  - name: Hassio Active Memory
+    database: glances
+    group_function: mean
+    measurement: '"glances"."autogen"."localhost.mem"'
+    field: active
+    where: time > now() - 5m
+  - name: Hassio Cached Memory
+    database: glances
+    group_function: mean
+    measurement: '"glances"."autogen"."localhost.mem"'
+    field: cached
+    where: time > now() - 5m
+  - name: Hassio Used Memory
+    database: glances
+    group_function: mean
+    measurement: '"glances"."autogen"."localhost.mem"'
+    field: used
+    where: time > now() - 5m
+  - name: Hassio Inactive Memory
+    database: glances
+    group_function: mean
+    measurement: '"glances"."autogen"."localhost.mem"'
+    field: inactive
     where: time > now() - 5m

@@ -32,3 +32,6 @@ homeassistant:
    - type: homeassistant
    - type: legacy_api_password
      api_password: !secret http_password
+
+hacs:
+  token: !secret hacs_github_token
