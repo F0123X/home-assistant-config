@@ -35,6 +35,8 @@ before_install:
   - touch ./home-assistant_v2.db
   - touch ./home-assistant.log
   - touch ./OZW_Log.txt
+  - rm -f ./components/packages/stream.yaml
+  
 #  - wget http://ffmpeg.org/releases/ffmpeg-3.2.tar.bz2
 #  - tar -xjf ffmpeg-3.2.tar.bz2
 #  - cd ffmpeg-3.2
