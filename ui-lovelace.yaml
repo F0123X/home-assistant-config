@@ -1,0 +1,1205 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+title: Home
+
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  Compact Custom Header 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+cch:
+  background: transparent repeat-x url("/local/images/pattern-small.png")
+  background_color: transparent
+  default_tab: '0'
+  hide_help: true
+  hide_config: true
+  hide_unused: true
+  voice: hide
+  exceptions:
+    - conditions:
+        user: Ryan
+      config:
+        options: clock
+        clock_format: 12
+    - conditions:
+        user: Surface
+      config:
+        options: clock
+        clock_format: 12
+
+
+
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  Resources
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+resources:
+  - url: /customcards/alarm_control_panel-card.js
+    type: js
+  - url: /community_plugin/bar-card/bar-card.js
+    type: js
+  - url: /community_plugin/button-card/button-card.js
+    type: module
+  - url: /community_plugin/lovelace-card-mod/card-mod.js
+    type: module
+  - url: /community_plugin/lovelace-card-templater/card-templater.js
+    type: js
+  - url: /community_plugin/compact-custom-header/compact-custom-header.js
+    type: module
+  - url: /community_plugin/config-template-card/config-template-card.js
+    type: module
+  - url: /community_plugin/entity-attributes-card/entity-attributes-card.js
+    type: js
+  - url: /community_plugin/flex-table-card/flex-table-card.js
+    type: js
+  - url: /local/floorplan/floorplan-card.js
+    type: module
+  - url: /community_plugin/gauge-card/gauge-card.js
+    type: js
+  - url: /community_plugin/lovelace-github-entity-row/github-entity-row.js
+    type: js
+  - url: /community_plugin/github-card/github-card.js
+    type: module
+  - url: /community_plugin/mini-graph-card/mini-graph-card.js
+    type: module
+  - url: /community_plugin/mini-media-player/mini-media-player.js
+    type: module
+  - url: /community_plugin/lovelace-multiple-entity-row/multiple-entity-row.js
+    type: js
+  - url: /community_plugin/podcast-card/podcast-card.js
+    type: module
+  - url: /community_plugin/secondaryinfo-entity-row/secondaryinfo-entity-row.js
+    type: js
+  - url: /community_plugin/text-element/text-element.js
+    type: js
+  - url: /community_plugin/upcoming-media-card/upcoming-media-card.js
+    type: js
+  - url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
+    type: js
+
+views:
+
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  View | Main
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+  - icon: 'mdi:home'
+    panel: false
+    path: default
+    title: HOME
+    badges: []
+    background: center / cover url("/local/images/pattern.png")
+    cards:
+#     | - - - - - - - - - - - - - - - - - - -
+#     |   View | Main | Cards
+#     | - - - - - - - - - - - - - - - - - - -
+#     | - - - - - - - - - - - - - - - - - - -
+#     |   View | Lighting | Cards
+#     | - - - - - - - - - - - - - - - - - - -
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                entity: group.master_bedroom_lights
+                icon: mdi:hotel
+                color_type: icon
+                name: Master Bedroom
+                styles:
+                  name:
+                    - color: var(--button-card-light-color)
+                  card:
+                    - font-size: 12px
+                    - font-weight: bold
+              - type: "custom:button-card"
+                entity: group.office_lights
+                icon: mdi:desk-lamp
+                color_type: icon
+                name: Office
+                styles:
+                  name:
+                    - color: var(--button-card-light-color)
+                  card:
+                    - font-size: 12px
+                    - font-weight: bold
+              - type: "custom:button-card"
+                entity: group.upstairs_bathroom_lights
+                icon: mdi:shower
+                color_type: icon
+                name: Upstairs Bathroom
+                styles:
+                  name:
+                    - color: var(--button-card-light-color)
+                  card:
+                    - font-size: 12px
+                    - font-weight: bold
+              - type: "custom:button-card"
+                entity: group.upstairs_hallway_lights
+                icon: mdi:stairs
+                color_type: icon
+                name: Upstairs Hallway
+                styles:
+                  name:
+                    - color: var(--button-card-light-color)
+                  card:
+                    - font-size: 12px
+                    - font-weight: bold
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                entity: group.living_room_lights
+                icon: mdi:sofa
+                color_type: icon
+                name: Living Room
+                styles:
+                  name:
+                    - color: var(--button-card-light-color)
+                  card:
+                    - font-size: 12px
+                    - font-weight: bold
+              - type: "custom:button-card"
+                entity: group.downstairs_bathroom_lights
+                icon: mdi:toilet
+                color_type: icon
+                name: Downstairs Bathroom
+                styles:
+                  name:
+                    - color: var(--button-card-light-color)
+                  card:
+                    - font-size: 12px
+                    - font-weight: bold
+              - type: "custom:button-card"
+                entity: group.dining_room_lights
+                icon: mdi:silverware
+                color_type: icon
+                name: Dining Room
+                styles:
+                  name:
+                    - color: var(--button-card-light-color)
+                  card:
+                    - font-size: 12px
+                    - font-weight: bold
+              - type: "custom:button-card"
+                color_type: blank-card
+      - type: picture-elements
+        style: |
+          ha-card {
+            border-radius: 20px;
+            box-shadow: '3px 3px rgba(0,0,0,0.4)';
+            border: 'solid 1px rgba(100,100,100,0.3)';
+            overflow: hidden;
+          }
+        image: /local/assets/house/upstairs_bathroom.png
+        elements:
+          - type: custom:text-element
+            text: LIGHT
+            style:
+              top: 3.5%
+              left: 92.5%
+          - type: state-icon
+            entity: switch.upstairs_bathroom_light
+            style:
+              top: 10.5%
+              left: 92.5%
+              border: 2px solid
+              border-radius: 50%
+            tap_action:
+              action: toggle
+          - type: custom:text-element
+            text: HUM
+            style:
+              top: 33%
+              left: 92.5%
+          - type: state-label
+            entity: sensor.upstairs_bathroom_humidity
+            style: 
+              top: 39%
+              left: 92.5%
+              border: 2px solid
+              border-radius: 15%
+          - type: custom:text-element
+            text: TEMP
+            style:
+              top: 45%
+              left: 92.5%
+          - type: state-label
+            entity: sensor.upstairs_bathroom_temperature
+            style: 
+              top: 51%
+              left: 92.5%
+              border: 2px solid
+              border-radius: 15%
+          - type: custom:text-element
+            text: WIFI
+            style:
+              top: 57%
+              left: 92.5%
+          - type: state-label
+            entity: sensor.upstairs_bathroom_wifi_strength
+            style: 
+              top: 63%
+              left: 92.5%
+              border: 2px solid
+              border-radius: 15%
+          - type: custom:text-element
+            text: SHOWER
+            style:
+              top: 86%
+              left: 92.5%
+          - type: state-icon
+            entity: binary_sensor.shower
+            style:
+              top: 92.5%
+              left: 92.5%
+              border: 2px solid
+              border-radius: 50%
+      - type: picture-elements
+        style: |
+          ha-card {
+            border-radius: 20px;
+            box-shadow: '3px 3px rgba(0,0,0,0.4)';
+            border: 'solid 1px rgba(100,100,100,0.3)';
+            overflow: hidden;
+          }
+        image: /local/assets/house/downstairs_bathroom.png
+        elements:
+          - type: custom:text-element
+            text: LIGHT
+            style:
+              top: 3.5%
+              left: 92.5%
+          - type: state-icon
+            entity: switch.downstairs_bathroom_light
+            style:
+              top: 10.5%
+              left: 92.5%
+              border: 2px solid
+              border-radius: 50%
+            tap_action:
+              action: toggle
+          - type: custom:text-element
+            text: HUM
+            style:
+              top: 33%
+              left: 92.5%
+          - type: state-label
+            entity: sensor.downstairs_bathroom_humidity
+            style: 
+              top: 39%
+              left: 92.5%
+              border: 2px solid
+              border-radius: 15%
+          - type: custom:text-element
+            text: TEMP
+            style:
+              top: 45%
+              left: 92.5%
+          - type: state-label
+            entity: sensor.downstairs_bathroom_temperature
+            style: 
+              top: 51%
+              left: 92.5%
+              border: 2px solid
+              border-radius: 15%
+          - type: custom:text-element
+            text: WIFI
+            style:
+              top: 57%
+              left: 92.5%
+          - type: state-label
+            entity: sensor.downstairs_bathroom_wifi_strength
+            style: 
+              top: 63%
+              left: 92.5%
+              border: 2px solid
+              border-radius: 15%
+          - type: state-label
+            entity: timer.lighting_downstairs_bathroom
+            style:
+              top: 92.5%
+              left: 92.5%
+              border: 2px solid
+              border-radius: 50%
+
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  View | Media
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+  - icon: 'mdi:video'
+    panel: false
+    path: media
+    title: MEDIA
+    badges: []
+    background: center / cover url("/local/images/pattern.png")
+    cards:
+#     | - - - - - - - - - - - - - - - - - - -
+#     |   View | Media | Cards
+#     | - - - - - - - - - - - - - - - - - - -
+      - entity: media_player.samsung_smart_tv
+        type: media-control
+      - entity: media_player.living_room_sonos
+        hide:
+          icon: true
+          power: true
+          source: true
+        speaker_group:
+          entities:
+            - entity_id: media_player.living_room_sonos
+              name: Living Room Sonos
+            - entity_id: media_player.family_room_sonos
+              name: Family Room Sonos
+            - entity_id: media_player.dining_room_sonos
+              name: Dining Room Sonos
+          platform: sonos
+          show_group_count: true
+        type: 'custom:mini-media-player'
+      - entity: sensor.plex_recently_added
+        title: Recently Downloaded
+        type: 'custom:upcoming-media-card'
+      - type: custom:upcoming-media-card
+        title: Upcoming Movies
+        entity: sensor.radarr_upcoming_media
+      - entity: media_player.entryway_tv
+        type: media-control
+      - entity: media_player.master_bedroom_display
+        type: media-control
+      - entity: media_player.living_room_sonos
+        type: media-control
+      - entity: media_player.family_room_sonos
+        type: media-control
+      - entity: media_player.dining_room_sonos
+        type: media-control
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  View | Climate
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+  - icon: 'mdi:weather-sunny'
+    panel: false
+    path: climate
+    title: CLIMATE
+    badges: []
+    background: center / cover url("/local/images/pattern.png")
+    cards:
+#     | - - - - - - - - - - - - - - - - - - -
+#     |   View | Climate | Cards
+#     | - - - - - - - - - - - - - - - - - - -
+      - cards:
+          - entities:
+              - entity: sensor.living_room_temperature
+                name: Living Room
+              - entity: sensor.downstairs_bathroom_temperature
+                name: Downstairs Bathroom
+              - entity: sensor.dining_room_temperature
+                name: Dining Room
+              - entity: sensor.kitchen_temperature
+                name: Kitchen
+            title: First Floor Temperatures
+            type: history-graph
+          - entities:
+              - entity: sensor.master_bedroom_temperature
+                name: Master Bedroom
+              - entity: sensor.upstairs_bathroom_temperature
+                name: Upstairs Bathroom
+              - entity: sensor.office_temperature
+                name: Office
+            show_header_toggle: false
+            title: Second Floor Temperatures
+            type: history-graph
+        type: vertical-stack
+      - entity: climate.living_room
+        name: Living Room
+        theme: thermostat
+        type: thermostat
+      - columns:
+          - name: Description
+            prop: name
+          - modify: Math.round(x)/1.
+            name: Temperature
+            prop: state
+        entities:
+          include: sensor.*temperature
+        title: Temperature
+        type: 'custom:flex-table-card'
+      - entity: weather.dark_sky
+        type: weather-forecast
+      - aspect_ratio: 100%
+        type: iframe
+        url: 'https://embed.windy.com/embed2.html'
+      - columns:
+          - name: Description
+            prop: name
+          - modify: Math.round(x)/1.
+            name: Humidity
+            prop: state
+        entities:
+          include: sensor.*humidity
+        title: Humidity
+        type: 'custom:flex-table-card'
+      - entity: script.temperatures
+        hold_action:
+          action: none
+        icon: 'mdi:weather-sunny'
+        name: Get Temperatures
+        show_icon: true
+        show_name: true
+        tap_action:
+          action: toggle
+        type: entity-button
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  View | Security
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+  - icon: 'mdi:security'
+    panel: false
+    path: security
+    title: SECURITY
+    badges: []
+    background: center / cover url("/local/images/pattern.png")
+    cards:
+#     | - - - - - - - - - - - - - - - - - - -
+#     |   View | Security | Cards
+#     | - - - - - - - - - - - - - - - - - - -
+      - type: alarm-panel
+        style:
+          "#keypad mwc-button":
+            $: |
+              button {
+                font-size: 20px !important;
+              }
+          "#keypad mwc-button:nth-of-type(12)":
+            $: |
+              button {
+                font-size: 14px !important;
+              }
+        entity: alarm_control_panel.home_alarm
+        name: Security Alarm
+        states:
+          - arm_home
+          - arm_away
+      - camera_image: camera.living_room
+        camera_view: live
+        entities:
+          - binary_sensor.living_room_motion
+          - binary_sensor.living_room_audio
+          - binary_sensor.living_room_watchdog
+        title: Living Room
+        type: picture-glance
+      - camera_image: camera.dining_room
+        camera_view: live
+        entities:
+          - binary_sensor.dining_room_motion
+          - binary_sensor.dining_room_audio
+          - binary_sensor.dining_room_watchdog
+        title: Dining Room
+        type: picture-glance
+      - camera_image: camera.basement
+        camera_view: live
+        entities:
+          - binary_sensor.basement_motion
+          - binary_sensor.basement_audio
+          - binary_sensor.basement_watchdog
+        title: Basement
+        type: picture-glance
+      - camera_image: camera.porch
+        camera_view: live
+        entities:
+          - binary_sensor.porch_motion
+          - binary_sensor.porch_audio
+          - binary_sensor.porch_watchdog
+        title: Porch
+        type: picture-glance
+      - camera_image: camera.backyard
+        camera_view: live
+        entities:
+          - binary_sensor.backyard_motion
+          - binary_sensor.backyard_audio
+          - binary_sensor.backyard_watchdog
+        title: Backyard
+        type: picture-glance
+
+
+
+
+
+      - entities:
+          - entity: script.porch_view
+            name: Front Porch
+        show_header_toggle: false
+        title: Security View
+        type: entities
+      - entities:
+          - entity: lock.front_door_lock
+            name: Front Door
+        show_header_toggle: false
+        title: Lock
+        type: entities
+      - entities:
+          - entity: binary_sensor.front_door
+            secondary_info: last-changed
+          - entity: binary_sensor.front_door_lock
+            secondary_info: last-changed
+          - entity: binary_sensor.front_left_window
+            secondary_info: last-changed
+          - entity: binary_sensor.front_right_window
+            secondary_info: last-changed
+          - entity: binary_sensor.basement_door
+            secondary_info: last-changed
+          - entity: binary_sensor.back_door
+            secondary_info: last-changed
+          - entity: sensor.ryan_status
+            secondary_info: last-changed
+        show_header_toggle: false
+        title: Perimeter Sensors
+        type: entities
+      - columns: 3
+        entities:
+          - entity: sensor.front_door_battery
+            name: Front Door
+          - entity: sensor.front_door_lock_battery
+            name: Front Door Lock
+          - entity: sensor.front_left_window_sensor_battery
+            name: Front Left Window
+          - entity: sensor.front_right_window_sensor_battery
+            name: Front Right Window
+          - entity: sensor.basement_door_sensor_battery
+            name: Basement Door
+          - entity: sensor.back_door_sensor_battery
+            name: Back Door
+          - entity: sensor.living_room_smoke_detector_battery
+            name: Office Smoke
+        title: Sensor Battery Levels
+        type: glance
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  View | Automation
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+  - icon: 'mdi:home-automation'
+    panel: false
+    path: automation
+    title: AUTOMATION
+    badges: []
+    background: center / cover url("/local/images/pattern.png")
+    cards:
+#     | - - - - - - - - - - - - - - - - - - -
+#     |   View | Automation | Cards
+#     | - - - - - - - - - - - - - - - - - - -
+      - cards:
+          - entities:
+              - entity: automation.dining_room_lights_off
+                secondary_info: last-changed
+              - entity: automation.dining_room_motion_sensor_on
+                secondary_info: last-changed
+              - entity: automation.downstairs_bathroom_lights_off
+                secondary_info: last-changed
+              - entity: automation.downstairs_bathroom_motion_sensor_on
+                secondary_info: last-changed
+              - entity: automation.master_bedroom_lights_off
+                secondary_info: last-changed
+              - entity: automation.master_bedroom_motion_sensor_on
+                secondary_info: last-changed
+              - entity: automation.office_lights_off
+                secondary_info: last-changed
+              - entity: automation.office_motion_sensor_on
+                secondary_info: last-changed
+              - entity: automation.start_up_lighting
+                secondary_info: last-changed
+              - entity: automation.move_blinds
+                secondary_info: last-changed
+            show_header_toggle: false
+            title: Light Automations
+            type: entities
+        type: horizontal-stack
+      - entities:
+          - entity: automation.mark_as_away
+            secondary_info: last-changed
+          - entity: automation.mark_as_home
+            secondary_info: last-changed
+          - entity: automation.ryan_just_arrived
+            secondary_info: last-changed
+          - entity: automation.ryan_just_left
+            secondary_info: last-changed
+          - entity: automation.notify_on_door_unlocking
+            secondary_info: last-changed
+        title: Status Automations
+        type: entities
+      - entities:
+          - entity: timer.lighting_backyard
+            secondary_info: last-changed
+          - entity: timer.lighting_basement
+            secondary_info: last-changed
+          - entity: timer.lighting_dining_room
+            secondary_info: last-changed
+          - entity: timer.lighting_downstairs_bathroom
+            secondary_info: last-changed
+          - entity: timer.lighting_guest_bedroom
+            secondary_info: last-changed
+          - entity: timer.lighting_kitchen
+            secondary_info: last-changed
+          - entity: timer.lighting_master_bedroom
+            secondary_info: last-changed
+          - entity: timer.lighting_office
+            secondary_info: last-changed
+          - entity: timer.lighting_porch
+            secondary_info: last-changed
+          - entity: timer.lighting_upstairs_bathroom
+            secondary_info: last-changed
+        show_header_toggle: false
+        title: Lighting Timers
+        type: entities
+      - entities:
+          - entity: automation.security_alarm_triggered
+            secondary_info: last-changed
+          - entity: automation.security_trigger_alarm_while_armed_away
+            secondary_info: last-changed
+          - entity: automation.security_trigger_alarm_while_armed_home
+            secondary_info: last-changed
+        title: Security Automations
+        type: entities
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  View | HASS
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+  - icon: 'mdi:home-assistant'
+    panel: false
+    path: hass
+    title: HASS
+    badges: []
+    background: center / cover url("/local/images/pattern.png")
+    cards:
+#     | - - - - - - - - - - - - - - - - - - -
+#     |   View | HASS | Cards
+#     | - - - - - - - - - - - - - - - - - - -
+      - type: horizontal-stack
+        cards:
+          - entity: sensor.edgex_router_uptime_percent
+            max: 100
+            min: 0
+            name: EdgeX Router
+            severity:
+              green: 93
+              red: 0
+              yellow: 80
+            theme: default
+            type: gauge
+            unit: '%'
+          - entity: sensor.unifi_server_uptime_percent
+            max: 100
+            min: 0
+            name: UniFi Server
+            severity:
+              green: 93
+              red: 0
+              yellow: 80
+            theme: default
+            type: gauge
+            unit: '%'
+          - entity: sensor.hassio_uptime_percent
+            max: 100
+            min: 0
+            name: Hassio
+            severity:
+              green: 93
+              red: 0
+              yellow: 80
+            theme: default
+            type: gauge
+            unit: '%'
+      - type: horizontal-stack
+        cards:
+          - entity: sensor.plex_server_uptime_percent
+            max: 100
+            min: 0
+            name: Plex Server
+            severity:
+              green: 93
+              red: 0
+              yellow: 80
+            theme: default
+            type: gauge
+            unit: '%'
+          - entity: sensor.radarr_uptime_percent
+            max: 100
+            min: 0
+            name: Radarr
+            severity:
+              green: 93
+              red: 0
+              yellow: 80
+            theme: default
+            type: gauge
+            unit: '%'
+          - entity: sensor.nas_server_uptime_percent
+            max: 100
+            min: 0
+            name: NAS Server
+            severity:
+              green: 93
+              red: 0
+              yellow: 80
+            theme: default
+            type: gauge
+            unit: '%'
+      - entities:
+          - entity: script.reboot
+        show_header_toggle: false
+        title: Command Line Interface
+        type: entities
+#     | - - - - - - - - - - - - - - - - - - -
+#     |   View | HASS | Cards | Plex
+#     | - - - - - - - - - - - - - - - - - - -
+      - type: horizontal-stack
+        cards:
+          - type: entities
+            show_header_toggle: off
+            entities:
+              - type: section
+                label: Plex Server
+              - type: custom:vertical-stack-in-card
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.plex_active_processes
+                        name: Active Processes
+                  - type: horizontal-stack
+                    cards:
+                      - type: gauge
+                        entity: sensor.plex_cpu_user
+                        max: 100
+                        min: 0
+                        name: User CPU
+                        severity:
+                          green: 0
+                          red: 93
+                          yellow: 50
+                      - type: gauge
+                        entity: sensor.plex_cpu_system
+                        max: 100
+                        min: 0
+                        name: System CPU
+                        severity:
+                          green: 0
+                          red: 93
+                          yellow: 50
+                  - type: custom:bar-card
+                    title: Used Memory
+                    entity: sensor.plex_memory_used
+                    title_position: inside
+                    min: 0
+                    max: 8192
+                    severity:
+                    - value: 2000
+                      color: '#40bf40'
+                    - value: 4096
+                      color: '#bf9540'
+                    - value: 8192
+                      color: '#bf4040'
+                  - type: horizontal-stack
+                    cards:
+                      - type: entities
+                        entities:
+                          - type: custom:bar-card
+                            title: System Load 1 Min
+                            entity: sensor.plex_system_load_1
+                            title_position: inside
+                            min: 0
+                            max: 10
+                            severity:
+                            - value: 0.75
+                              color: '#40bf40'
+                            - value: 2.5
+                              color: '#bf9540'
+                            - value: 10.0
+                              color: '#bf4040'
+                          - type: custom:bar-card
+                            title: System Load 5 Min
+                            entity: sensor.plex_system_load_5
+                            title_position: inside
+                            min: 0
+                            max: 10
+                            severity:
+                            - value: 0.75
+                              color: '#40bf40'
+                            - value: 2.75
+                              color: '#bf9540'
+                            - value: 10.0
+                              color: '#bf4040'
+                          - type: custom:bar-card
+                            title: System Load 15 Min
+                            entity: sensor.plex_system_load_15
+                            title_position: inside
+                            min: 0
+                            max: 10
+                            severity:
+                            - value: 0.75
+                              color: '#40bf40'
+                            - value: 2.5
+                              color: '#bf9540'
+                            - value: 10.0
+                              color: '#bf4040'
+                          - type: custom:bar-card
+                            title: Hard Drive Availablility
+                            entity: sensor.plex_disk_available
+                            title_position: inside
+                            min: 0
+                            max: 5000
+                            severity:
+                            - value: 5000
+                              color: '#40bf40'
+                            - value: 2500
+                              color: '#bf9540'
+                            - value: 0
+                              color: '#bf4040'
+                      - type: custom:vertical-stack-in-card
+                        cards:
+                          - entity: sensor.plex_disk_utilization
+                            name: Disk Utilization
+                            max: 100
+                            min: 0
+                            severity:
+                              green: 0
+                              red: 100
+                              yellow: 50
+                            theme: default
+                            type: gauge
+                            unit: '%'
+                          - type: markdown
+                            content: > 
+                              <b>Specifications</b> </br>
+                              OS    : Ubuntu 19.04 Server </br>
+                              vCPUs : 8 @ 3.025 GHz </br>
+                              RAM   : 8 GiB </br>
+                              DISK  : 5 TB
+#     | - - - - - - - - - - - - - - - - - - -
+#     |   View | HASS | Cards | HASSIO
+#     | - - - - - - - - - - - - - - - - - - -
+      - type: horizontal-stack
+        cards:
+          - type: entities
+            show_header_toggle: off
+            entities:
+              - type: section
+                label: Hassio Server
+              - type: custom:vertical-stack-in-card
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.hass_active_processes
+                        name: Active Processes
+                  - type: horizontal-stack
+                    cards:
+                      - type: gauge
+                        entity: sensor.hass_cpu_user
+                        max: 100
+                        min: 0
+                        name: User CPU
+                        severity:
+                          green: 0
+                          red: 93
+                          yellow: 50
+                      - type: gauge
+                        entity: sensor.hass_cpu_system
+                        max: 100
+                        min: 0
+                        name: System CPU
+                        severity:
+                          green: 0
+                          red: 93
+                          yellow: 50
+                  - type: custom:bar-card
+                    title: Used Memory
+                    entity: sensor.hass_memory_used
+                    title_position: inside
+                    min: 0
+                    max: 8192
+                    severity:
+                    - value: 2000
+                      color: '#40bf40'
+                    - value: 4096
+                      color: '#bf9540'
+                    - value: 8192
+                      color: '#bf4040'
+                  - type: horizontal-stack
+                    cards:
+                      - type: entities
+                        entities:
+                          - type: custom:bar-card
+                            title: System Load 1 Min
+                            entity: sensor.hass_system_load_1
+                            title_position: inside
+                            min: 0
+                            max: 10
+                            severity:
+                            - value: 0.75
+                              color: '#40bf40'
+                            - value: 2.5
+                              color: '#bf9540'
+                            - value: 10.0
+                              color: '#bf4040'
+                          - type: custom:bar-card
+                            title: System Load 5 Min
+                            entity: sensor.hass_system_load_5
+                            title_position: inside
+                            min: 0
+                            max: 10
+                            severity:
+                            - value: 0.75
+                              color: '#40bf40'
+                            - value: 2.75
+                              color: '#bf9540'
+                            - value: 10.0
+                              color: '#bf4040'
+                          - type: custom:bar-card
+                            title: System Load 15 Min
+                            entity: sensor.hass_system_load_15
+                            title_position: inside
+                            min: 0
+                            max: 10
+                            severity:
+                            - value: 0.75
+                              color: '#40bf40'
+                            - value: 2.5
+                              color: '#bf9540'
+                            - value: 10.0
+                              color: '#bf4040'
+                          - type: custom:bar-card
+                            title: Hard Drive Availablility
+                            entity: sensor.hass_disk_available
+                            title_position: inside
+                            min: 0
+                            max: 50
+                            severity:
+                            - value: 50
+                              color: '#40bf40'
+                            - value: 25
+                              color: '#bf9540'
+                            - value: 0
+                              color: '#bf4040'
+                      - type: custom:vertical-stack-in-card
+                        cards:
+                          - entity: sensor.hass_disk_utilization
+                            name: Disk Utilization
+                            max: 100
+                            min: 0
+                            severity:
+                              green: 0
+                              red: 100
+                              yellow: 50
+                            theme: default
+                            type: gauge
+                            unit: '%'
+                          - type: markdown
+                            content: > 
+                              <b>Specifications</b> </br>
+                              OS    : Ubuntu 19.04 Server </br>
+                              vCPUs : 8 @ 3.025 GHz </br>
+                              RAM   : 8 GiB </br>
+                              DISK  : 50 GiB
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  View | Project
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+  - icon: 'mdi:github-box'
+    panel: false
+    path: project
+    title: PROJECT
+    badges: []
+    background: center / cover url("/local/images/pattern.png")
+    cards:
+#     | - - - - - - - - - - - - - - - - - - -
+#     |   View | Project | Cards
+#     | - - - - - - - - - - - - - - - - - - -
+      - type: 'custom:github-card'
+        title:  F0123X Github Card
+        entities:
+          - sensor.hass_config
+      - filter:
+          include:
+            - key: sensor.hass_config.path
+              name: Project Name
+            - key: sensor.hass_config.latest_commit_message
+              name: Latest Commit
+            - key: sensor.hass_config.latest_open_issue_url
+              name: Latest Issue
+            - key: sensor.hass_config.open_issues
+              name: Open Issues
+        heading_name: Name
+        heading_state: Value
+        title: Home Assistant Config
+        type: 'custom:entity-attributes-card'
+      - entities:
+          - entity: sensor.f0123x_home_assistant_config_last_build_duration
+            name: Last Build Duration
+          - entity: sensor.f0123x_home_assistant_config_last_build_finished_at
+            name: Last Build Finished At
+          - entity: sensor.f0123x_home_assistant_config_last_build_id
+            name: Last Build Build ID
+          - entity: sensor.f0123x_home_assistant_config_last_build_started_at
+            name: Last Build Started At
+          - entity: sensor.f0123x_home_assistant_config_last_build_state
+            name: Last Build State
+          - entity: sensor.f0123x_home_assistant_config_state
+            name: State
+        show_header_toggle: false
+        title: Travis CI
+        type: entities
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  View | Network
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+  - icon: 'mdi:security-network'
+    panel: false
+    path: network
+    title: NETWORK
+    badges: [ sensor.ssl_certificate_expiry ]
+    background: center / cover url("/local/images/pattern.png")
+    cards:
+#     | - - - - - - - - - - - - - - - - - - -
+#     |   View | Network | Cards
+#     | - - - - - - - - - - - - - - - - - - -
+      - cards:
+          - entity: sensor.speedtest_download
+            max: 1000
+            min: 0
+            name: Download (Mbit/s)
+            severity:
+              green: 400
+              red: 100
+              yellow: 250
+            theme: default
+            type: gauge
+            unit: ' '
+          - entity: sensor.speedtest_upload
+            max: 300
+            min: 0
+            name: Upload (Mbit/s)
+            severity:
+              green: 250
+              red: 0
+              yellow: 125
+            theme: default
+            type: gauge
+            unit: ' '
+        type: horizontal-stack
+      - columns:
+          - name: Description
+            prop: name
+          - name: Wifi Strength
+            prop: state
+        entities:
+          include: sensor.*wifi*strength
+        title: Network Strength
+        type: 'custom:flex-table-card'
+      - clickable: true
+        columns:
+          - name: Description
+            prop: name
+          - modify: parseFloat(x)
+            name: Signal
+            prop: state
+        entities:
+          include: sensor.*signal
+        sort_by: signal
+        title: Network Strength 2
+        type: 'custom:flex-table-card'
+
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  View | ZWave
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+  - icon: 'mdi:z-wave'
+    panel: false
+    path: zwave
+    title: ZWAVE
+    badges: [ ]
+    background: center / cover url("/local/images/pattern.png")
+    cards:
+#     | - - - - - - - - - - - - - - - - - - -
+#     |   View | ZWave | Cards
+#     | - - - - - - - - - - - - - - - - - - -
+      - cards:
+          - entities:
+              - zwave.aeotec_zw090_zstick_gen5_us
+            show_header_toggle: false
+            title: Z-Wave - Aeotec Z-Stick
+            type: entities
+          - filter:
+              include:
+                - key: zwave.aeotec_zw090_zstick_gen5_us.friendly_name
+                - key: zwave.aeotec_zw090_zstick_gen5_us.manufacturer_name
+                - key: zwave.aeotec_zw090_zstick_gen5_us.product_name
+                - key: zwave.aeotec_zw090_zstick_gen5_us.is_awake
+                - key: zwave.aeotec_zw090_zstick_gen5_us.is_ready
+                - key: zwave.aeotec_zw090_zstick_gen5_us.query_stage
+                - key: zwave.aeotec_zw090_zstick_gen5_us.node_id
+                - key: zwave.aeotec_zw090_zstick_gen5_us.neighbors
+            heading_name: Attribute
+            heading_state: Value
+            type: 'custom:entity-attributes-card'
+        type: vertical-stack
+      - entities:
+          - zwave.aeotec_zw090_zstick_gen5_us
+          - zwave.ecolink_doorwindow_sensor
+          - zwave.front_door_lock
+        show_header_toggle: false
+        title: Z-Wave
+        type: entities
+      - cards:
+          - entities:
+              - zwave.front_door_lock
+            show_header_toggle: false
+            title: Z-Wave - Schlage Deadbolt
+            type: entities
+          - filter:
+              include:
+                - key: zwave.front_door_lock.friendly_name
+                  name: Name
+                - key: zwave.front_door_lock.manufacturer_name
+                  name: Manufacturer
+                - key: zwave.front_door_lock.product_name
+                  name: Product
+                - key: zwave.front_door_lock.is_awake
+                  name: Is Awake
+                - key: zwave.front_door_lock.is_ready
+                  name: Is Ready
+                - key: zwave.front_door_lock.is_failed
+                  name: Is Failed
+                - key: zwave.front_door_lock.query_stage
+                  name: Query Stage
+                - key: zwave.front_door_lock.node_id
+                  name: Node Id
+                - key: zwave.front_door_lock.neighbors
+                  name: Neighbors
+                - key: zwave.front_door_lock.averageRequestRTT
+                - key: zwave.front_door_lock.lastRequestRTT
+                - key: zwave.front_door_lock.averageResponseRTT
+                - key: zwave.front_door_lock.lastResponseRTT
+            heading_name: Attribute
+            heading_state: Value
+            type: 'custom:entity-attributes-card'
+        type: vertical-stack

@@ -10,6 +10,7 @@ import aiohttp
 import async_timeout
 from requests.auth import HTTPDigestAuth
 from homeassistant.util.async_ import run_coroutine_threadsafe
+from homeassistant.helpers.event import track_time_interval
 
 from homeassistant.const import (CONF_NAME, CONF_AUTHENTICATION,
                                  HTTP_DIGEST_AUTHENTICATION,
@@ -125,8 +126,7 @@ class BlueIrisCamera(Camera):
         return run_coroutine_threadsafe(
             self.async_camera_image(), self.hass.loop).result()
 
-    async def async_camera_image(self):
-        """Return a still image response from the camera."""
+    async def async_update_camera_image(self):
         try:
             if self.was_url_changed or not self._limit_refetch:
                 session = async_get_clientsession(
@@ -146,6 +146,10 @@ class BlueIrisCamera(Camera):
 
         except aiohttp.ClientError as err:
             _LOGGER.error(f"Error getting new camera image: {err}")
+
+    async def async_camera_image(self):
+        """Return a still image response from the camera."""
+        await self.async_update_camera_image()
 
         return self._last_image
 
