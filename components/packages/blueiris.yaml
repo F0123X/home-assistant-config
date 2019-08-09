@@ -33,3 +33,6 @@ blueiris:
     - id: Basement
       name: Basement
       room: Basement
+    - id: Backyard
+      name: Backyard
+      room: Outside
