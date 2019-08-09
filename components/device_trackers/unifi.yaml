@@ -14,7 +14,7 @@
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
 platform: unifi
-host: 10.6.23.9 #a0d7b954-unifi #172.30.33.1
+host: 10.6.23.34 #a0d7b954-unifi #172.30.33.1
 site_id: default
 username: !secret unifi_username
 password: !secret unifi_password
