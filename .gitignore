@@ -58,3 +58,4 @@ notebooks/
 tensorflow/
 www/facebox/tmp/*
 .ip_authenticated.yaml
+blueiris.advanced_configurations.yaml
