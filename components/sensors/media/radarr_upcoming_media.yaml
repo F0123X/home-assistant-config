@@ -1,0 +1,23 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+platform: radarr_upcoming_media
+api_key: !secret radarr_api
+host: !secret radarr_host
+port: !secret radarr_port
+days: 120
+ssl: false
+theaters: true
+max: 5

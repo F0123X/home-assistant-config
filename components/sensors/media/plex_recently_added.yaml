@@ -1,0 +1,26 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+platform: plex_recently_added
+token: !secret plex_token
+host: !secret plex_ip
+port: !secret plex_port
+ssl: false
+ssl_cert: false
+download_images: false
+max: 5
+section_types:
+- movie
+- show
