@@ -17,6 +17,7 @@ platform: template
 sensors:
   sensor_count:
     friendly_name: 'Number of Sensors'
+    entity_id: sensor.date
     value_template: >
       {%- set domains = ['sensor'] -%}
       {%- for domain in domains -%}
@@ -28,6 +29,7 @@ sensors:
       {%- endfor -%}
   automation_count:
     friendly_name: 'Number of Automations'
+    entity_id: sensor.date
     value_template: >
       {%- set domains = ['automation'] -%}
       {%- for domain in domains -%}
@@ -39,6 +41,7 @@ sensors:
       {%- endfor -%}
   script_count:
     friendly_name: 'Number of Scripts'
+    entity_id: sensor.date
     value_template: >
       {%- set domains = ['script'] -%}
       {%- for domain in domains -%}
@@ -50,6 +53,7 @@ sensors:
       {%- endfor -%}
   switch_count:
     friendly_name: 'Number of Switches'
+    entity_id: sensor.date
     value_template: >
       {%- set domains = ['switch'] -%}
       {%- for domain in domains -%}
@@ -61,6 +65,7 @@ sensors:
       {%- endfor -%}
   binary_sensor_count:
     friendly_name: 'Number of Binary Sensors'
+    entity_id: sensor.date
     value_template: >
       {%- set domains = ['binary_sensor'] -%}
       {%- for domain in domains -%}
@@ -72,6 +77,7 @@ sensors:
       {%- endfor -%}
   lights_count:
     friendly_name: 'Number of Lights'
+    entity_id: sensor.date
     value_template: >
       {%- set domains = ['light'] -%}
       {%- for domain in domains -%}
@@ -83,6 +89,7 @@ sensors:
       {%- endfor -%}
   tracker_count:
     friendly_name: 'Number of Devices'
+    entity_id: sensor.date
     value_template: >
       {%- set domains = ['device_tracker'] -%}
       {%- for domain in domains -%}
@@ -94,6 +101,7 @@ sensors:
       {%- endfor -%}
   camera_count:
     friendly_name: 'Number of Devices'
+    entity_id: sensor.date
     value_template: >
       {%- set domains = ['camera'] -%}
       {%- for domain in domains -%}
@@ -105,6 +113,7 @@ sensors:
       {%- endfor -%}
   media_player_count:
     friendly_name: 'Number of Devices'
+    entity_id: sensor.date
     value_template: >
       {%- set domains = ['media_player'] -%}
       {%- for domain in domains -%}

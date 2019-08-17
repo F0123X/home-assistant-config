@@ -18,7 +18,7 @@
 #               Logger
 # # # # # # # # # # # # # # # # # # # # # # #
 logger:
-  default: debug
+  default: info
 # - - - - - - - - - - - - - - - - - - - - - -
 # Specific Logs
 # - - - - - - - - - - - - - - - - - - - - - -

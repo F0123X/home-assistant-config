@@ -36,5 +36,7 @@ homeassistant:
 hacs:
   token: !secret hacs_github_token
 
+lovelace_gen:
+
 lovelace:
   mode: yaml
