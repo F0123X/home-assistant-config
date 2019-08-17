@@ -1,0 +1,88 @@
+# lovelace_gen
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  View | Automation
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+icon: 'mdi:home-automation'
+panel: false
+path: automation
+title: AUTOMATION
+badges: []
+background: center / cover url("/local/images/pattern.png")
+cards:
+#     | - - - - - - - - - - - - - - - - - - -
+#     |   View | Automation | Cards
+#     | - - - - - - - - - - - - - - - - - - -
+  - type: entities
+    title: Light Automations
+    show_header_toggle: false
+    entities:
+      - entity: automation.dining_room_lights_off
+        secondary_info: last-changed
+      - entity: automation.dining_room_motion_sensor_on
+        secondary_info: last-changed
+      - entity: automation.downstairs_bathroom_lights_off
+        secondary_info: last-changed
+      - entity: automation.downstairs_bathroom_motion_sensor_on
+        secondary_info: last-changed
+      - entity: automation.master_bedroom_lights_off
+        secondary_info: last-changed
+      - entity: automation.master_bedroom_motion_sensor_on
+        secondary_info: last-changed
+      - entity: automation.office_lights_off
+        secondary_info: last-changed
+      - entity: automation.office_motion_sensor_on
+        secondary_info: last-changed
+      - entity: automation.start_up_lighting
+        secondary_info: last-changed
+      - entity: automation.move_blinds
+        secondary_info: last-changed 
+  - type: entities
+    title: Status Automations
+    show_header_toggle: false
+    entities:
+      - entity: automation.mark_as_away
+        secondary_info: last-changed
+      - entity: automation.mark_as_home
+        secondary_info: last-changed
+      - entity: automation.ryan_just_arrived
+        secondary_info: last-changed
+      - entity: automation.ryan_just_left
+        secondary_info: last-changed
+      - entity: automation.notify_on_door_unlocking
+        secondary_info: last-changed
+  - type: entities
+    title: Lighting Timers
+    show_header_toggle: false
+    entities:
+      - entity: timer.lighting_backyard
+        secondary_info: last-changed
+      - entity: timer.lighting_basement
+        secondary_info: last-changed
+      - entity: timer.lighting_dining_room
+        secondary_info: last-changed
+      - entity: timer.lighting_downstairs_bathroom
+        secondary_info: last-changed
+      - entity: timer.lighting_guest_bedroom
+        secondary_info: last-changed
+      - entity: timer.lighting_kitchen
+        secondary_info: last-changed
+      - entity: timer.lighting_master_bedroom
+        secondary_info: last-changed
+      - entity: timer.lighting_office
+        secondary_info: last-changed
+      - entity: timer.lighting_porch
+        secondary_info: last-changed
+      - entity: timer.lighting_upstairs_bathroom
+        secondary_info: last-changed
+  - type: entities
+    title: Security Automations
+    show_header_toggle: false
+    entities:
+      - entity: automation.security_alarm_triggered
+        secondary_info: last-changed
+      - entity: automation.security_trigger_alarm_while_armed_away
+        secondary_info: last-changed
+      - entity: automation.security_trigger_alarm_while_armed_home
+        secondary_info: last-changed

@@ -1,0 +1,129 @@
+# lovelace_gen
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  Compact Custom Header 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+type: horizontal-stack
+cards:
+  - type: entities
+    show_header_toggle: off
+    entities:
+      - type: section
+        label: "{{ system }} Server"
+      - type: custom:vertical-stack-in-card
+        cards:
+#          - type: entities
+#            entities:
+#              - entity: sensor.{{ system | lower }}_active_processes
+#                name: Active Processes
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.{{ system | lower }}_cpu_user
+                max: 100
+                min: 0
+                name: User CPU
+                severity:
+                  green: 0
+                  red: 93
+                  yellow: 50
+              - type: gauge
+                entity: sensor.{{ system | lower }}_cpu_system
+                max: 100
+                min: 0
+                name: System CPU
+                severity:
+                  green: 0
+                  red: 93
+                  yellow: 50
+          - type: custom:bar-card
+            title: Used Memory
+            entity: sensor.{{ system | lower }}_memory_used
+            title_position: inside
+            min: 0
+            max: {{ ram }}
+            severity:
+            - value: {{ ram // 4 }}
+              color: '#40bf40'
+            - value: {{ ram // 2 }}
+              color: '#bf9540'
+            - value: {{ ram }}
+              color: '#bf4040'
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - type: custom:bar-card
+                    title: System Load 1 Min
+                    entity: sensor.{{ system | lower }}_system_load_1
+                    title_position: inside
+                    min: 0
+                    max: 10
+                    severity:
+                    - value: 0.75
+                      color: '#40bf40'
+                    - value: 2.5
+                      color: '#bf9540'
+                    - value: 10.0
+                      color: '#bf4040'
+                  - type: custom:bar-card
+                    title: System Load 5 Min
+                    entity: sensor.{{ system | lower }}_system_load_5
+                    title_position: inside
+                    min: 0
+                    max: 10
+                    severity:
+                    - value: 0.75
+                      color: '#40bf40'
+                    - value: 2.75
+                      color: '#bf9540'
+                    - value: 10.0
+                      color: '#bf4040'
+                  - type: custom:bar-card
+                    title: System Load 15 Min
+                    entity: sensor.{{ system | lower }}_system_load_15
+                    title_position: inside
+                    min: 0
+                    max: 10
+                    severity:
+                    - value: 0.75
+                      color: '#40bf40'
+                    - value: 2.5
+                      color: '#bf9540'
+                    - value: 10.0
+                      color: '#bf4040'
+                  - type: custom:bar-card
+                    title: Hard Drive Availablility
+                    entity: sensor.{{ system | lower }}_disk_available
+                    title_position: inside
+                    min: 0
+                    max: {{ disk }}
+                    severity:
+                    - value: {{ disk }}
+                      color: '#40bf40'
+                    - value: {{ disk // 2 }}
+                      color: '#bf9540'
+                    - value: 0
+                      color: '#bf4040'
+              - type: custom:vertical-stack-in-card
+                cards:
+                  - entity: sensor.{{ system | lower }}_disk_utilization
+                    name: Disk Utilization
+                    max: 100
+                    min: 0
+                    severity:
+                      green: 0
+                      red: 100
+                      yellow: 50
+                    theme: default
+                    type: gauge
+                    unit: '%'
+                  - type: markdown
+                    content: > 
+                      <b>Specifications</b> </br>
+                      OS    : {{ d_os }} </br>
+                      vCPUs : {{ d_vcpus }} </br>
+                      RAM   : {{ d_ram }} </br>
+                      DISK  : {{ d_disk }}
+

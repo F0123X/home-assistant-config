@@ -1,0 +1,121 @@
+# lovelace_gen
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  View | Security
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+icon: 'mdi:security'
+panel: false
+path: security
+title: SECURITY
+badges: []
+background: center / cover url("/local/images/pattern.png")
+cards:
+#     | - - - - - - - - - - - - - - - - - - -
+#     |   View | Security | Cards
+#     | - - - - - - - - - - - - - - - - - - -
+  - type: alarm-panel
+    style:
+      "#keypad mwc-button":
+        $: |
+          button {
+            font-size: 20px !important;
+          }
+      "#keypad mwc-button:nth-of-type(12)":
+        $: |
+          button {
+            font-size: 14px !important;
+          }
+    entity: alarm_control_panel.home_alarm
+    name: Security Alarm
+    states:
+      - arm_home
+      - arm_away
+  - camera_image: camera.living_room
+    camera_view: live
+    entities:
+      - binary_sensor.living_room_motion
+      - binary_sensor.living_room_audio
+      - binary_sensor.living_room_watchdog
+    title: Living Room
+    type: picture-glance
+  - camera_image: camera.dining_room
+    camera_view: live
+    entities:
+      - binary_sensor.dining_room_motion
+      - binary_sensor.dining_room_audio
+      - binary_sensor.dining_room_watchdog
+    title: Dining Room
+    type: picture-glance
+  - camera_image: camera.basement
+    camera_view: live
+    entities:
+      - binary_sensor.basement_motion
+      - binary_sensor.basement_audio
+      - binary_sensor.basement_watchdog
+    title: Basement
+    type: picture-glance
+  - camera_image: camera.porch
+    camera_view: live
+    entities:
+      - binary_sensor.porch_motion
+      - binary_sensor.porch_audio
+      - binary_sensor.porch_watchdog
+    title: Porch
+    type: picture-glance
+  - camera_image: camera.backyard
+    camera_view: live
+    entities:
+      - binary_sensor.backyard_motion
+      - binary_sensor.backyard_audio
+      - binary_sensor.backyard_watchdog
+    title: Backyard
+    type: picture-glance
+  - entities:
+      - entity: script.porch_view
+        name: Front Porch
+    show_header_toggle: false
+    title: Security View
+    type: entities
+  - entities:
+      - entity: lock.front_door_lock
+        name: Front Door
+    show_header_toggle: false
+    title: Lock
+    type: entities
+  - entities:
+      - entity: binary_sensor.front_door
+        secondary_info: last-changed
+      - entity: binary_sensor.front_door_lock
+        secondary_info: last-changed
+      - entity: binary_sensor.front_left_window
+        secondary_info: last-changed
+      - entity: binary_sensor.front_right_window
+        secondary_info: last-changed
+      - entity: binary_sensor.basement_door
+        secondary_info: last-changed
+      - entity: binary_sensor.back_door
+        secondary_info: last-changed
+      - entity: sensor.ryan_status
+        secondary_info: last-changed
+    show_header_toggle: false
+    title: Perimeter Sensors
+    type: entities
+  - columns: 3
+    entities:
+      - entity: sensor.front_door_battery
+        name: Front Door
+      - entity: sensor.front_door_lock_battery
+        name: Front Door Lock
+      - entity: sensor.front_left_window_sensor_battery
+        name: Front Left Window
+      - entity: sensor.front_right_window_sensor_battery
+        name: Front Right Window
+      - entity: sensor.basement_door_sensor_battery
+        name: Basement Door
+      - entity: sensor.back_door_sensor_battery
+        name: Back Door
+      - entity: sensor.living_room_smoke_detector_battery
+        name: Office Smoke
+    title: Sensor Battery Levels
+    type: glance

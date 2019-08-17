@@ -1,0 +1,41 @@
+# lovelace_gen
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  Triple Gauge Card 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+type: horizontal-stack
+cards:
+  - entity: {{ entity_id_1 }} # sensor.edgex_router_uptime_percent
+    max: 100
+    min: 0
+    name: {{ entity_name_1 }} # EdgeX Router
+    severity:
+      green: 93
+      red: 0
+      yellow: 80
+    theme: default
+    type: gauge
+    unit: '%'
+  - entity: {{ entity_id_2 }} # sensor.unifi_server_uptime_percent
+    max: 100
+    min: 0
+    name: {{ entity_name_2 }} # UniFi Server
+    severity:
+      green: 93
+      red: 0
+      yellow: 80
+    theme: default
+    type: gauge
+    unit: '%'
+  - entity: {{ entity_id_3 }} # sensor.hassio_uptime_percent
+    max: 100
+    min: 0
+    name: {{ entity_name_3 }} # Hassio Server
+    severity:
+      green: 93
+      red: 0
+      yellow: 80
+    theme: default
+    type: gauge
+    unit: '%'

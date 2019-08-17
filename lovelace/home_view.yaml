@@ -1,0 +1,243 @@
+# lovelace_gen
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  View | Home
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+icon: 'mdi:home'
+panel: false
+path: default
+title: HOME
+badges: []
+background: center / cover url("/local/images/pattern.png")
+cards:
+#     | - - - - - - - - - - - - - - - - - - -
+#     |   View | Main | Cards
+#     | - - - - - - - - - - - - - - - - - - -
+#     | - - - - - - - - - - - - - - - - - - -
+#     |   View | Lighting | Cards
+#     | - - - - - - - - - - - - - - - - - - -
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            entity: group.master_bedroom_lights
+            icon: mdi:hotel
+            color_type: icon
+            name: Master Bedroom
+            styles:
+              name:
+                - color: var(--button-card-light-color)
+              card:
+                - font-size: 12px
+                - font-weight: bold
+          - type: "custom:button-card"
+            entity: group.office_lights
+            icon: mdi:desk-lamp
+            color_type: icon
+            name: Office
+            styles:
+              name:
+                - color: var(--button-card-light-color)
+              card:
+                - font-size: 12px
+                - font-weight: bold
+          - type: "custom:button-card"
+            entity: group.upstairs_bathroom_lights
+            icon: mdi:shower
+            color_type: icon
+            name: Upstairs Bathroom
+            styles:
+              name:
+                - color: var(--button-card-light-color)
+              card:
+                - font-size: 12px
+                - font-weight: bold
+          - type: "custom:button-card"
+            entity: group.upstairs_hallway_lights
+            icon: mdi:stairs
+            color_type: icon
+            name: Upstairs Hallway
+            styles:
+              name:
+                - color: var(--button-card-light-color)
+              card:
+                - font-size: 12px
+                - font-weight: bold
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            entity: group.living_room_lights
+            icon: mdi:sofa
+            color_type: icon
+            name: Living Room
+            styles:
+              name:
+                - color: var(--button-card-light-color)
+              card:
+                - font-size: 12px
+                - font-weight: bold
+          - type: "custom:button-card"
+            entity: group.downstairs_bathroom_lights
+            icon: mdi:toilet
+            color_type: icon
+            name: Downstairs Bathroom
+            styles:
+              name:
+                - color: var(--button-card-light-color)
+              card:
+                - font-size: 12px
+                - font-weight: bold
+          - type: "custom:button-card"
+            entity: group.dining_room_lights
+            icon: mdi:silverware
+            color_type: icon
+            name: Dining Room
+            styles:
+              name:
+                - color: var(--button-card-light-color)
+              card:
+                - font-size: 12px
+                - font-weight: bold
+          - type: "custom:button-card"
+            color_type: blank-card
+  - type: picture-elements
+    style: |
+      ha-card {
+        border-radius: 20px;
+        box-shadow: '3px 3px rgba(0,0,0,0.4)';
+        border: 'solid 1px rgba(100,100,100,0.3)';
+        overflow: hidden;
+      }
+    image: /local/assets/house/upstairs_bathroom.png
+    elements:
+      - type: custom:text-element
+        text: LIGHT
+        style:
+          top: 3.5%
+          left: 92.5%
+      - type: state-icon
+        entity: switch.upstairs_bathroom_light
+        style:
+          top: 10.5%
+          left: 92.5%
+          border: 2px solid
+          border-radius: 50%
+        tap_action:
+          action: toggle
+      - type: custom:text-element
+        text: HUM
+        style:
+          top: 33%
+          left: 92.5%
+      - type: state-label
+        entity: sensor.upstairs_bathroom_humidity
+        style: 
+          top: 39%
+          left: 92.5%
+          border: 2px solid
+          border-radius: 15%
+      - type: custom:text-element
+        text: TEMP
+        style:
+          top: 45%
+          left: 92.5%
+      - type: state-label
+        entity: sensor.upstairs_bathroom_temperature
+        style: 
+          top: 51%
+          left: 92.5%
+          border: 2px solid
+          border-radius: 15%
+      - type: custom:text-element
+        text: WIFI
+        style:
+          top: 57%
+          left: 92.5%
+      - type: state-label
+        entity: sensor.upstairs_bathroom_wifi_strength
+        style: 
+          top: 63%
+          left: 92.5%
+          border: 2px solid
+          border-radius: 15%
+      - type: custom:text-element
+        text: SHOWER
+        style:
+          top: 86%
+          left: 92.5%
+      - type: state-icon
+        entity: binary_sensor.shower
+        style:
+          top: 92.5%
+          left: 92.5%
+          border: 2px solid
+          border-radius: 50%
+  - type: picture-elements
+    style: |
+      ha-card {
+        border-radius: 20px;
+        box-shadow: '3px 3px rgba(0,0,0,0.4)';
+        border: 'solid 1px rgba(100,100,100,0.3)';
+        overflow: hidden;
+      }
+    image: /local/assets/house/downstairs_bathroom.png
+    elements:
+      - type: custom:text-element
+        text: LIGHT
+        style:
+          top: 3.5%
+          left: 92.5%
+      - type: state-icon
+        entity: switch.downstairs_bathroom_light
+        style:
+          top: 10.5%
+          left: 92.5%
+          border: 2px solid
+          border-radius: 50%
+        tap_action:
+          action: toggle
+      - type: custom:text-element
+        text: HUM
+        style:
+          top: 33%
+          left: 92.5%
+      - type: state-label
+        entity: sensor.downstairs_bathroom_humidity
+        style: 
+          top: 39%
+          left: 92.5%
+          border: 2px solid
+          border-radius: 15%
+      - type: custom:text-element
+        text: TEMP
+        style:
+          top: 45%
+          left: 92.5%
+      - type: state-label
+        entity: sensor.downstairs_bathroom_temperature
+        style: 
+          top: 51%
+          left: 92.5%
+          border: 2px solid
+          border-radius: 15%
+      - type: custom:text-element
+        text: WIFI
+        style:
+          top: 57%
+          left: 92.5%
+      - type: state-label
+        entity: sensor.downstairs_bathroom_wifi_strength
+        style: 
+          top: 63%
+          left: 92.5%
+          border: 2px solid
+          border-radius: 15%
+      - type: state-label
+        entity: timer.lighting_downstairs_bathroom
+        style:
+          top: 92.5%
+          left: 92.5%
+          border: 2px solid
+          border-radius: 50%

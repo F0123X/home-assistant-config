@@ -1,0 +1,78 @@
+# lovelace_gen
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  View | Climate
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+icon: 'mdi:weather-sunny'
+panel: false
+path: climate
+title: CLIMATE
+badges: []
+background: center / cover url("/local/images/pattern.png")
+cards:
+#     | - - - - - - - - - - - - - - - - - - -
+#     |   View | Climate | Cards
+#     | - - - - - - - - - - - - - - - - - - -
+  - cards:
+      - entities:
+          - entity: sensor.living_room_temperature
+            name: Living Room
+          - entity: sensor.downstairs_bathroom_temperature
+            name: Downstairs Bathroom
+          - entity: sensor.dining_room_temperature
+            name: Dining Room
+          - entity: sensor.kitchen_temperature
+            name: Kitchen
+        title: First Floor Temperatures
+        type: history-graph
+      - entities:
+          - entity: sensor.master_bedroom_temperature
+            name: Master Bedroom
+          - entity: sensor.upstairs_bathroom_temperature
+            name: Upstairs Bathroom
+          - entity: sensor.office_temperature
+            name: Office
+        show_header_toggle: false
+        title: Second Floor Temperatures
+        type: history-graph
+    type: vertical-stack
+  - entity: climate.living_room
+    name: Living Room
+    theme: thermostat
+    type: thermostat
+  - columns:
+      - name: Description
+        prop: name
+      - modify: Math.round(x)/1.
+        name: Temperature
+        prop: state
+    entities:
+      include: sensor.*temperature
+    title: Temperature
+    type: 'custom:flex-table-card'
+  - entity: weather.dark_sky
+    type: weather-forecast
+  - aspect_ratio: 100%
+    type: iframe
+    url: 'https://embed.windy.com/embed2.html'
+  - columns:
+      - name: Description
+        prop: name
+      - modify: Math.round(x)/1.
+        name: Humidity
+        prop: state
+    entities:
+      include: sensor.*humidity
+    title: Humidity
+    type: 'custom:flex-table-card'
+  - entity: script.temperatures
+    hold_action:
+      action: none
+    icon: 'mdi:weather-sunny'
+    name: Get Temperatures
+    show_icon: true
+    show_name: true
+    tap_action:
+      action: toggle
+    type: entity-button

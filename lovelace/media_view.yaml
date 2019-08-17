@@ -1,0 +1,50 @@
+# lovelace_gen
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  View | Media
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+icon: 'mdi:video'
+panel: false
+path: media
+title: MEDIA
+badges: []
+background: center / cover url("/local/images/pattern.png")
+cards:
+#     | - - - - - - - - - - - - - - - - - - -
+#     |   View | Media | Cards
+#     | - - - - - - - - - - - - - - - - - - -
+  - entity: media_player.samsung_smart_tv
+    type: media-control
+  - entity: media_player.living_room_sonos
+    hide:
+      icon: true
+      power: true
+      source: true
+    speaker_group:
+      entities:
+        - entity_id: media_player.living_room_sonos
+          name: Living Room Sonos
+        - entity_id: media_player.family_room_sonos
+          name: Family Room Sonos
+        - entity_id: media_player.dining_room_sonos
+          name: Dining Room Sonos
+      platform: sonos
+      show_group_count: true
+    type: 'custom:mini-media-player'
+  - entity: sensor.plex_recently_added
+    title: Recently Downloaded
+    type: 'custom:upcoming-media-card'
+  - type: custom:upcoming-media-card
+    title: Upcoming Movies
+    entity: sensor.radarr_upcoming_media
+  - entity: media_player.entryway_tv
+    type: media-control
+  - entity: media_player.master_bedroom_display
+    type: media-control
+  - entity: media_player.living_room_sonos
+    type: media-control
+  - entity: media_player.family_room_sonos
+    type: media-control
+  - entity: media_player.dining_room_sonos
+    type: media-control
