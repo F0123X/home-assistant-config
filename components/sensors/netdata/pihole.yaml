@@ -1,0 +1,68 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+platform: netdata
+host: 10.6.23.2
+port: 19999
+name: PiHole
+resources: 
+  'Memory Used':
+    data_group: system.ram 
+    element: used
+    icon: mdi:memory
+  'Active Processes':
+    data_group: system.active_processes
+    element: active
+    icon: mdi:counter
+  'System Load 1':
+    data_group: system.load
+    element: load1
+    icon: mdi:chip
+  'System Load 5':
+    data_group: system.load
+    element: load5
+    icon: mdi:chip
+  'System Load 15':
+    data_group: system.load
+    element: load15
+    icon: mdi:chip
+  'System Uptime':
+    data_group: system.uptime
+    element: uptime
+    icon: mdi:clock
+  'Disk Utilization':
+    data_group: disk_util.sda
+    element: utilization
+    icon: mdi:harddisk
+  'Cpu User':
+    data_group: system.cpu
+    element: user
+    icon: mdi:account-tie
+  'Cpu System':
+    data_group: system.cpu
+    element: system
+    icon: mdi:chip
+  'Disk Used':
+    data_group: disk_space._
+    element: used
+    icon: mdi:harddisk
+  'Disk Reserved':
+    data_group: disk_space._
+    element: reserved_for_root
+    icon: mdi:harddisk
+  'Disk Available':
+    data_group: disk_space._
+    element: avail
+    icon: mdi:harddisk

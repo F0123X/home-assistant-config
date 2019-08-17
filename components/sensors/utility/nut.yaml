@@ -1,0 +1,26 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+#                     #                     #
+#                   #   #                   #
+#                 #       #                 #
+#               #           #               #
+#             #     Home      #             #
+#           #                   #           #
+#         # # #   Assistant   # # #         #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             #               #             #
+#             # # # # # # # # #             #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+platform: nut
+name: "CyberPower 1000"
+host: 40817795-nut
+username: !secret nut_username
+password: !secret nut_password
+resources:
+  - battery.charge
+  - battery.runtime
+  - ups.load
+  - ups.status.display
+  - output.voltage
