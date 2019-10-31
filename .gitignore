@@ -42,7 +42,7 @@ deps/
 appdaemon/
 
 # Remove Node Red except flows
-node-red/
+node-red/*
 # .config.json
 # .sessions.json
 # flows_cred.json
@@ -61,3 +61,4 @@ www/facebox/tmp/*
 .ip_authenticated.yaml
 blueiris.advanced_configurations.yaml
 .spotify-token-cache
+#node-red/flows.json
