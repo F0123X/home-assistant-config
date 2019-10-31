@@ -18,13 +18,15 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class BlueIrisHomeAssistant:
-    def __init__(self, hass, scan_interval):
+    def __init__(self, hass, scan_interval, cast_url):
         self._scan_interval = scan_interval
         self._hass = hass
         self._camera_list = None
         self._ui_lovelace_data = [UI_LOVELACE]
         self._script_data = []
         self._input_select_data = INPUT_SELECT
+
+        self._cast_template = cast_url.replace('[CAM_ID]', f'" ~ {HA_CAM_STATE} ~"')
 
     def initialize(self, bi_refresh_callback, camera_list):
         self._camera_list = camera_list
@@ -90,14 +92,17 @@ class BlueIrisHomeAssistant:
         return camera_data
 
     @staticmethod
-    def build_script(camera_conditions, media_player_conditions):
+    def build_script(camera_conditions, media_player_conditions, cast_template):
         media_player_condition = ', '.join(media_player_conditions)
         camera_condition = ', '.join(camera_conditions)
 
         script = SCRIPT.replace('[media_player_conditions]',
-                                media_player_condition). \
-            replace('[camera_conditions]',
-                    camera_condition)
+                                media_player_condition)
+
+        script = script.replace('[camera_conditions]',
+                                camera_condition)
+
+        script = script.replace('[bi-url]', cast_template)
 
         _LOGGER.info(f'Script: {script}')
 
@@ -165,7 +170,6 @@ class BlueIrisHomeAssistant:
         for camera in self._camera_list:
             camera_details = self._camera_list[camera]
             camera_name = camera_details.get(CONF_NAME)
-            camera_stream_source = camera_details.get(CONF_STREAM_SOURCE)
 
             camera_options.append(INPUT_SELECT_OPTION.replace('[item]', camera_name))
 
@@ -173,7 +177,7 @@ class BlueIrisHomeAssistant:
                 is_first = False
 
             camera_condition = self.get_script_condition(camera_name,
-                                                         camera_stream_source)
+                                                         camera)
 
             camera_conditions.append(camera_condition)
 
@@ -211,7 +215,9 @@ class BlueIrisHomeAssistant:
 
             ui_lovelace = self.build_ui_lovelace(camera_ui_items)
             input_select = self.build_input_select(camera_options, media_player_options)
-            script = self.build_script(camera_conditions, media_player_conditions)
+            script = self.build_script(camera_conditions,
+                                       media_player_conditions,
+                                       self._cast_template)
 
             components_path = self._hass.config.path('blueiris.advanced_configurations.yaml')
 

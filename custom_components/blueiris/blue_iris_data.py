@@ -1,8 +1,10 @@
 import logging
 
-from homeassistant.const import (CONF_ROOM, CONF_NAME, CONF_ID)
+from homeassistant.const import (CONF_ROOM, CONF_NAME, CONF_ID, CONF_USERNAME,
+                                 CONF_PASSWORD, CONF_AUTHENTICATION)
 from homeassistant.components.generic.camera import (CONF_STREAM_SOURCE,
                                                      CONF_STILL_IMAGE_URL)
+
 
 from .const import *
 from .blue_iris_api import BlueIrisApi
@@ -14,7 +16,7 @@ class BlueIrisData:
     """The Class for handling the data retrieval."""
 
     def __init__(self, host, port, cameras, username, password, ssl, exclude,
-                 profiles, scan_interval):
+                 profiles, scan_interval, cv_template):
         """Initialize the data object."""
         self._was_initialized = False
         self._scan_interval = scan_interval
@@ -31,8 +33,12 @@ class BlueIrisData:
         self._image_url = None
         self._credentials = None
         self._base_url = None
+        self._cast_url = None
+        self._cv_template = cv_template
+        self._username = username
+        self._password = password
 
-        self.set_blue_iris_urls(host, port, ssl, username, password)
+        self.set_blue_iris_urls(host, port, ssl)
 
         self.set_profiles(profiles)
 
@@ -44,6 +50,10 @@ class BlueIrisData:
     @property
     def scan_interval(self):
         return self._scan_interval
+
+    @property
+    def cast_url(self):
+        return self._cast_url
 
     @property
     def base_url(self):
@@ -96,26 +106,32 @@ class BlueIrisData:
                 self._profile_armed is not None and
                 self._profile_unarmed is not None)
 
-    def set_blue_iris_urls(self, host, port, ssl, username, password):
+    def set_blue_iris_urls(self, host, port, ssl):
         self._credentials = ''
-        if username is not None and password is not None:
-            self._credentials = f'{username}:{password}@'
+        cast_credentials = ""
+        if self._username is not None and self._password is not None:
+            self._credentials = f'{self._username}:{self._password}@'
+            cast_credentials = f"?user={self._username}&pw={self._password}"
 
-        self._base_url = f'{PROTOCOLS[ssl]}://{self._credentials}{host}:{port}'
+        self._base_url = f'{PROTOCOLS[ssl]}://{host}:{port}'
+        self._cast_url = f'{PROTOCOLS[ssl]}://{host}:{port}/mjpg/[CAM_ID]/video.mjpg{cast_credentials}'
 
         self._image_url = f'{self._base_url}/image/[camera_id]?q=100&s=100'
-        self._stream_url = f'{self._base_url}/livestream.htm?cam=[camera_id]'
+        self._stream_url = f'{self._base_url}/h264/[camera_id]/temp.m3u8'
 
     def add_camera(self, camera):
         camera_id = camera.get(CONF_ID)
 
         camera_details = {
+            CONF_ID: camera_id,
             CONF_NAME: camera.get(CONF_NAME, camera_id),
             CONF_ROOM: camera.get(CONF_ROOM),
-            CONF_STILL_IMAGE_URL: self._image_url.replace(
-                CAMERA_ID_PLACEHOLDER, camera_id),
+            CONF_STILL_IMAGE_URL: self._cv_template(self._image_url.replace(
+                CAMERA_ID_PLACEHOLDER, camera_id)),
             CONF_STREAM_SOURCE: self._stream_url.replace(
                 CAMERA_ID_PLACEHOLDER, camera_id),
+            CONF_USERNAME: self._username,
+            CONF_PASSWORD: self._password
         }
 
         _LOGGER.debug(f"Blue Iris camera loaded, details: {camera_details}")
