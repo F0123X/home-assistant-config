@@ -29,9 +29,20 @@ homeassistant:
   customize_glob: !include customizations/customize_glob.yaml
   packages: !include_dir_named components/packages
   auth_providers:
-   - type: homeassistant
-   - type: legacy_api_password
-     api_password: !secret http_password
+    - type: homeassistant
+    - type: legacy_api_password
+      api_password: !secret http_password
+    - type: trusted_networks
+      trusted_networks:
+        - !secret trusted_network_home
+        - !secret trusted_network_hassio
+        - !secret trusted_network_bridge
+      trusted_users:
+        !secret trusted_user_default_ip: !secret trusted_user_default_id
+        !secret trusted_user_kiosk_ip: !secret trusted_user_kiosk_id
+        !secret trusted_user_phone_ip: !secret trusted_user_phone_id
+        !secret trusted_user_mirror_ip: !secret trusted_user_mirror_id
+      allow_bypass_login: true
 
 hacs:
   token: !secret hacs_github_token
@@ -40,3 +51,8 @@ lovelace_gen:
 
 lovelace:
   mode: yaml
+
+google:
+  client_id: !secret calendar_client_id
+  client_secret: !secret calendar_client_secret
+  track_new_calendar: false
