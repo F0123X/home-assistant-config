@@ -14,13 +14,17 @@
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
 platform: netdata
-host: 10.6.23.33
+host: 10.6.23.237
 port: 19999
 name: Plex
 resources: 
   'Memory Used':
     data_group: system.ram 
     element: used
+    icon: mdi:memory
+  'Memory Available':
+    data_group: mem.available
+    element: MemAvailable
     icon: mdi:memory
   'Active Processes':
     data_group: system.active_processes

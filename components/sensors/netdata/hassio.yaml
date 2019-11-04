@@ -22,6 +22,10 @@ resources:
     data_group: system.ram 
     element: used
     icon: mdi:memory
+  'Memory Available':
+    data_group: mem.available
+    element: MemAvailable
+    icon: mdi:memory
   'Active Processes':
     data_group: system.active_processes
     element: active

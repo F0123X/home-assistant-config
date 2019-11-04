@@ -13,11 +13,8 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-alias: StartUp
-sequence:
-  - service: notify.notify
-    data:
-      message: Home Assistant is starting up!
-  - service: frontend.set_theme
-    data:
-      name: hass
+plex:
+  host: !secret plex_ip
+  port: !secret plex_port
+  token: !secret plex_token
+  

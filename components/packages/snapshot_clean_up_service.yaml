@@ -13,11 +13,7 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-alias: StartUp
-sequence:
-  - service: notify.notify
-    data:
-      message: Home Assistant is starting up!
-  - service: frontend.set_theme
-    data:
-      name: hass
+clean_up_snapshots_service:
+  host: !secret snapshot_clean_up_host
+  token: !secret snapshot_clean_up_token
+  number_of_snapshots_to_keep: 3

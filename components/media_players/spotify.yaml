@@ -13,11 +13,6 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-influxdb:
-  host: !secret influxdb_host #a0d7b954-influxdb
-  port: 8086
-  database: !secret influxdb_database
-  username: !secret influxdb_username
-  password: !secret influxdb_password
-  max_retries: 3
-  default_measurement: state
+platform: spotify
+client_id: !secret spotify_client_id
+client_secret: !secret spotify_client_secret

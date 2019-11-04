@@ -13,11 +13,4 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-alias: StartUp
-sequence:
-  - service: notify.notify
-    data:
-      message: Home Assistant is starting up!
-  - service: frontend.set_theme
-    data:
-      name: hass
+pi_hole:

@@ -21,18 +21,18 @@ blueiris:
   password: !secret bi_password
   # List of camera objects
   camera:
-    - id: LivingRoom
+    - id: cam03
       name: Living Room
       room: Living Room
-    - id: DiningRoom
+    - id: cam01
       name: Dining Room
       room: Dining Room
-    - id: Porch
+    - id: cam04
       name: Porch
       room: Outside
-    - id: Basement
+    - id: cam05
       name: Basement
       room: Basement
-    - id: Backyard
+    - id: cam02
       name: Backyard
       room: Outside

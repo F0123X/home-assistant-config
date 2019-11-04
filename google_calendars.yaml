@@ -1,0 +1,6 @@
+- cal_id: !secret google_email
+  entities:
+  - device_id: personal
+    ignore_availability: true
+    name: Personal
+    track: true

@@ -13,11 +13,15 @@
 #             # # # # # # # # #             #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
-alias: StartUp
-sequence:
-  - service: notify.notify
-    data:
-      message: Home Assistant is starting up!
-  - service: frontend.set_theme
-    data:
-      name: hass
+# - - - - - - - - - - - - - - - - - - - - - -
+# On Start - Hassio Backup
+# LoveLace UI
+# - - - - - - - - - - - - - - - - - - - - - -
+alias: Daily snapshot clean up
+initial_state: 'on'
+trigger: 
+  platform: time
+  at: '06:00:00'
+condition:
+action:
+  - service: clean_up_snapshots_service.clean_up
