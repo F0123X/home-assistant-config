@@ -1,0 +1,14 @@
+# lovelace_gen
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  Label Heading Card 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+type: custom:button-card
+color_type: label-card
+color: 'var(--ha-card-background)'
+name: {{ name }}
+styles:
+  card: [ border-radius: 0px, padding: 5px]
+  name: [ color: 'var(--triadic-color-blue)', font-size: 1.4em, font-weight: bold ]
+

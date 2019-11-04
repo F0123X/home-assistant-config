@@ -9,7 +9,7 @@ panel: false
 path: security
 title: SECURITY
 badges: []
-background: center / cover url("/local/images/pattern.png")
+#background: center / cover url("/local/images/pattern.png")
 cards:
 #     | - - - - - - - - - - - - - - - - - - -
 #     |   View | Security | Cards

@@ -1,0 +1,77 @@
+# lovelace_gen
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  View | ZWave
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+icon: 'mdi:z-wave'
+panel: false
+path: zwave
+title: ZWAVE
+badges: [ ]
+#background: center / cover url("/local/images/pattern.png")
+cards:
+#     | - - - - - - - - - - - - - - - - - - -
+#     |   View | ZWave | Cards
+#     | - - - - - - - - - - - - - - - - - - -
+  - cards:
+      - entities:
+          - zwave.aeotec_zw090_zstick_gen5_us
+        show_header_toggle: false
+        title: Z-Wave - Aeotec Z-Stick
+        type: entities
+      - filter:
+          include:
+            - key: zwave.aeotec_zw090_zstick_gen5_us.friendly_name
+            - key: zwave.aeotec_zw090_zstick_gen5_us.manufacturer_name
+            - key: zwave.aeotec_zw090_zstick_gen5_us.product_name
+            - key: zwave.aeotec_zw090_zstick_gen5_us.is_awake
+            - key: zwave.aeotec_zw090_zstick_gen5_us.is_ready
+            - key: zwave.aeotec_zw090_zstick_gen5_us.query_stage
+            - key: zwave.aeotec_zw090_zstick_gen5_us.node_id
+            - key: zwave.aeotec_zw090_zstick_gen5_us.neighbors
+        heading_name: Attribute
+        heading_state: Value
+        type: 'custom:entity-attributes-card'
+    type: vertical-stack
+  - entities:
+      - zwave.aeotec_zw090_zstick_gen5_us
+      - zwave.ecolink_doorwindow_sensor
+      - zwave.front_door_lock
+    show_header_toggle: false
+    title: Z-Wave
+    type: entities
+  - cards:
+      - entities:
+          - zwave.front_door_lock
+        show_header_toggle: false
+        title: Z-Wave - Schlage Deadbolt
+        type: entities
+      - filter:
+          include:
+            - key: zwave.front_door_lock.friendly_name
+              name: Name
+            - key: zwave.front_door_lock.manufacturer_name
+              name: Manufacturer
+            - key: zwave.front_door_lock.product_name
+              name: Product
+            - key: zwave.front_door_lock.is_awake
+              name: Is Awake
+            - key: zwave.front_door_lock.is_ready
+              name: Is Ready
+            - key: zwave.front_door_lock.is_failed
+              name: Is Failed
+            - key: zwave.front_door_lock.query_stage
+              name: Query Stage
+            - key: zwave.front_door_lock.node_id
+              name: Node Id
+            - key: zwave.front_door_lock.neighbors
+              name: Neighbors
+            - key: zwave.front_door_lock.averageRequestRTT
+            - key: zwave.front_door_lock.lastRequestRTT
+            - key: zwave.front_door_lock.averageResponseRTT
+            - key: zwave.front_door_lock.lastResponseRTT
+        heading_name: Attribute
+        heading_state: Value
+        type: 'custom:entity-attributes-card'
+    type: vertical-stack

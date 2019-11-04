@@ -1,0 +1,23 @@
+# lovelace_gen
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  Custom Compact Header
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+default_tab: '5'
+hide_help: true
+hide_config: true
+hide_unused: true
+voice: hide
+exceptions:
+  - conditions:
+      user: Ryan
+    config:
+      options: clock
+      clock_format: 12
+  - conditions:
+      user: Surface
+    config:
+      options: clock
+      clock_format: 12
+      show_tabs: '0,1,2,3,4,5'

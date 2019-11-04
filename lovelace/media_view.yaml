@@ -9,7 +9,7 @@ panel: false
 path: media
 title: MEDIA
 badges: []
-background: center / cover url("/local/images/pattern.png")
+#background: center / cover url("/local/images/pattern.png")
 cards:
 #     | - - - - - - - - - - - - - - - - - - -
 #     |   View | Media | Cards

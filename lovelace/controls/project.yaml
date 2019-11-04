@@ -1,0 +1,26 @@
+# lovelace_gen
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  Project Card 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+type: entities
+show_header_toggle: off
+entities:
+  - type: section
+    label: Project Card
+  - type: custom:vertical-stack-in-card
+    cards: 
+      - type: 'custom:github-card'
+        title:  Github Card
+        entities:
+          - sensor.hass_config
+      - type: entities
+        title: Travis CI
+        show_header_toggle: false
+        entities:
+          - entity: sensor.f0123x_home_assistant_config_last_build_duration
+            name: Last Build Duration
+          - entity: sensor.f0123x_home_assistant_config_state
+            name: State
+

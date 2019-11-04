@@ -1,0 +1,50 @@
+# lovelace_gen
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  View | Project
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+icon: 'mdi:github-box'
+panel: false
+path: project
+title: PROJECT
+badges: []
+#background: center / cover url("/local/images/pattern.png")
+cards:
+#     | - - - - - - - - - - - - - - - - - - -
+#     |   View | Project | Cards
+#     | - - - - - - - - - - - - - - - - - - -
+  - type: 'custom:github-card'
+    title:  Github Card
+    entities:
+      - sensor.hass_config
+  - filter:
+      include:
+        - key: sensor.hass_config.path
+          name: Project Name
+        - key: sensor.hass_config.latest_commit_message
+          name: Latest Commit
+        - key: sensor.hass_config.latest_open_issue_url
+          name: Latest Issue
+        - key: sensor.hass_config.open_issues
+          name: Open Issues
+    heading_name: Name
+    heading_state: Value
+    title: Home Assistant Config
+    type: 'custom:entity-attributes-card'
+  - entities:
+      - entity: sensor.f0123x_home_assistant_config_last_build_duration
+        name: Last Build Duration
+      - entity: sensor.f0123x_home_assistant_config_last_build_finished_at
+        name: Last Build Finished At
+      - entity: sensor.f0123x_home_assistant_config_last_build_id
+        name: Last Build Build ID
+      - entity: sensor.f0123x_home_assistant_config_last_build_started_at
+        name: Last Build Started At
+      - entity: sensor.f0123x_home_assistant_config_last_build_state
+        name: Last Build State
+      - entity: sensor.f0123x_home_assistant_config_state
+        name: State
+    show_header_toggle: false
+    title: Travis CI
+    type: entities

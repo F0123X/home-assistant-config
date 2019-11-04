@@ -1,0 +1,64 @@
+# lovelace_gen
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  UPS Card 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+type: custom:vertical-stack-in-card
+cards:
+  - !include
+    - header_label.yaml
+    - name: CyberPower 1000 APC
+  - type: horizontal-stack
+    cards:
+      - type: custom:circle-sensor-card
+        entity: sensor.cyberpower_1000_battery_charge
+        max: 100
+        min: 0
+        stroke_width: 15
+        fill: 'var(--circle-card-fill)'
+        name: Battery
+        units: '%'
+        stroke_color: 'var(--circle-card-circle)' 
+        font_style: {font-size: 1.1em, font-color: white, text-shadow: '2px 2px black'}
+        style: {top: 5%, left: 80%, width: 4em, height: 4em, transform: none}
+      - type: custom:circle-sensor-card
+        entity: sensor.cyberpower_1000_load
+        max: 100
+        min: 0
+        stroke_width: 15
+        fill: 'var(--circle-card-fill)'
+        name: Load
+        units: '%'
+        stroke_color: 'var(--circle-card-circle)' 
+        font_style: {font-size: 1.1em, font-color: white, text-shadow: '2px 2px black'}
+        style: {top: 5%, left: 80%, width: 4em, height: 4em, transform: none}
+      - type: custom:circle-sensor-card
+        entity: sensor.cyberpower_1000_battery_runtime
+        max: 360
+        min: 0
+        stroke_width: 15
+        fill: 'var(--circle-card-fill)'
+        name: Power
+        units: 's'
+        stroke_color: 'var(--circle-card-circle)' 
+        font_style: {font-size: 1.1em, font-color: white, text-shadow: '2px 2px black'}
+        style: {top: 5%, left: 80%, width: 4em, height: 4em, transform: none}
+  - type: custom:mini-graph-card
+    name: Output Voltage
+    entities: 
+      - sensor.cyberpower_1000_output_voltage
+    height: 30
+    line_width: 2
+    font_size: 70
+    hours_to_show: 168
+    points_per_hour: 1
+    show:
+      extrema: true
+      fill: true
+    line_color: 'var(--triadic-color-blue)'
+    # color_thresholds:
+    #   - value: 0
+    #     color: "#FFFF00"
+    #   - value: 175
+    #     color: 'var(--triadic-color-blue)'

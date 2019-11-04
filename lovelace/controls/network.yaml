@@ -1,0 +1,48 @@
+# lovelace_gen
+# - - - - - - - - - - - - - - - - - - - - - \
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+#  Network Card 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+# - - - - - - - - - - - - - - - - - - - - - /
+type: custom:vertical-stack-in-card
+cards:
+  - !include
+    - header_label.yaml
+    - name: Network
+  - type: horizontal-stack
+    cards:
+      - type: custom:circle-sensor-card
+        entity: sensor.speedtest_download
+        max: 1000
+        min: 0
+        stroke_width: 15
+        fill: 'var(--circle-card-fill)'
+        name: Download
+        units: 'Mbit/s'
+        color_stops: { 400: 'var(--triadic-color-red)', 500: 'var(--triadic-color-green)' }
+        font_style: {font-size: 1.3em, font-color: white, text-shadow: '2px 2px black'}
+        style: {top: 5%, left: 80%, width: 4em, height: 4em, transform: none}
+      - type: custom:circle-sensor-card
+        entity: sensor.speedtest_upload
+        max: 800
+        min: 0
+        stroke_width: 15
+        fill: 'var(--circle-card-fill)'
+        name: Upload
+        units: 'Mbit/s'
+        color_stops: { 250: 'var(--triadic-color-red)', 500: 'var(--triadic-color-green)' }
+        font_style: {font-size: 1.3em, font-color: white, text-shadow: '2px 2px black'}
+        style: {top: 5%, left: 80%, width: 4em, height: 4em, transform: none}
+  - type: custom:mini-graph-card
+    name: Speedtest Ping
+    entities: 
+      - sensor.speedtest_ping
+    height: 40
+    line_width: 2
+    font_size: 70
+    hours_to_show: 168
+    points_per_hour: 1
+    show:
+      extrema: true
+      fill: true
+    line_color: 'var(--triadic-color-blue)'

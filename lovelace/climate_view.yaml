@@ -9,7 +9,7 @@ panel: false
 path: climate
 title: CLIMATE
 badges: []
-background: center / cover url("/local/images/pattern.png")
+#background: center / cover url("/local/images/pattern.png")
 cards:
 #     | - - - - - - - - - - - - - - - - - - -
 #     |   View | Climate | Cards
@@ -37,10 +37,7 @@ cards:
         title: Second Floor Temperatures
         type: history-graph
     type: vertical-stack
-  - entity: climate.living_room
-    name: Living Room
-    theme: thermostat
-    type: thermostat
+  - !include controls/thermostat.yaml
   - columns:
       - name: Description
         prop: name

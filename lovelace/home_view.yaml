@@ -9,7 +9,7 @@ panel: false
 path: default
 title: HOME
 badges: []
-background: center / cover url("/local/images/pattern.png")
+#background: center / cover url("/local/images/pattern.png")
 cards:
 #     | - - - - - - - - - - - - - - - - - - -
 #     |   View | Main | Cards
@@ -17,7 +17,11 @@ cards:
 #     | - - - - - - - - - - - - - - - - - - -
 #     |   View | Lighting | Cards
 #     | - - - - - - - - - - - - - - - - - - -
-  - type: custom:vertical-stack-in-card
+  - type: 'custom:calendar-card'
+    title: Calendar
+    entities:
+      - calendar.personal
+  - type: vertical-stack
     cards:
       - type: horizontal-stack
         cards:

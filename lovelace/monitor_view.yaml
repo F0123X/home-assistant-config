@@ -9,62 +9,64 @@ panel: false
 path: hass
 title: HASS
 badges: []
-background: center / cover url("/local/images/pattern.png")
+#background: center / cover url("/local/images/pattern.png")
 cards:
-  - !include
-    - controls/triple_gauge_card.yaml
-    - entity_id_1: sensor.edgex_router_uptime_percent
-      entity_name_1: EdgeX Router
-      entity_id_2: sensor.unifi_server_uptime_percent
-      entity_name_2: UniFi Server
-      entity_id_3: sensor.hassio_uptime_percent
-      entity_name_3: Hassio Server
-  - !include
-    - controls/triple_gauge_card.yaml
-    - entity_id_1: sensor.plex_server_uptime_percent
-      entity_name_1: Plex Router
-      entity_id_2: sensor.radarr_uptime_percent
-      entity_name_2: Radarr Server
-      entity_id_3: sensor.nas_server_uptime_percent
-      entity_name_3: NAS Server
   - show_header_toggle: false
     title: Command Line Interface
     type: entities
     entities:
       - entity: script.reboot
+  - !include controls/ups.yaml
+  - !include controls/network.yaml
   - !include
     - controls/system_monitor_card.yaml
     - system: HASS
-      ram: 8192
       disk: 50
-      d_os: 'Ubuntu 19.04 Server'
-      d_vcpus: '8 @ 3.025 GHz'
-      d_ram: '8 GiB'
-      d_disk: '50 GiB'
   - !include
     - controls/system_monitor_card.yaml
     - system: Plex
-      ram: 8192
       disk: 5000
-      d_os: 'Ubuntu 19.04 Server'
-      d_vcpus: '8 @ 3.025 GHz'
-      d_ram: '8 GiB'
-      d_disk: '5 TB'
-  - !include
-    - controls/system_monitor_card.yaml
-    - system: Ubnt
-      ram: 4096
-      disk: 45
-      d_os: 'Ubuntu 19.04 Server'
-      d_vcpus: '1 @ 3.025 GHz'
-      d_ram: '3 GiB'
-      d_disk: '40 GiB'
   - !include
     - controls/system_monitor_card.yaml
     - system: PiHole
-      ram: 1024
       disk: 30
-      d_os: 'Ubuntu 18.04 Server'
-      d_vcpus: '1 @ 3.025 GHz'
-      d_ram: '1 GiB'
-      d_disk: '30 GiB'
+  - !include
+    - controls/system_monitor_card.yaml
+    - system: Ubnt
+      disk: 40
+  # - !include
+  #   - controls/system_monitor_card.yaml
+  #   - system: HASS
+  #     ram: 8192
+  #     disk: 50
+  #     d_os: 'Ubuntu 19.04 Server'
+  #     d_vcpus: '8 @ 3.025 GHz'
+  #     d_ram: '8 GiB'
+  #     d_disk: '50 GiB'
+  # - !include
+  #   - controls/system_monitor_card.yaml
+  #   - system: Plex
+  #     ram: 8192
+  #     disk: 5000
+  #     d_os: 'Ubuntu 19.04 Server'
+  #     d_vcpus: '8 @ 3.025 GHz'
+  #     d_ram: '8 GiB'
+  #     d_disk: '5 TB'
+  # - !include
+  #   - controls/system_monitor_card.yaml
+  #   - system: Ubnt
+  #     ram: 4096
+  #     disk: 45
+  #     d_os: 'Ubuntu 19.04 Server'
+  #     d_vcpus: '1 @ 3.025 GHz'
+  #     d_ram: '3 GiB'
+  #     d_disk: '40 GiB'
+  # - !include
+  #   - controls/system_monitor_card.yaml
+  #   - system: PiHole
+  #     ram: 1024
+  #     disk: 30
+  #     d_os: 'Ubuntu 18.04 Server'
+  #     d_vcpus: '1 @ 3.025 GHz'
+  #     d_ram: '1 GiB'
+  #     d_disk: '30 GiB'
